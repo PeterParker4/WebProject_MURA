@@ -10,7 +10,7 @@
 
 <table>
 	<tr>
-		<td>성세연</td><td>나이</td><td>25세</td>
+		<td>성세연</td><td>나이</td><td>25세다</td>
 	</tr>
 </table>
 </body>

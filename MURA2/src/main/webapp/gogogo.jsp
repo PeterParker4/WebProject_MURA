@@ -7,7 +7,7 @@
 <title>test8</title>
 </head>
 <body>
-
+아니 왜 안돼 
 <table>
 	<tr>
 		<td>성세연</td><td>나이</td><td>25세다</td>

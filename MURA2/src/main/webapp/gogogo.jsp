@@ -7,6 +7,11 @@
 <title>test8</title>
 </head>
 <body>
-ddddddsssssss알ㅇ너랴먼야러야너야러
+
+<table>
+	<tr>
+		<td>성세연</td><td>나이</td><td>25세</td>
+	</tr>
+</table>
 </body>
 </html>

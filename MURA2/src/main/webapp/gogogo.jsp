@@ -7,6 +7,6 @@
 <title>merge 요청 예시</title>
 </head>
 <body>
-관리자제외 메인 건들기 절대로 ㄴㄴㄴ
+관리자제외 메인 건들기 절대로 ㄴㄴㄴㄴ
 </body>
 </html>

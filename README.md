@@ -1,7 +1,9 @@
 # WebProject_MURA
 2021 글로벌인 IT 3차 웹프로젝트(MURA)
 
+
 <깃허브 작성 규칙>
+
 팀장(유진수)제외 '절대로!!!' MAIN 브렌치를 건들지 않는다.
 
 Pull requests에서 합병 요청하고나서 'Merge pull request' 버튼 역시 '절대로!' 팀장제외 다른팀원(콜라보레이터)이 누르지 않는다.

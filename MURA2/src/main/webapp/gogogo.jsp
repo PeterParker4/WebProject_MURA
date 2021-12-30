@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>merge 요청 예시</title>
+<title>test8</title>
 </head>
 <body>
-관리자제외 메인 건들기 절대로 ㄴㄴㄴㄴ
+ddddddsssssss알ㅇ너랴먼야러야너야러
 </body>
 </html>

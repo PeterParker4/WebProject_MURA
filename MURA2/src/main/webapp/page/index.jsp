@@ -94,15 +94,6 @@
 	</table>
 </div>
 
- 	<!-- 검색창 -->
-	<div class="search-wrapper">
-	    <div class="input-holder">
-	        <input type="text" class="search-input" placeholder="Type to search" />
-	        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-	    </div>
-	    <span class="close" onclick="searchToggle(this, event);"></span>
-	</div>
-	
 	<!--F 푸터메뉴 -->
     <footer class="footer">
 		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">

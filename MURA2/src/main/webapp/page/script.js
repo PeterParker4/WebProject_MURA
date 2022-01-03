@@ -1,4 +1,5 @@
 /* 검색 토글 */
+
 function searchToggle(obj, evt) {
 	var container = $(obj).closest('.search-wrapper');
 	if (!container.hasClass('active')) {
@@ -10,4 +11,5 @@ function searchToggle(obj, evt) {
 		// clear input
 		container.find('.search-input').val('');
 	}
+	
 }

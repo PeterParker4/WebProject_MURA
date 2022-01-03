@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>MURA :: 당신의 식탁을 더 맛있게</title>
 <script type="text/javascript" src="script.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png" />
+<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -21,7 +21,8 @@
 	</nav>
 
 	<div>
-		<a href="a"> <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+		<a href="/MURA2/page/index.jsp"> 
+		<img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 	
 	<div>

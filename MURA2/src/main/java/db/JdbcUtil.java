@@ -1,13 +1,12 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class FoodJdbcUtil 
+
+public class JdbcUtil 
 {
 	public static Connection getConnection()
 	{
@@ -77,5 +76,8 @@ public class FoodJdbcUtil
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	
 }

@@ -26,8 +26,8 @@ table {
 	text-align: center;	
 }
 
-
-  ::selection {
+/* 검색 토글 스타일 */
+::selection {
    background: #212129;
 }
 

@@ -54,7 +54,7 @@
 			<img src="images/search_area.jpg" width="1194" height="282" alt="">
 			<div class="search-wrapper">
 			    <div class="input-holder">
-			        <input type="text" class="search-input" placeholder="Type to search" />
+			        <input type="text" class="search-input" placeholder="재료를 입력하세요!" />
 			        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
 			    </div>
 			    <span class="close" onclick="searchToggle(this, event);"></span>

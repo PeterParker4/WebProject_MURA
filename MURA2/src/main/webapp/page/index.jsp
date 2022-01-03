@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>MURA :: 당신의 식탁을 더 맛있게</title>
 <script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -19,21 +20,24 @@
 		<a href="/loginPage"> Login </a> |
 		<a href="/javascript/intro"> MyPage </a>
 	</nav>
+	<br><br>
 
-	<div>
-		<a href="/MURA2/page/index.jsp"> 
-		<img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	<!-- 상단 로고 -->
+	<div class="logo">
+	  <a href="/MURA2/page/index.jsp"> 
+	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 	
 	<div>
-	<table id="__01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
+	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
+	
 	<tr>
 		<td>
 			<a href="a">
-				<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
+			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
 		<td>
 			<a href="a">
-				<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
+			<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
 		<td colspan="2">
 			<img src="images/menu_margin.jpg" width="408" height="70" alt=""></td>
 		<td>
@@ -41,22 +45,37 @@
 			<img src="images/request_btn.jpg" width="174" height="70" alt=""></a></td>
 		<td>
 			<a href="a">
-				<img src="images/qa_btn.jpg" width="204" height="70" border="0" alt=""></a></td>
+			<img src="images/qa_btn.jpg" width="204" height="70" border="0" alt=""></a></td>
 	</tr>
+	
+	<!-- 검색창 -->
 	<tr>
 		<td colspan="6">
-			<img src="images/search_area.jpg" width="1194" height="282" alt=""></td>
+			<img src="images/search_area.jpg" width="1194" height="282" alt="">
+			<div class="search-wrapper">
+			    <div class="input-holder">
+			        <input type="text" class="search-input" placeholder="Type to search" />
+			        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+			    </div>
+			    <span class="close" onclick="searchToggle(this, event);"></span>
+			</div>
+        </td>
 	</tr>
+	
+	<!-- 중간 메뉴바 -->
 	<tr>
 		<td colspan="6">
 			<img src="images/midle_bar.jpg" width="1194" height="84" alt=""></td>
 	</tr>
+	
 	<tr>
 		<td colspan="3">
 			<img src="images/best10_area.jpg" width="480" height="414" alt=""></td>
 		<td colspan="3">
 			<img src="images/hot3_area.jpg" width="714" height="414" alt=""></td>
 	</tr>
+	
+	<!-- 여백 -->
 	<tr>
 		<td>
 			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="250" height="1" alt=""></td>
@@ -71,9 +90,11 @@
 		<td>
 			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="204" height="1" alt=""></td>
 	</tr>
+	
 	</table>
 </div>
-	<!-- 검색창 -->
+
+ 	<!-- 검색창 -->
 	<div class="search-wrapper">
 	    <div class="input-holder">
 	        <input type="text" class="search-input" placeholder="Type to search" />

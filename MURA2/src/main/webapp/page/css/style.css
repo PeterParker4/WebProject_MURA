@@ -14,11 +14,20 @@ a {
   color: #743569;
 }
 
-div {
-	text-align: center;
+.logo {
+	display: flex;
+	justify-content: center;
 }
 
-/*  ::selection {
+table {
+	width: 60%;
+	height: 100px;
+	margin: auto;
+	text-align: center;	
+}
+
+
+  ::selection {
    background: #212129;
 }
 
@@ -157,4 +166,4 @@ div {
     height: 5px;
     left: 0px;
     top: 10px;
-}  */
+}

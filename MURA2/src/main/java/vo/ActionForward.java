@@ -6,7 +6,12 @@ public class ActionForward
 	private String path;
 	private boolean redirect;
 	
+<<<<<<< HEAD
 	public ActionForward(String path, boolean redirect) {
+=======
+	public ActionForward(String path, boolean redirect) 
+	{
+>>>>>>> refs/remotes/origin/soom
 		this.path = path; this.redirect = redirect;
 	}
 

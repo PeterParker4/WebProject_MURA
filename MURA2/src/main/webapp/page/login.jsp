@@ -100,7 +100,7 @@
 
 				</form>
 				<div align="right">
-				<a href="#" class="txt1">
+				<a href="signup.jsp" class="txt1">
 					<b>회원가입</b>
 				</a>
 				</div>

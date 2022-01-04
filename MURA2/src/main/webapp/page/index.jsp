@@ -20,7 +20,7 @@
 
 	<!--N 네비메뉴 -->
     <nav>
-		<a href="/loginPage"> Sign Up </a> |
+		<a href="signup.jsp"> Sign Up </a> |
 		<a href="login.jsp"> Login </a> |
 		<a href="/javascript/intro"> MyPage </a>
 	</nav>

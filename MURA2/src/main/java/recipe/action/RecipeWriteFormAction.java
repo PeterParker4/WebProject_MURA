@@ -1,9 +1,9 @@
-package action;
+package recipe.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import vo.ActionForward;
+import recipe.vo.ActionForward;
 
 public class RecipeWriteFormAction implements Action {
 

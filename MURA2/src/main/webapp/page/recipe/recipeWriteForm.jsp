@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file = "view/color.jspf" %>
+<%@ include file = "../view/color.jspf" %>
     
 <!DOCTYPE html>
 <html>
@@ -9,8 +8,8 @@
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
 <script type="text/javascript" src="script.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor = "#FFFFFF">
@@ -25,11 +24,11 @@
 	<!-- 상단 로고 -->
 	<div class="logo">
 	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
 <br><br>
-<form action="/JspProject/board/recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
+<form action="recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
 <input type="hidden" name="num" value="${num}">
 <input type="hidden" name="ref" value="${ref}">
 <input type="hidden" name="step" value="${step}">
@@ -56,13 +55,7 @@
 <tr>
    <td width="80" bgcolor="${value_c}" align="center">제목</td>
    <td width="300">
-     <c:if test="${num == 0}">
-       <input type="text" size="100" maxlength="100" name="subject">
-     </c:if>
-
-     <c:if test="${num != 0}">
-       <input type="text" size="100" maxlength="100" name="subject" value="[답변]">
-     </c:if>
+     <input type="text" size="100" maxlength="100" name="subject">
    </td>
 </tr>
 
@@ -98,7 +91,7 @@
   <td colspan="2" bgcolor="${value_c}" align="center">
   	<input type="submit" value="글쓰기">
   	<input type="reset" value="다시작성">
-  	<input type="button" value="목록" onClick="window.location='/MURA/page/recipeList.do'">
+  	<input type="button" value="목록" onClick="window.location='recipeList.mur'">
   </td>
 </tr>
 </table>

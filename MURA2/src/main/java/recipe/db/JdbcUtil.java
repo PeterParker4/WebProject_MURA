@@ -1,4 +1,4 @@
-package db;
+package recipe.db;
 
 import java.sql.*;
 import javax.naming.Context;

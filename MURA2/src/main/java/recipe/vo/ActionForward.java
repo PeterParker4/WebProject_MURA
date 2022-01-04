@@ -1,4 +1,4 @@
-package vo;
+package recipe.vo;
 
 // 포워딩정보를 저장할수 있는 클래스.
 public class ActionForward 

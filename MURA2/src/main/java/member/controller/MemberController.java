@@ -1,4 +1,4 @@
-package member.controller;
+/*package member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.action.Action;
-import member.action.ActionForward;
-import member.action.LoginAction;
+import member.action.LoginFormAction;
 
 
 @WebServlet("*.mur")
@@ -39,7 +38,7 @@ public class MemberController extends HttpServlet {
 		
 		// 2. 각 요청별로 비즈니스 로직 호출
 		if (command.equals("/login.mur")) {
-			action = new LoginAction();
+			action = new LoginFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -48,4 +47,4 @@ public class MemberController extends HttpServlet {
 		}
 	}
 
-}
+}*/

@@ -17,7 +17,7 @@
 	<!--N 네비메뉴 -->
     <nav>
 		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
+		<a href="/MURA2/page/login.jsp"> Login </a> |
 		<a href="/javascript/intro"> MyPage </a>
 	</nav>
 	<br><br>

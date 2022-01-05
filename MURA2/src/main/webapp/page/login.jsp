@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <c:set var="loginID" value="${sessionScope.loginID }" />  
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +41,36 @@
 
 <body bgcolor="#FFFFFF">
 
-<c:otherwise>	
+<c:choose>
+	<c:when test="${loginID ne null }">
+	
+	<table width="300" border="1">
+  <tr>
+  	<td colspan="3" align="center">
+  		<c:out value="${loginID }"/>님 환영합니다.
+  	</td>
+  </tr>
+  
+  <tr>
+  	<td align="center" width="100">
+  		<a href="member.mdo?cmd=modifyForm">마이페이지</a>
+  	</td>
+
+  	<td align="center" width="100">
+  		<a href="member.mur?cmd=logout">로그아웃</a>
+  	</td>
+
+  	<td align="center" width="100">
+  		<a href="/MURA2/page/index.jsp">메인으로 이동</a>
+  	</td>
+  </tr>
+</table>
+
+	</c:when>
+	
+	
+ <c:otherwise>	
+	
 	<c:if test="${requestScope.check eq 0 }">
 	<script type="text/javascript">
 		alert("비밀번호가 틀렸습니다.");
@@ -68,20 +97,20 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form action="member.mur?cmd=loginProc" method="post" class="login100-form validate-form flex-sb flex-w">
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="id_mem" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pass_mem" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -109,7 +138,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn" onclick="javascript:window.location='?cmd=index'">
+						<button type="submit" class="login100-form-btn" onclick="javascript:window.location='?cmd=index'">
 							로 그 인
 						</button>
 					</div>
@@ -149,8 +178,8 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
-</c:otherwise>
-
+</c:otherwise>	
+</c:choose>
 	
 </body>
 </html>

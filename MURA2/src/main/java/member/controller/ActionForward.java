@@ -1,4 +1,4 @@
-package member.action;
+package member.controller;
 
 public class ActionForward {
 

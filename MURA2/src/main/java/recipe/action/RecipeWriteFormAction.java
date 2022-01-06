@@ -3,12 +3,10 @@ package recipe.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import recipe.vo.ActionForward;
-
-public class RecipeWriteFormAction implements Action {
+public class RecipeWriteFormAction implements CommandAction {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
 		// 제목글과 답변글의 구분
         int num=0, ref=1, step=0, depth=0;
@@ -30,8 +28,6 @@ public class RecipeWriteFormAction implements Action {
 		request.setAttribute("step", step);
 		request.setAttribute("depth", depth);
 		
-		ActionForward forward = new ActionForward("recipeWriteForm.mur", true);
-		
-		return forward; // 해당뷰로 속성값을 넘겨줌
+		return "/page/recipe/recipeWriteForm.jsp"; // 해당뷰로 속성값을 넘겨줌
 	}
 }

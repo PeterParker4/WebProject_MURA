@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>MURA :: 레시피 게시판</title>
+<link rel="icon" type="../image/x-icon" href="images/mura_logo.png">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 function check() {
 	if(document.find_frm.find_box.value == "null") {
@@ -18,22 +19,50 @@ function check() {
 	}
 }
 function frm_sub(i) {
-	i_frm.action = "/JspProject/board/list.do?pageNum=" + i;
+	i_frm.action = "/MURA2/page/recipe/recipeList.mur?pageNum=" + i;
 	i_frm.submit();
 }
 </script>
 </head>
-<body bgcolor = "${bodyback_c }">
-<div align="center"><b>글목록(전체 글:${count })</b>
-<table width="700">
-  <tr>
-	<td align="right" bgcolor="${value_c }">
-	<a href="recipeList.mur">글목록</a></td>
+<body bgcolor = "#ffffff">
+	<!--N 네비메뉴 -->
+    <nav>
+		<a href="/loginPage"> Sign Up </a> |
+		<a href="/loginPage"> Login </a> |
+		<a href="/javascript/intro"> MyPage </a>
+	</nav>
+	<br><br>
+
+	<!-- 상단 로고 -->
+	<div class="logo">
+	  <a href="/MURA2/page/index.jsp"> 
+	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	</div>
 	
-	<td align="right" bgcolor="${value_c }">
-	<a href="recipeWriteForm.mur">글쓰기</a></td>
-  </tr>
-</table>
+	<div>
+	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
+	
+	<tr>
+		<td>
+			<a href="/MURA2/page/recipe/recipeList.mur">
+			<img src="../images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
+		<td>
+			<a href="/MURA2/page/recipe/recipeWriteForm.mur">
+			<img src="../images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
+		<td colspan="2">
+			<img src="../images/menu_margin.jpg" width="408" height="70" alt=""></td>
+		<td>
+			<a href="a">
+			<img src="../images/request_btn.jpg" width="174" height="70" alt=""></a></td>
+		<td>
+			<a href="a">
+			<img src="../images/qa_btn.jpg" width="204" height="70" border="0" alt=""></a></td>
+	</tr>
+	</table>
+	</div>
+
+<div align="center">
+	<a href="recipeWriteForm.mur">레시피 작성</a>
 <c:if test="${count == 0 }">
 
 <table width="700" border="1" cellpadding="0" cellspacing="0">
@@ -44,54 +73,45 @@ function frm_sub(i) {
 </c:if>
 
 <c:if test="${count > 0 }">
-<table width="700" border="1" cellpadding="0" cellspacing="0">
+<table width="700" border="1" cellpadding="0" cellspacing="0" name="recipeListTop">
   <tr height="30" bgcolor="${value_c }">
     <td align="center" width="50">번호</td>
-    <td align="center" width="250">제목</td>
+    <td align="center" width="70">카테고리</td>
+    <td align="center" width="280">제목</td>
     <td align="center" width="100">작성자</td>
     <td align="center" width="150">작성일</td>
     <td align="center" width="50">조회수</td>
-    <td align="center" width="100">IP</td>
   </tr>
   
-  <c:forEach var="article" items="${articleList }">
+  <c:forEach var="article" items="${articleList}">
   
   <tr height="30">
+  
     <td align="center" width="50">
-    <c:out value="${number }"/>
-    <c:set var="number" value="${number-1 }"/>
+    <c:out value="${number}"/>
+    <c:set var="number" value="${number-1}"/>
     </td>
-    <td width="250">
+
+    <td align="center" width="70">
+    ${article.category_li}
+    </td>
     
-    <c:if test="${article.depth > 0 }">
-      <img src="images/level.gif" 
-      width="${5 * article.depth }" height="16">
-      <img src="images/re.gif">
-    </c:if>
-      
-    <c:if test="${article.depth == 0 }">
-      <img src="images/level.gif" 
-      width="${5 * article.depth }" height="16">
-    </c:if>
-    
-      <a href="/JspProject/board/content.do?num=${article.num }&pageNum=${currentPage }">
-      ${article.subject }</a>
-      <c:if test="${article.readcount >= 20 }">
+    <td width="280">
+      <a href="/MURA2/page/recipe/content.mur?num=${article.wnum_li}&pageNum=${currentPage}">
+      ${article.wsubject_li}</a>
+      <c:if test="${article.readcount_li >= 20}">
       <img alt="" src="images/hot.gif" border="0" height="16">
       </c:if>
     </td>
     <td align="center" width="100">
-      <a href="mailto:${article.email }">
-      ${article.writer }</a>
+    ${article.nn_mem}
     </td>
     <td align="center" width="150">
-    ${article.regdate }
+    ${article.date_li}
     </td>
     <td align="center" width="50">
-    ${article.readcount }
+    ${article.readcount_li}
     </td>
-    <td align="center" width="100">
-    ${article.ip}</td>
   </tr>
   </c:forEach>
 </table>
@@ -99,7 +119,7 @@ function frm_sub(i) {
 
 <!-- 페이징 처리 -->
 <c:if test="${count > 0 }">
-  <c:set var="imsi" value="${count % pageSize == 0 ? 0 : 1 }"/>
+  <c:set var="imsi" value="${count % pageSize == 0 ? 0 : 1}"/>
   <c:set var="pageCount" value="${count / pageSize + imsi }"/>
   <c:set var="pageBlock" value="${3}"/>
   <fmt:parseNumber var="result" value="${(currentPage - 1) / pageBlock}" integerOnly="true"/>
@@ -112,15 +132,15 @@ function frm_sub(i) {
   </c:if>
   
   <c:if test="${startPage > pageBlock}">
-    <a href="/JspProject/board/list.do?pageNum=${startPage - pageBlock}" onClick="frm_sub(${startPage - pageBlock})">[이전]</a>
+    <a href="/MURA2/page/recipe/recipeList.mur?pageNum=${startPage - pageBlock}" onClick="frm_sub(${startPage - pageBlock})">[이전]</a>
   </c:if>
 
   <c:forEach var="i" begin="${startPage}" end="${endPage}">
-    <a href="/JspProject/board/list.do?pageNum=${i}" onClick="frm_sub(${i})">[${i}]</a>
+    <a href="/MURA2/page/recipe/recipeList.mur?pageNum=${i}" onClick="frm_sub(${i})">[${i}]</a>
   </c:forEach>
 
   <c:if test="${endPage < pageCount}">
-    <a href="/JspProject/board/list.do?pageNum=${startPage + pageBlock}" onClick="frm_sub(${startPage + pageBlock})">[다음]</a>
+    <a href="/MURA2/page/recipe/recipeList.mur?pageNum=${startPage + pageBlock}" onClick="frm_sub(${startPage + pageBlock})">[다음]</a>
   </c:if>
 </c:if>
 
@@ -131,7 +151,7 @@ function frm_sub(i) {
   <input type="hidden" name="find" value="${find}">
 </form>
 
-<form action="/JspProject/board/list.do" method="post" name="find_frm" onsubmit="return check()">
+<form action="/MURA2/page/recipe/recipeList.mur" method="post" name="find_frm" onsubmit="return check()">
   <select name="find" size="1">
     <option value="writer">작성자</option>
     <option value="subject">제목</option>
@@ -142,6 +162,9 @@ function frm_sub(i) {
   &nbsp;
   <input type="submit" value="검색">
 </form>
+
+<br><br>
+<b>전체 글 : ${count}</b>
 
 </div>
 </body>

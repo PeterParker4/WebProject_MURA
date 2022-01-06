@@ -33,10 +33,10 @@
 	
 	<tr>
 		<td>
-			<a href="a">
+			<a href="/MURA2/page/recipe/recipeList.mur">
 			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
 		<td>
-			<a href="recipeWriteForm.mur">
+			<a href="/MURA2/page/recipe/recipeWriteForm.mur">
 			<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
 		<td colspan="2">
 			<img src="images/menu_margin.jpg" width="408" height="70" alt=""></td>

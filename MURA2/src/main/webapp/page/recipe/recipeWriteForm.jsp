@@ -28,7 +28,7 @@
 	</div>
 
 <br><br>
-<form action="recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
+<form action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
 <input type="hidden" name="num" value="${num}">
 <input type="hidden" name="ref" value="${ref}">
 <input type="hidden" name="step" value="${step}">

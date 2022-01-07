@@ -6,7 +6,6 @@ public class RecipeVO {
 
 	private int idx_li;
 	private int un_mem;
-	private int wnum_li;
 	private String nn_mem;
 	private String category_li;
 	private String wsubject_li;
@@ -28,12 +27,6 @@ public class RecipeVO {
 	}
 	public void setUn_mem(int un_mem) {
 		this.un_mem = un_mem;
-	}
-	public int getWnum_li() {
-		return wnum_li;
-	}
-	public void setWnum_li(int wnum_li) {
-		this.wnum_li = wnum_li;
 	}
 	public String getNn_mem() {
 		return nn_mem;

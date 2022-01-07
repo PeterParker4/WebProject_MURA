@@ -28,11 +28,8 @@
 	</div>
 
 <br><br>
-<form action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
-<input type="hidden" name="num" value="${num}">
-<input type="hidden" name="ref" value="${ref}">
-<input type="hidden" name="step" value="${step}">
-<input type="hidden" name="depth" value="${depth}">
+<form encType="multipart/form-data" action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" 
+method="post" onsubmit="return writeSave()">
 
 <table width="750" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
 
@@ -43,7 +40,7 @@
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
    <td>
-     <select name="category" style="width:500px">
+     <select name="category_li" style="width:500px">
        <option value="korea">한식</option>
        <option value="japan">일식</option>
        <option value="western">양식</option>
@@ -55,14 +52,14 @@
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">제목</td>
    <td width="300">
-     <input type="text" size="80" maxlength="100" name="subject">
+     <input type="text" size="80" maxlength="100" name="wsubject_li">
    </td>
 </tr>
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">재료입력</td>
    <td width="300">
-     <input type="text" size="80" maxlength="100" name="ingredient">
+     <input type="text" size="80" maxlength="100" name="tag_li">
    </td>
 </tr>
 
@@ -70,14 +67,15 @@
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">내용</td>
    <td width="300">
-     <textarea rows="50" cols="80%" name="content"></textarea>
+     <textarea rows="50" cols="80%" name="wcontent_li"></textarea>
    </td>
 </tr>
 
 <tr>
   <td width="100" bgcolor="${value_c}" align="center">사진첨부</td>
   <td>
-    <input type="file" name="fileName1" multiple="multiple">
+    <input type="file" name="tumb_li" multiple="multiple"><br>
+    *첫번째 등록한 사진이 썸네일 이미지로 등록됩니다.
   </td>
 </tr>
 

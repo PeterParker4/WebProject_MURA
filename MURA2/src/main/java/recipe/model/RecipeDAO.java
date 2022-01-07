@@ -132,7 +132,7 @@ public class RecipeDAO {
 			// 수정2
 			// pstmt = con.prepareStatement("select * from food_board order by num desc");
 			pstmt = con.prepareStatement(
-					"select * from (select rownum rnum, idx_li, un_mem, wnum_li, nn_mem, category_li, "
+					"select * from (select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
 							+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from "
 							+ "(select * from food_board order by idx_li desc)) where rnum >= ? and rnum <= ?");
 
@@ -147,7 +147,6 @@ public class RecipeDAO {
 					RecipeVO article = new RecipeVO();
 					article.setIdx_li(rs.getInt("idx_li"));
 					article.setUn_mem(rs.getInt("un_mem"));
-					article.setWnum_li(rs.getInt("wnum_li"));
 					article.setNn_mem(rs.getString("nn_mem"));
 					article.setCategory_li(rs.getString("category_li"));
 					article.setWsubject_li(rs.getString("wsubject_li"));
@@ -195,7 +194,7 @@ public class RecipeDAO {
 
 			StringBuffer sql = new StringBuffer();
 			sql.append("select * from ");
-			sql.append("(select rownum rnum, idx_li, un_mem, wnum_li, nn_mem, category_li, "
+			sql.append("(select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
 					+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from ");
 
 			if (find.equals("nn_mem")) {
@@ -232,7 +231,6 @@ public class RecipeDAO {
 					RecipeVO article = new RecipeVO();
 					article.setIdx_li(rs.getInt("idx_li"));
 					article.setUn_mem(rs.getInt("un_mem"));
-					article.setWnum_li(rs.getInt("wnum_li"));
 					article.setNn_mem(rs.getString("nn_mem"));
 					article.setCategory_li(rs.getString("category_li"));
 					article.setWsubject_li(rs.getString("wsubject_li"));
@@ -276,8 +274,6 @@ public class RecipeDAO {
 		ResultSet rs = null;
 		
 		int number = 0;
-		String nn_mem = "a";
-		String thumb_li = "a.jpg";
 		
 		String sql = "";
 		
@@ -290,17 +286,16 @@ public class RecipeDAO {
 			else number = 1; // 새글이 아닌 경우
 			
 			// 새글을 추가하는 쿼리 작성
-			sql="insert into food_board(idx_li, wnum_li, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
-					+ "values(content_seq.nextval, content_seq.nextval, ?,?,?,?,?,?,? )";
+			sql="insert into food_board(idx_li, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
+					+ "values(content_seq.nextval, 'nick',?,?,?,?,?,? )";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, nn_mem);
-			pstmt.setString(2, article.getCategory_li());
-			pstmt.setString(3, article.getWsubject_li());
-			pstmt.setString(4, article.getTag_li());
-			pstmt.setString(5, thumb_li);
-			pstmt.setString(6, article.getWcontent_li());
-			pstmt.setTimestamp(7, article.getDate_li());
+			pstmt.setString(1, article.getCategory_li());
+			pstmt.setString(2, article.getWsubject_li());
+			pstmt.setString(3, article.getTag_li());
+			pstmt.setString(4, article.getThumb_li());
+			pstmt.setString(5, article.getWcontent_li());
+			pstmt.setTimestamp(6, article.getDate_li());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {

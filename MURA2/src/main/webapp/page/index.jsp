@@ -22,7 +22,7 @@
     <nav>
 		<a href="signup.jsp"> Sign Up </a> |
 		<a href="login.jsp"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
+		<a href="mypage.jsp"> MyPage </a>
 	</nav>
 	<br><br>
 

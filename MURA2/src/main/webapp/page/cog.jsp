@@ -18,13 +18,14 @@
 color:#fff;
 font-size: 16px;
   padding: 12px 40px;
-  width: 25%;
+  width: 23%;
   background-color: #a84781;
-  border-radius: 3px;
+  border-radius: 10px;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+  border: none;
 }
 
 .ho1:hover {

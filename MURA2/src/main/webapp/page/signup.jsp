@@ -94,11 +94,15 @@ background-color: black;
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
+
+
 <div align="center">	
 <form action="cog.jsp" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
                      
                                                                         
-      <h2>회원가입</h2>
+      
+      
+      <h5>MURA에 오신 것을 환영합니다. ^_^<br>가입해서 많은 서비스를 이용하세요 ! </h5>
       
       <div class="textForm">
         <input name="loginId" type="text" class="id" placeholder="아이디">

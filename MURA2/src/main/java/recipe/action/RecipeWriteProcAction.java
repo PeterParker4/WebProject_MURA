@@ -18,17 +18,14 @@ public class RecipeWriteProcAction implements CommandAction {
 		// 单捞磐 贸府 后
 		RecipeVO article = new RecipeVO();
 		
-		article.setNum(Integer.parseInt(request.getParameter("num")));
-		article.setWriter(request.getParameter("writer"));
-		article.setEmail(request.getParameter("email"));
-		article.setSubject(request.getParameter("subject"));
-		article.setPass(request.getParameter("pass"));
-		article.setRegdate(new Timestamp(System.currentTimeMillis()));
-		article.setRef(Integer.parseInt(request.getParameter("ref")));
-		article.setStep(Integer.parseInt(request.getParameter("step")));
-		article.setDepth(Integer.parseInt(request.getParameter("depth")));
-		article.setContent(request.getParameter("content"));
-		article.setIp(request.getRemoteAddr());
+		article.setWnum_li(Integer.parseInt(request.getParameter("wnum_li")));
+		article.setNn_mem(request.getParameter("nn_mem"));
+		article.setCategory_li(request.getParameter("category_li"));
+		article.setWsubject_li(request.getParameter("wsubject_li"));
+		article.setTag_li(request.getParameter("tag_li"));
+		article.setThumb_li(request.getParameter("thumb_li"));
+		article.setWcontent_li(request.getParameter("wcontent_li"));
+		article.setDate_li(new Timestamp(System.currentTimeMillis()));
 		
 		// 单捞磐海捞胶 贸府
 		RecipeDAO dbPro = RecipeDAO.getInstance();

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body {
+	margin-left: 358px auto;
+	margin-right: 358px auto;
+}
+
+nav {
+  float: right;
+}
+
+a {
+  text-decoration-line: none;
+  color: #743569;
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+}
+
+.rayout_menu {
+	width: 60%;
+	height: 100px;
+	margin: auto;
+	text-align: center;	
+}

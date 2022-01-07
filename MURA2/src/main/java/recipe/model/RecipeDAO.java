@@ -77,7 +77,7 @@ public class RecipeDAO {
 		try {
 			con = ConnUtil.getConnection();
 
-			if (find.equals("un_mem")) {
+			if (find.equals("nn_mem")) {
 				pstmt = con.prepareStatement("select count(*) from food_board where un_mem=?");
 				pstmt.setString(1, find_box);
 			} else if (find.equals("wsubject_li")) {
@@ -134,7 +134,7 @@ public class RecipeDAO {
 			pstmt = con.prepareStatement(
 					"select * from (select rownum rnum, idx_li, un_mem, wnum_li, nn_mem, category_li, "
 							+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from "
-							+ "(select * from food_board order by idx_li desc)) " + "where rnum >= ? and rnum <= ?");
+							+ "(select * from food_board order by idx_li desc)) where rnum >= ? and rnum <= ?");
 
 			// 수정3
 			pstmt.setInt(1, start);
@@ -198,27 +198,28 @@ public class RecipeDAO {
 			sql.append("(select rownum rnum, idx_li, un_mem, wnum_li, nn_mem, category_li, "
 					+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from ");
 
-			if (find.equals("un_mem")) {
-				sql.append("(select * from food_board where un_mem=? order by idx_li desc))"
+			if (find.equals("nn_mem")) {
+				sql.append("(select * from food_board where un_mem=? order by idx_li desc)) "
 						+ "where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, find_box);
 				pstmt.setInt(2, start);
 				pstmt.setInt(3, end);
 			} else if (find.equals("wsubject_li")) {
-				sql.append("(select * from food_board where wsubject_li like '%" + find_box
-						+ "%')) where rnum >= ? and rnum <= ?");
+				sql.append("(select * from food_board where wsubject_li like '%" + find_box + "%' "
+						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else if (find.equals("wcontent_li")) {
-				sql.append("(select * from food_board where wcontent_li like '%" + find_box
-						+ "%')) where rnum >= ? and rnum <= ?");
+				sql.append("(select * from food_board where wcontent_li like '%" + find_box + "%' "
+						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql.append("select * from food_board where rnum >= ? and rnum <= ?");
+				sql.append("(select * from food_board order by idx_li desc)) "
+						+ "where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
@@ -267,40 +268,51 @@ public class RecipeDAO {
 		return articleList;
 	}
 
+	// 이곳에 게시판 작업의 기능들을 하나하나 메소드로 추가하면 됨
+	public void insertArticle(RecipeVO article) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int number = 0;
+		String nn_mem = "a";
+		String thumb_li = "a.jpg";
+		
+		String sql = "";
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select max(num) from food_board");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) number = rs.getInt(1) + 1; // 새글
+			else number = 1; // 새글이 아닌 경우
+			
+			// 새글을 추가하는 쿼리 작성
+			sql="insert into food_board(idx_li, wnum_li, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
+					+ "values(content_seq.nextval, content_seq.nextval, ?,?,?,?,?,?,? )";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nn_mem);
+			pstmt.setString(2, article.getCategory_li());
+			pstmt.setString(3, article.getWsubject_li());
+			pstmt.setString(4, article.getTag_li());
+			pstmt.setString(5, thumb_li);
+			pstmt.setString(6, article.getWcontent_li());
+			pstmt.setTimestamp(7, article.getDate_li());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+	}
+	
 	/*
-	 * // 이곳에 게시판 작업의 기능들을 하나하나 메소드로 추가하면 됨 public void insertArticle(RecipeVO
-	 * article) {
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * int number = 0;
-	 * 
-	 * String sql = "";
-	 * 
-	 * try { con = ConnUtil.getConnection(); pstmt =
-	 * con.prepareStatement("select max(num) from food_board"); rs =
-	 * pstmt.executeQuery();
-	 * 
-	 * if(rs.next()) number = rs.getInt(1) + 1; // 새글 else number = 1; // 새글이 아닌 경우
-	 * 
-	 * // 새글을 추가하는 쿼리 작성
-	 * sql="insert into food_board(num, writer, email, subject, pass, regdate, " +
-	 * "ref, step, depth, content, ip) " +
-	 * "values(board_seq.nextval, ?,?,?,?,?,?,?,?,?,? )";
-	 * 
-	 * pstmt = con.prepareStatement(sql); pstmt.setString(1, article.getWriter());
-	 * pstmt.setString(2, article.getEmail()); pstmt.setString(3,
-	 * article.getSubject()); pstmt.setString(4, article.getPass());
-	 * pstmt.setTimestamp(5, article.getRegdate()); pstmt.setInt(6, ref);
-	 * pstmt.setInt(7, step); pstmt.setInt(8, depth); pstmt.setString(9,
-	 * article.getContent()); pstmt.setString(10, article.getIp());
-	 * pstmt.executeUpdate();
-	 * 
-	 * }catch(Exception e) { System.out.println("Exception "+e); }finally { if(rs !=
-	 * null) try {rs.close();}catch(SQLException s1) {} if(pstmt != null) try
-	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
-	 * {con.close();}catch(SQLException s3) {} } }
-	 * 
 	 * 글 제목을 누르면 글 내용을 볼 수 있도록 해야함
 	 * 
 	 * 우리는 글 num을 매개변수로 해서 하나의 글에 대한 세부정보를 데이터베이스에 가져와야함 데이터베이스에서 글 하나의 정보를 가져올 메소드를

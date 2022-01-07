@@ -9,7 +9,7 @@
 <title>MURA :: 레시피 작성</title>
 <script type="text/javascript" src="script.js"></script>
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
-<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor = "#FFFFFF">
@@ -34,16 +34,16 @@
 <input type="hidden" name="step" value="${step}">
 <input type="hidden" name="depth" value="${depth}">
 
-<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
+<table width="750" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
 
 <tr>
 <td align="center" colspan="2" bgcolor="${value_c}">레시피 게시판</td>
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">카테고리</td>
+   <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
    <td>
-     <select name="category">
+     <select name="category" style="width:500px">
        <option value="korea">한식</option>
        <option value="japan">일식</option>
        <option value="western">양식</option>
@@ -53,38 +53,32 @@
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">제목</td>
+   <td width="100" bgcolor="${value_c}" align="center">제목</td>
    <td width="300">
-     <input type="text" size="100" maxlength="100" name="subject">
+     <input type="text" size="80" maxlength="100" name="subject">
    </td>
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">재료</td>
+   <td width="100" bgcolor="${value_c}" align="center">재료입력</td>
    <td width="300">
-     <input type="text" size="100" maxlength="100" name="ingredient">
+     <input type="text" size="80" maxlength="100" name="ingredient">
+   </td>
+</tr>
+
+
+<tr>
+   <td width="100" bgcolor="${value_c}" align="center">내용</td>
+   <td width="300">
+     <textarea rows="50" cols="80%" name="content"></textarea>
    </td>
 </tr>
 
 <tr>
-  <td width="80" bgcolor="${value_c}" align="center">썸네일 이미지</td>
+  <td width="100" bgcolor="${value_c}" align="center">사진첨부</td>
   <td>
-    <input type="file" name="fileName1">
+    <input type="file" name="fileName1" multiple="multiple">
   </td>
-</tr>
-
-<tr>
-  <td width="80" bgcolor="${value_c}" align="center">사진첨부</td>
-  <td>
-    <input type="file" name="fileName2" multiple="multiple">
-  </td>
-</tr>
-
-<tr>
-   <td width="80" bgcolor="${value_c}" align="center">내용</td>
-   <td width="300">
-     <textarea rows="50" cols="100%" name="content"></textarea>
-   </td>
 </tr>
 
 <tr>

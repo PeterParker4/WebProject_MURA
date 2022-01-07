@@ -9,8 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 게시판</title>
-<link rel="icon" type="../image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 function check() {
 	if(document.find_frm.find_box.value == "null") {
@@ -40,7 +40,7 @@ function frm_sub(i) {
 	</div>
 	
 	<div>
-	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
+	<table class="rayout_menu" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
 	
 	<tr>
 		<td>
@@ -62,10 +62,16 @@ function frm_sub(i) {
 	</div>
 
 <div align="center">
-	<a href="recipeWriteForm.mur">레시피 작성</a>
+<table width="800">
+  <tr>
+	<td align="right">
+	  <a href="/MURA2/page/recipe/recipeWriteForm.mur"><button>레시피 작성</button></a></td>
+  </tr>
+</table>
+
 <c:if test="${count == 0 }">
 
-<table width="700" border="1" cellpadding="0" cellspacing="0">
+<table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr align="center">
     <td>게시판에 저장된 글이 없습니다.</td>
   </tr>
@@ -73,7 +79,7 @@ function frm_sub(i) {
 </c:if>
 
 <c:if test="${count > 0 }">
-<table width="700" border="1" cellpadding="0" cellspacing="0" name="recipeListTop">
+<table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr height="30" bgcolor="${value_c }">
     <td align="center" width="50">번호</td>
     <td align="center" width="70">카테고리</td>
@@ -92,18 +98,18 @@ function frm_sub(i) {
     <c:set var="number" value="${number-1}"/>
     </td>
 
-    <td align="center" width="70">
+    <td align="center" width="90">
     ${article.category_li}
     </td>
     
-    <td width="280">
+    <td width="350">
       <a href="/MURA2/page/recipe/content.mur?num=${article.wnum_li}&pageNum=${currentPage}">
       ${article.wsubject_li}</a>
       <c:if test="${article.readcount_li >= 20}">
       <img alt="" src="images/hot.gif" border="0" height="16">
       </c:if>
     </td>
-    <td align="center" width="100">
+    <td align="center" width="110">
     ${article.nn_mem}
     </td>
     <td align="center" width="150">
@@ -165,7 +171,8 @@ function frm_sub(i) {
 
 <br><br>
 <b>전체 글 : ${count}</b>
-
 </div>
+
+
 </body>
 </html>

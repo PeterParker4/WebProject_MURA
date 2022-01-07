@@ -1,80 +1,36 @@
 package board.dao;
 
-import static db.JdbcUtil.close;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import board.vo.QABoard;
+import db.ConnUtil;
 
 public class QABoardDAO {
 	
-	Connection con;
-	private static QABoardDAO qaBoardDAO;
+private static QABoardDAO instance = null;
 	
-	public void setConnection(Connection con) {
-		this.con = con;
-	}
+	public QABoardDAO() {}
 	
-	public static QABoardDAO getInstance() {
+	public static QABoardDAO getInstance() { // ¿¬°á
 		
-		if(qaBoardDAO == null) {
-			qaBoardDAO = new QABoardDAO();
+		if(instance == null) {
+			synchronized (QABoardDAO.class) {
+				instance = new QABoardDAO();
+			}
 		}
-		return qaBoardDAO;
+		return instance;
 	}
 	
-	public void insertUserArticle(QABoard qaArticle) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int un_mem = qaArticle.getUn_mem();
-		int idx_qt = qaArticle.getIdx_qt();
-		int wnum_qt = qaArticle.getWnum_qt();
-		
-		int number = 0;
-		
-		String sql = "";
-		
-		try {
-			
-			pstmt = con.prepareStatement("select max(wnum_ut) from board");
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) number = rs.getInt(1) + 1;
-			else number = 1;
-			
-			if(wnum_qt == 0) idx_qt = number;
-			
-			sql = "insert into user_board(un_mem, idx_qt, wnum_qt, nn_mem, "
-					+ "wsubject_qt, wcontent_qt, reply_qt, date_qt) "
-					+ "values(?, user_seq.nextval, ?,?,?,?,?,?)";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, qaArticle.getUn_mem());
-			pstmt.setInt(2, qaArticle.getWnum_qt());
-			pstmt.setString(3, qaArticle.getNn_mem());
-			pstmt.setString(4, qaArticle.getWsubject_qt());
-			pstmt.setString(5, qaArticle.getWcontent_qt());
-			pstmt.setString(6, qaArticle.getReply_qt());
-			pstmt.setTimestamp(7, qaArticle.getDate_qt());
-			
-			pstmt.executeUpdate();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-			close(rs);
-		}
-		
-	}
 	
-	public int getUserArticleCount() {
+	
+	public int getQaArticleCount() {
 		
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -82,6 +38,7 @@ public class QABoardDAO {
 		
 		try {
 			
+			con = ConnUtil.getConnection();
 			pstmt = con.prepareStatement("select count(*) from qa_board");
 			rs = pstmt.executeQuery();
 			
@@ -92,23 +49,29 @@ public class QABoardDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
-			close(rs);
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s2) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s3) {}
 		}
 		
 		return x;
 	}
 	
-	public List<QABoard> getUserArticles(int start, int end){
+	public List<QABoard> getQaArticles(int start, int end){
 		
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<QABoard> qaArticles = null;
+		List<QABoard> qaArticleList = null;
 		
 		try {
+			
+			con = ConnUtil.getConnection();
+			
 			pstmt = con.prepareStatement("select * from (select rownum rnum, un_mem, idx_qt, wnum_qt, nn_mem, wsubject_qt, "
-					+ "wcontent_qt, reply_qt, date_qt from (select * from user_board order by idx_qt desc)) "
-					+ "where rnum >= ? and rnum <= ?");
+					+ "wcontent_qt, step_qt, depth_qt, date_qt, readcount_qt from "
+					+ "(select * from qa_board order by idx_qt desc, step_qt asc)) "
+					+ "where rnum >=? and rnum <=?");
 			
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
@@ -117,7 +80,7 @@ public class QABoardDAO {
 			
 			if(rs.next()) {
 				
-				qaArticles = new ArrayList<QABoard>(end - start + 1);
+				qaArticleList = new ArrayList<QABoard>(end - start + 1);
 				
 				do {
 					QABoard qaArticle = new QABoard();
@@ -128,10 +91,12 @@ public class QABoardDAO {
 					qaArticle.setNn_mem(rs.getString("nn_mem"));
 					qaArticle.setWsubject_qt(rs.getString("wsubject_qt"));
 					qaArticle.setWcontent_qt(rs.getString("wcontent_qt"));
-					qaArticle.setReply_qt(rs.getString("reply_qt"));
+					qaArticle.setStep_qt(rs.getInt("step_qt"));
+					qaArticle.setDepth_qt(rs.getInt("depth_qt"));
 					qaArticle.setDate_qt(rs.getTimestamp("date_qt"));
+					qaArticle.setReadcount_qt(rs.getInt("readcount_qt"));
 					
-					qaArticles.add(qaArticle);
+					qaArticleList.add(qaArticle);
 					
 				}while(rs.next());
 			}
@@ -139,11 +104,12 @@ public class QABoardDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
-			close(rs);
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s2) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s3) {}
 		}
 		
-		return qaArticles;
+		return qaArticleList;
 	}
 	
 	

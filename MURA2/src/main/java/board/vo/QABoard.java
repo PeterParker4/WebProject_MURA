@@ -10,8 +10,10 @@ public class QABoard {
 	private String nn_mem;
 	private String wsubject_qt;
 	private String wcontent_qt;
-	private String reply_qt;
+	private int step_qt;
+	private int depth_qt;
 	private Timestamp date_qt;
+	private int readcount_qt;
 	
 	
 	public int getUn_mem() {
@@ -50,11 +52,17 @@ public class QABoard {
 	public void setWcontent_qt(String wcontent_qt) {
 		this.wcontent_qt = wcontent_qt;
 	}
-	public String getReply_qt() {
-		return reply_qt;
+	public int getStep_qt() {
+		return step_qt;
 	}
-	public void setReply_qt(String reply_qt) {
-		this.reply_qt = reply_qt;
+	public void setStep_qt(int step_qt) {
+		this.step_qt = step_qt;
+	}
+	public int getDepth_qt() {
+		return depth_qt;
+	}
+	public void setDepth_qt(int depth_qt) {
+		this.depth_qt = depth_qt;
 	}
 	public Timestamp getDate_qt() {
 		return date_qt;
@@ -62,6 +70,11 @@ public class QABoard {
 	public void setDate_qt(Timestamp date_qt) {
 		this.date_qt = date_qt;
 	}
-	
+	public int getReadcount_qt() {
+		return readcount_qt;
+	}
+	public void setReadcount_qt(int readcount_qt) {
+		this.readcount_qt = readcount_qt;
+	}
 
 }

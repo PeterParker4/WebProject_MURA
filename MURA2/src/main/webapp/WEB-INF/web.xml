@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>MURA2</display-name> 
+ 
+ <jsp-config>
+    <taglib>
+    	<taglib-uri>/WEB-INF/tlds/el-functions.tld</taglib-uri> <!-- 식별자 -->
+    	<taglib-location>/WEB-INF/tlds/el-functions.tld</taglib-location> 
+    </taglib>
+ </jsp-config>
+
+<servlet>
+   <servlet-name>Controller</servlet-name>
+   <servlet-class>controller.ControllerAction</servlet-class>
+   <init-param>
+   		  <param-name>propertyConfig</param-name>
+   		  <param-value>CommandPro.properties</param-value>
+   </init-param>
+ </servlet>
+ 
+<servlet-mapping>
+   <servlet-name>Controller</servlet-name>
+   <url-pattern>*.mur</url-pattern>
+</servlet-mapping>
+ 
+  
+<!-- <servlet>
+   <servlet-name>Controller2</servlet-name>
+   <servlet-class>controller.ControllerAction2</servlet-class>
+   <init-param>
+   		  <param-name>propertyConfig2</param-name>
+   		  <param-value>CommandPro2.properties</param-value>
+   </init-param>
+ </servlet>
+ 
+
+ <servlet-mapping>
+   <servlet-name>Controller2</servlet-name>
+   <url-pattern>*.mur</url-pattern>
+ </servlet-mapping>
+ -->
+
+</web-app>

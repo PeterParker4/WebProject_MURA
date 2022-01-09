@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file = "../view/color.jspf" %>
+<%@ include file = "view/color.jspf" %>
     
 <!DOCTYPE html>
 <html>
@@ -57,7 +57,7 @@ method="post" onsubmit="return writeSave()">
 </tr>
 
 <tr>
-   <td width="100" bgcolor="${value_c}" align="center">재료입력</td>
+   <td width="100" bgcolor="${value_c}" align="center">재료입력<br>*쉼표(,)구분</td>
    <td width="300">
      <input type="text" size="80" maxlength="100" name="tag_li">
    </td>

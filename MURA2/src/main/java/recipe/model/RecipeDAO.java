@@ -287,7 +287,7 @@ public class RecipeDAO {
 			
 			// 새글을 추가하는 쿼리 작성
 			sql="insert into food_board(idx_li, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
-					+ "values(content_seq.nextval, 'nick',?,?,?,?,?,? )";
+					+ "values(content_seq.nextval, 'nick',?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getCategory_li());
@@ -307,40 +307,53 @@ public class RecipeDAO {
 		}
 	}
 	
+	/* 글 제목을 누르면 글 내용을 볼 수 있도록 해야함
+	 * 
+	 * 우리는 글 num을 매개변수로 해서 하나의 글에 대한 세부정보를 데이터베이스에 가져와야함
+	 * 데이터베이스에서 글 하나의 정보를 가져올 메소드를 구현
+	 */
+	public RecipeVO getArticle(int num) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RecipeVO article = null;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("update food_board set readcount_li = readcount_li + 1 where num=?");
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			pstmt = con.prepareStatement("select * from food_board where num=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				article = new RecipeVO();
+				article.setIdx_li(rs.getInt("idx_li"));
+				article.setUn_mem(rs.getInt("un_mem"));
+				article.setNn_mem(rs.getString("nn_mem"));
+				article.setCategory_li(rs.getString("category_li"));
+				article.setWsubject_li(rs.getString("wsubject_li"));
+				article.setTag_li(rs.getString("tag_li"));
+				article.setThumb_li(rs.getString("thumb_li"));
+				article.setWcontent_li(rs.getString("wcontent_li"));
+				article.setReply_li(rs.getString("reply_li"));
+				article.setDate_li(rs.getTimestamp("date_li"));
+				article.setReadcount_li(rs.getInt("readcount_li"));
+			}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return article;
+	}
+	
 	/*
-	 * 글 제목을 누르면 글 내용을 볼 수 있도록 해야함
-	 * 
-	 * 우리는 글 num을 매개변수로 해서 하나의 글에 대한 세부정보를 데이터베이스에 가져와야함 데이터베이스에서 글 하나의 정보를 가져올 메소드를
-	 * 구현
-	 * 
-	 * public RecipeVO getArticle(int num) {
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
-	 * RecipeVO article = null;
-	 * 
-	 * try { con = ConnUtil.getConnection(); pstmt =
-	 * con.prepareStatement("update board set readcount = readcount+1 where num=?");
-	 * pstmt.setInt(1, num); pstmt.executeUpdate();
-	 * 
-	 * pstmt = con.prepareStatement("select * from board where num=?");
-	 * pstmt.setInt(1, num); rs = pstmt.executeQuery();
-	 * 
-	 * if(rs.next()) { article = new RecipeVO(); article.setNum(rs.getInt("num"));
-	 * article.setWriter(rs.getString("writer"));
-	 * article.setEmail(rs.getString("email"));
-	 * article.setSubject(rs.getString("subject"));
-	 * article.setPass(rs.getString("pass"));
-	 * article.setRegdate(rs.getTimestamp("regdate"));
-	 * article.setReadcount(rs.getInt("readcount"));
-	 * article.setRef(rs.getInt("ref")); article.setStep(rs.getInt("step"));
-	 * article.setDepth(rs.getInt("depth"));
-	 * article.setContent(rs.getString("content"));
-	 * article.setIp(rs.getString("ip")); } }catch(Exception e) {
-	 * System.out.println("Exception "+e); }finally { if(rs != null) try
-	 * {rs.close();}catch(SQLException s1) {} if(pstmt != null) try
-	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
-	 * {con.close();}catch(SQLException s3) {} } return article; }
-	 * 
 	 * 글 상세보기 화면에서 [글수정] 버튼을 누를 경우 updateForm.jsp로 이동하도록 링크를 걸었으므로 글 수정 화면을 설계해야 함
 	 * 
 	 * 글 수정시에는 글목록 보기와 다르게 조회수를 증가시킬 필요가 없음

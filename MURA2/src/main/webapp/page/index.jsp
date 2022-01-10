@@ -19,10 +19,10 @@
 <body bgcolor="#FFFFFF">
 
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="signup.jsp"> Sign Up </a> |
-		<a href="login.jsp"> Login </a> |
-		<a href="mypage.jsp"> MyPage </a>
+  <nav>
+		<a href="/loginPage"> Sign Up </a> |
+		<a href="/loginPage"> Login </a> |
+		<a href="/javascript/intro"> MyPage </a>
 	</nav>
 	<br><br>
 
@@ -40,7 +40,7 @@
 			<a href="a">
 			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
 		<td>
-			<a href="a">
+			<a href="/MURA2/page/recipeWriteForm.jsp">
 			<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
 		<td colspan="2">
 			<img src="images/menu_margin.jpg" width="408" height="70" alt=""></td>
@@ -98,9 +98,7 @@
 	</table>
 </div>
 
-
-	
-	<!--F 푸터메뉴 -->
+<!--F 푸터메뉴 -->
     <footer class="footer">
 		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
 		<div class="container" style="padding-top:7px;" align="center">

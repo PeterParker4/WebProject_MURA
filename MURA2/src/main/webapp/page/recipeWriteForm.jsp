@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
     
 <!DOCTYPE html>
 <html>
@@ -104,6 +103,7 @@ border-color: graytext;
    <td class="s1">카테고리</td>
    <td align="left">
      <select name="category" size="1" class="sl">
+
        <option value="korea">한식</option>
        <option value="japan">일식</option>
        <option value="western">양식</option>
@@ -149,6 +149,22 @@ border-color: graytext;
 <tr>
   <td class="s1">사진첨부</td>
   <td align="left">
+   <td width="80" bgcolor="${value_c}" align="center">재료</td>
+   <td width="300">
+     <input type="text" size="100" maxlength="100" name="ingredient">
+   </td>
+</tr>
+
+<tr>
+  <td width="80" bgcolor="${value_c}" align="center">썸네일 이미지</td>
+  <td>
+    <input type="file" name="fileName1">
+  </td>
+</tr>
+
+<tr>
+  <td width="80" bgcolor="${value_c}" align="center">사진첨부</td>
+  <td>
     <input type="file" name="fileName2" multiple="multiple">
   </td>
 </tr>

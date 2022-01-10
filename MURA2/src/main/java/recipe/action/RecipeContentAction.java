@@ -21,7 +21,6 @@ public class RecipeContentAction implements CommandAction {
 		RecipeDAO dbPro = RecipeDAO.getInstance();
 		
 		RecipeVO article = dbPro.getArticle(num);
-		
 		// 해당 뷰에서 사용할 속성 저장
 		request.setAttribute("num", num);
 		request.setAttribute("pageNum", new Integer(pageNum));

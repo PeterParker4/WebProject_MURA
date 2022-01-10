@@ -41,17 +41,18 @@
   <tr height="30">
     <td align="center" width="125" bgcolor="${value_c}">글내용</td>
     <td align="left" width="375" colspan="3">
+    <img alt="" src="upload/${article.thumb_li}" id="productImage">
     <pre>${article.wcontent_li}</pre></td>
   </tr>
 
   <tr height="30">
     <td colspan="4" bgcolor="${value_c}" align="right">
       <input type="button" value="글수정" 
-      onclick="document.location.href='/MURA2/page/recipe/recipeUpdateForm.mur?num=${article.idx_num}&pageNum=${pageNum}'">
+      onclick="document.location.href='/MURA2/page/recipe/recipeUpdateForm.mur?num=${num}&pageNum=${pageNum}'">
       &nbsp;&nbsp;&nbsp;&nbsp;
       
       <input type="button" value="글삭제" 
-      onclick="document.location.href='/MURA2/page/recipe/recipeDeleteForm.mur?num=${article.idx_num}&pageNum=${pageNum}'">
+      onclick="document.location.href='/MURA2/page/recipe/recipeDeleteForm.mur?num=${num}&pageNum=${pageNum}'">
       &nbsp;&nbsp;&nbsp;&nbsp;
 
       

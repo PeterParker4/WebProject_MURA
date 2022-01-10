@@ -279,7 +279,7 @@ public class RecipeDAO {
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select max(num) from food_board");
+			pstmt = con.prepareStatement("select max(idx_li) from food_board");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) number = rs.getInt(1) + 1; // »õ±Û
@@ -321,11 +321,11 @@ public class RecipeDAO {
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("update food_board set readcount_li = readcount_li + 1 where num=?");
+			pstmt = con.prepareStatement("update food_board set readcount_li = readcount_li + 1 where idx_li=?");
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			
-			pstmt = con.prepareStatement("select * from food_board where num=?");
+			pstmt = con.prepareStatement("select * from food_board where idx_li=?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			

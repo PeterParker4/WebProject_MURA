@@ -103,7 +103,7 @@ function frm_sub(i) {
     </td>
     
     <td width="350">
-      <a href="/MURA2/page/recipe/content.mur?num=${article.idx_li}&pageNum=${currentPage}">
+      <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
       ${article.wsubject_li}</a>
       <c:if test="${article.readcount_li >= 20}">
       <img alt="" src="images/hot.gif" border="0" height="16">

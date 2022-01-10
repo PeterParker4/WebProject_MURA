@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 </head>
@@ -28,8 +28,11 @@
 	</div>
 
 <br><br>
-<form encType="multipart/form-data" action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" 
-method="post" onsubmit="return writeSave()">
+<form action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" 
+method="post" onsubmit="return writeSave()" encType="multipart/form-data">
+
+<input type="hidden" name="idx_li" value="${idx_li}">
+<input type="hidden" name="nn_mem" value="${nn_mem}">
 
 <table width="750" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
 
@@ -41,10 +44,10 @@ method="post" onsubmit="return writeSave()">
    <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
    <td>
      <select name="category_li" style="width:500px">
-       <option value="korea">한식</option>
-       <option value="japan">일식</option>
-       <option value="western">양식</option>
-       <option value="china">중식</option>
+       <option value="한식">한식</option>
+       <option value="일식">일식</option>
+       <option value="양식">양식</option>
+       <option value="중식">중식</option>
      </select>
    </td>
 </tr>
@@ -74,7 +77,7 @@ method="post" onsubmit="return writeSave()">
 <tr>
   <td width="100" bgcolor="${value_c}" align="center">사진첨부</td>
   <td>
-    <input type="file" name="tumb_li" multiple="multiple"><br>
+    <input type="file" name="thumb_li" multiple="multiple"><br>
     *첫번째 등록한 사진이 썸네일 이미지로 등록됩니다.
   </td>
 </tr>

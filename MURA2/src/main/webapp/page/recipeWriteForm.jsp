@@ -1,13 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file = "view/color.jspf" %>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
+<style type="text/css">
+
+.s1{
+width: 100px;
+height: 20px;
+padding: 4px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: #66f8f0;
+color:black;
+}
+
+.tb{
+width: 40%;
+}
+
+.sl{
+width: 80px;
+height: 30px;
+border-radius: 4px;
+color: black;
+font-weight: bold;
+}
+
+.tx{
+width: 80%;
+height: 20px;
+border-radius: 4px;
+}
+
+.txt{
+border-radius: 4px;
+border-color: graytext;
+}
+
+</style>
 <script type="text/javascript" src="script.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -35,16 +89,21 @@
 <input type="hidden" name="step" value="${step}">
 <input type="hidden" name="depth" value="${depth}">
 
-<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
+<table class="tb">
 
 <tr>
-<td align="center" colspan="2" bgcolor="${value_c}">레시피 게시판</td>
+<td align="center" colspan="2" bgcolor="${value_c}">
+<img src="images/recipe.jpg" width="90" height="90">
+<img src="images/icons/fr.jpg" width="160" height="90">
+</td>
+
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">카테고리</td>
-   <td>
-     <select name="category">
+   <td class="s1">카테고리</td>
+   <td align="left">
+     <select name="category" size="1" class="sl">
+
        <option value="korea">한식</option>
        <option value="japan">일식</option>
        <option value="western">양식</option>
@@ -54,19 +113,42 @@
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">제목</td>
-   <td width="300">
+   <td class="s1">제목</td>
+   <td align="left">
      <c:if test="${num == 0}">
-       <input type="text" size="100" maxlength="100" name="subject">
+       <input type="text" size="50" class="tx" maxlength="100" name="subject">
      </c:if>
 
      <c:if test="${num != 0}">
-       <input type="text" size="100" maxlength="100" name="subject" value="[답변]">
+       <input type="text" size="50" class="tx" maxlength="100" name="subject" value="[답변]">
      </c:if>
    </td>
 </tr>
 
 <tr>
+   <td class="s1">재료</td>
+   <td align="left">
+     <input type="text" class="tx" size="50" maxlength="100" name="ingredient">
+   </td>
+</tr>
+
+
+
+
+
+<tr>
+	<td class="s1">내용</td>
+</tr>
+<tr>
+   
+   <td align="left" colspan="2">
+     <textarea class="txt" cols="100%" rows="50"  name="content"></textarea>
+   </td>
+</tr>
+
+<tr>
+  <td class="s1">사진첨부</td>
+  <td align="left">
    <td width="80" bgcolor="${value_c}" align="center">재료</td>
    <td width="300">
      <input type="text" size="100" maxlength="100" name="ingredient">
@@ -88,17 +170,10 @@
 </tr>
 
 <tr>
-   <td width="80" bgcolor="${value_c}" align="center">내용</td>
-   <td width="300">
-     <textarea rows="50" cols="100%" name="content"></textarea>
-   </td>
-</tr>
-
-<tr>
-  <td colspan="2" bgcolor="${value_c}" align="center">
-  	<input type="submit" value="글쓰기">
-  	<input type="reset" value="다시작성">
-  	<input type="button" value="목록" onClick="window.location='/MURA/page/recipeList.do'">
+  <td colspan="2" align="right">
+  	<input type="submit" class="s2" value="글쓰기">
+  	<input type="reset" class="s2" value="다시작성">
+  	<input type="button" class="s2" value="목록" onClick="window.location='/MURA/page/recipeList.do'">
   </td>
 </tr>
 </table>

@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 당신의 식탁을 더 맛있게</title>
+<style type="text/css">
+
+
+</style>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
@@ -15,7 +19,7 @@
 <body bgcolor="#FFFFFF">
 
 	<!--N 네비메뉴 -->
-    <nav>
+  <nav>
 		<a href="/loginPage"> Sign Up </a> |
 		<a href="/loginPage"> Login </a> |
 		<a href="/javascript/intro"> MyPage </a>
@@ -31,7 +35,7 @@
 	<div>
 	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
 	
-	<tr>
+	<tr bgcolor=>
 		<td>
 			<a href="a">
 			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
@@ -51,7 +55,7 @@
 	<!-- 검색창 -->
 	<tr>
 		<td colspan="6">
-			<img src="images/search_area.jpg" width="1194" height="282" alt="">
+			<img src="images/search_area1.jpg" width="1194" height="282" alt="">
 			<div class="search-wrapper">
 			    <div class="input-holder">
 			        <input type="text" class="search-input" placeholder="재료를 입력하세요!" />
@@ -94,7 +98,7 @@
 	</table>
 </div>
 
-	<!--F 푸터메뉴 -->
+<!--F 푸터메뉴 -->
     <footer class="footer">
 		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
 		<div class="container" style="padding-top:7px;" align="center">

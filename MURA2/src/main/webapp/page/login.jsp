@@ -82,9 +82,6 @@
 		alert("아이디가 존재하지 않습니다.");
 	</script>
 	</c:if>
-	
-	
-
 
 	<!-- 상단 로고 -->
 	<div class="logo">
@@ -110,7 +107,7 @@
 					
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass_mem" placeholder="Password">
+						<input class="input100" type="password" name="pw_mem" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -123,13 +120,13 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
+							<a href="findId.jsp" class="txt1">
 								아이디 찾기
 							</a>
 						</div>
 						|
 						<div>
-							<a href="#" class="txt1">
+							<a href="findPw.jsp" class="txt1">
 								비밀번호 찾기
 							</a>
 						</div>
@@ -138,7 +135,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-						<button type="submit" class="login100-form-btn" onclick="javascript:window.location='?cmd=index'">
+						<button type="submit" class="login100-form-btn" onclick="#">
 							로 그 인
 						</button>
 					</div>
@@ -147,7 +144,7 @@
 
 				</form>
 				<div align="right">
-				<a href="#" class="txt1">
+				<a href="signinForm.jsp" class="txt1">
 					<b>회원가입</b>
 				</a>
 				</div>

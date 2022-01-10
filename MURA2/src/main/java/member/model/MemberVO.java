@@ -16,8 +16,7 @@ public class MemberVO {
 	private String zc2_mem;
 	private String gender_mem;
 	private String join_mem;
-	private Date date_mem;
-
+	
 	public int getUn_mem() {
 		return un_mem;
 	}
@@ -114,12 +113,48 @@ public class MemberVO {
 		this.join_mem = join_mem;
 	}
 
-	public Date getDate_mem() {
-		return date_mem;
+	public MemberVO() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setDate_mem(Date date_mem) {
-		this.date_mem = date_mem;
+	// 사용자가 입력한 정보만 받아오는 생성자?
+	public MemberVO(String id_mem, String pw_mem, String nn_mem, String name_mem, 
+			String tel_mem, String email_mem, String zipcode_mem, String zc1_mem, String zc2_mem,
+			String gender_mem) {
+		
+		
+		this.id_mem = id_mem;
+		this.pw_mem = pw_mem;
+		this.nn_mem = nn_mem;
+		this.name_mem = name_mem;
+		this.tel_mem = tel_mem;
+		this.email_mem = email_mem;
+		this.zipcode_mem = zipcode_mem;
+		this.zc1_mem = zc1_mem;
+		this.zc2_mem = zc2_mem;
+		this.gender_mem = gender_mem;
+	
 	}
+	
+	public MemberVO(int un_mem, String id_mem, String pw_mem, String nn_mem, String name_mem, 
+			String tel_mem, String email_mem, String zipcode_mem, String zc1_mem, String zc2_mem,
+			String gender_mem, String join_mem) {
+		
+		this.un_mem = un_mem;
+		this.id_mem = id_mem;
+		this.pw_mem = pw_mem;
+		this.nn_mem = nn_mem;
+		this.name_mem = name_mem;
+		this.tel_mem = tel_mem;
+		this.email_mem = email_mem;
+		this.zipcode_mem = zipcode_mem;
+		this.zc1_mem = zc1_mem;
+		this.zc2_mem = zc2_mem;
+		this.gender_mem = gender_mem;
+		this.join_mem = join_mem;
+	}
+	
+	
+
 
 }

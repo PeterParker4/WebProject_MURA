@@ -20,14 +20,14 @@ public class LoginProcAction implements Action {
 		MemberDAO dao = MemberDAO.getInstance();
 		
 		String id_mem = request.getParameter("id_mem");
-		String pass_mem = request.getParameter("pass_mem");
+		String pw_mem = request.getParameter("pw_mem");
 		
-		int check = dao.loginCheck(id_mem, pass_mem);
+		int check = dao.loginCheck(id_mem, pw_mem);
 		
 		if(check == 1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginID", id_mem);
-		} else if (id_mem != null && pass_mem != null ) {
+		} else if (id_mem != null && pw_mem != null ) {
 			request.setAttribute("check", check);
 		}
 		

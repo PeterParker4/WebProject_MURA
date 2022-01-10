@@ -11,7 +11,7 @@ import member.controller.ActionForward;
 public class LogoutAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse reponse) throws IOException {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		HttpSession session = request.getSession();
 		session.invalidate();

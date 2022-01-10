@@ -12,7 +12,7 @@ import member.controller.ActionForward;
 public class LoginFormAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse reponse) throws IOException {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		return new ActionForward("/page/login.jsp", false);
 	}

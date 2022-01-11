@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
+
 <script type="text/javascript" src="js/script.js"></script>
+<script type="module" src="js/tag_create.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
-<link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/recipeStyle.css">
 </head>
 
 <body bgcolor = "#FFFFFF">
@@ -61,8 +64,16 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">재료입력<br>*쉼표(,)구분</td>
-   <td width="300">
-     <input type="text" size="80" maxlength="100" name="tag_li">
+   <td width="300" align="center">
+       <div class="content">
+        <div>
+            <input type="text" id="tag" size="20" placeholder="엔터 버튼 클릭시 태그 입력" />
+        </div>
+
+          <ul id="tag-list">
+          </ul>
+  	   </div>
+<!--      <input type="text" size="80" maxlength="100" name="tag_li"> -->
    </td>
 </tr>
 

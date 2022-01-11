@@ -1,8 +1,10 @@
 package recipe.action;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,16 +55,6 @@ public class RecipeListAction implements CommandAction {
 		// 데이터베이스 연동
 		RecipeDAO dbPro = RecipeDAO.getInstance();
 		
-		/*
-		count = dbPro.getArticleCount();
-		
-		if(count > 0) {// 현재 페이지에 해당하는 글 목록
-			articleList = dbPro.getArticles(startRow, endRow);
-		}else {
-			articleList = Collections.emptyList();
-		}
-		*/
-		
 		count = dbPro.getArticleCount(find, find_box);
 		if(count > 0) {
 			articleList = dbPro.getArticles(find, find_box, startRow, endRow);
@@ -83,6 +75,22 @@ public class RecipeListAction implements CommandAction {
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("find", find);
 		request.setAttribute("find_box", find_box);
+		
+		// 오늘 본 레시피 쿠키 처리
+		ArrayList<String> todayRecipeList = new ArrayList<String>();
+		
+		Cookie[] cookieArray = request.getCookies();
+		
+		if(cookieArray != null) {
+			
+			for(int i = 0; i < cookieArray.length; i++) {
+				if(cookieArray[i].getName().startsWith("today")) {
+					todayRecipeList.add(cookieArray[i].getValue());
+				}
+			}
+		}
+		
+		request.setAttribute("todayImageList", todayRecipeList);
 		
 		return "/page/recipe/recipeList.jsp";
 	}

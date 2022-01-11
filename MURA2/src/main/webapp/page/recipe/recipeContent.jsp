@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>레시피 상세보기</title>
-<link href="recipeStyle.css" rel="stylesheet" type="text/css">
+<link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor = "ffffff">
@@ -33,12 +33,18 @@
   </tr>
 
   <tr height="30">
-    <td align="center" width="125" bgcolor="${value_c}">글제목</td>
+    <td align="center" width="125" bgcolor="${value_c}">재료</td>
     <td align="center" width="375" colspan="3">
-    <pre>${article.wsubject_li}</pre></td>
+    <pre>${article.tag_li}</pre></td>
   </tr>
 
   <tr height="30">
+    <td align="center" width="125" bgcolor="${value_c}">글제목</td>
+    <td align="center" width="375" colspan="3">
+    <pre><b>${article.wsubject_li}</b></pre></td>
+  </tr>
+
+  <tr >
     <td align="center" width="125" bgcolor="${value_c}">글내용</td>
     <td align="left" width="375" colspan="3">
     <img alt="" src="upload/${article.thumb_li}" id="productImage">

@@ -70,7 +70,6 @@ function frm_sub(i) {
 </table>
 
 <c:if test="${count == 0 }">
-
 <table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr align="center">
     <td>게시판에 저장된 글이 없습니다.</td>
@@ -82,9 +81,9 @@ function frm_sub(i) {
 <table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr height="30" bgcolor="${value_c }">
     <td align="center" width="50">번호</td>
-    <td align="center" width="70">카테고리</td>
-    <td align="center" width="280">제목</td>
-    <td align="center" width="100">작성자</td>
+    <td align="center" width="90">카테고리</td>
+    <td align="center" width="350">제목</td>
+    <td align="center" width="110">작성자</td>
     <td align="center" width="150">작성일</td>
     <td align="center" width="50">조회수</td>
   </tr>
@@ -103,21 +102,28 @@ function frm_sub(i) {
     </td>
     
     <td width="350">
+    <div class="subjectbar">
       <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
+      <img alt="" src="upload/${article.thumb_li}" width="100px" height="70px">&nbsp; 
       ${article.wsubject_li}</a>
       <c:if test="${article.readcount_li >= 20}">
       <img alt="" src="images/hot.gif" border="0" height="16">
       </c:if>
+     </div>
     </td>
+    
     <td align="center" width="110">
     ${article.nn_mem}
     </td>
+    
     <td align="center" width="150">
     ${article.date_li}
     </td>
+    
     <td align="center" width="50">
     ${article.readcount_li}
     </td>
+    
   </tr>
   </c:forEach>
 </table>
@@ -172,7 +178,6 @@ function frm_sub(i) {
 <br><br>
 <b>전체 글 : ${count}</b>
 </div>
-
 
 </body>
 </html>

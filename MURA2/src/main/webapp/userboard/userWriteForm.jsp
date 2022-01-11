@@ -2,16 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MURA :: 레시피 작성</title>
+<title>MURA :: 요청 게시판 글쓰기</title>
 <style type="text/css">
 
 .s1{
-width: 100px;
+width: 50px;
 height: 20px;
 padding: 4px;
 border: thin;
@@ -52,7 +51,7 @@ font-weight: bold;
 }
 
 .tx{
-width: 80%;
+width: 90%;
 height: 20px;
 border-radius: 4px;
 }
@@ -62,109 +61,112 @@ border-radius: 4px;
 border-color: graytext;
 }
 
+.s3{
+font-style:inherit;
+font-weight:bolder;
+font-family:sans-serif;
+color: threeddarkshadow;
+cursor: pointer;
+height: 25px;
+}
+
+
+
+
 </style>
 <script type="text/javascript" src="script.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="../page/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body bgcolor = "#FFFFFF">
-	<!--N 네비메뉴 -->
+<body bgcolor="${bodyback_c }">
+
+<!--N 네비메뉴 -->
     <nav>
 		<a href="/loginPage"> Sign In </a> |
 		<a href="/loginPage"> Login </a> |
-		<a href="mypage.jsp"> MyPage </a>
+		<a href="/javascript/intro"> MyPage </a>
 	</nav>
 	<br><br>
 
 	<!-- 상단 로고 -->
 	<div class="logo">
 	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
-<br><br>
-<form action="/JspProject/board/recipeWriteProc.mur" name="recipeWriteForm" method="post" onsubmit="return writeSave()">
-<input type="hidden" name="num" value="${num}">
-<input type="hidden" name="ref" value="${ref}">
-<input type="hidden" name="step" value="${step}">
-<input type="hidden" name="depth" value="${depth}">
+<div align="center"></div><br><br>
+<form action="/MURA2/userboard/writePro.mur" name="userWriteForm" method="post"
+onsubmit="return WriteSave()">
+<input type="hidden" name="un_mem" value="${un_mem}">
+<input type="hidden" name="idx_ut" value="${idx_ut}">
 
 <table class="tb">
 
 <tr>
 <td align="center" colspan="2" bgcolor="${value_c}">
-<img src="images/recipe.jpg" width="90" height="90">
-<img src="images/icons/fr.jpg" width="160" height="90">
+<img src="../page/images/qna.jpg" width="100" height="100">
+<img src="../page/images/help.jpg" width="150" height="150">
 </td>
 
+<tr>
+	<td align="right" colspan="2" bgcolor="${value_c }">
+		<a class="s3" href="/JspProject/pjmboard/list.do">글목록</a> 
+	</td>
 </tr>
 
 <tr>
-   <td class="s1">카테고리</td>
-   <td align="left">
-     <select name="category" size="1" class="sl">
-       <option value="korea">한식</option>
-       <option value="japan">일식</option>
-       <option value="western">양식</option>
-       <option value="china">중식</option>
-     </select>
-   </td>
+	<td class="s1">카테고리</td>
+	<td width="330" align="center">
+		<input type="radio" name="board" value="user"/>요청게시판
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="board" value="qa"/>Q&A게시판
+	</td>
 </tr>
 
 <tr>
-   <td class="s1">제목</td>
-   <td align="left">
-     <c:if test="${num == 0}">
-       <input type="text" size="50" class="tx" maxlength="100" name="subject">
-     </c:if>
-
-     <c:if test="${num != 0}">
-       <input type="text" size="50" class="tx" maxlength="100" name="subject" value="[답변]">
-     </c:if>
-   </td>
+	<td class="s1">제목</td>
+	<td align="left">
+		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_ut">
+	</td>
 </tr>
 
 <tr>
-   <td class="s1">재료</td>
-   <td align="left">
-     <input type="text" class="tx" size="50" maxlength="100" name="ingredient">
-   </td>
+	<td class="s1">닉네임</td>
+	<td width="330">
+		<c:if test="${id_mem == sid }">
+		"${nn_mem }"
+		</c:if>
+	</td>
 </tr>
-
-
-
-
 
 <tr>
 	<td class="s1">내용</td>
 </tr>
-<tr>
-   
-   <td align="left" colspan="2">
-     <textarea class="txt" cols="100%" rows="50"  name="content"></textarea>
-   </td>
-</tr>
 
 <tr>
-  <td class="s1">사진첨부</td>
-  <td align="left">
-    <input type="file" name="fileName2" multiple="multiple">
-  </td>
+	<td colspan="2">
+		<textarea rows="30" cols="100%" name="content"></textarea>
+	</td>
 </tr>
 
+
+
 <tr>
-  <td colspan="2" align="right">
-  	<input type="submit" class="s2" value="글쓰기">
-  	<input type="reset" class="s2" value="다시작성">
-  	<input type="button" class="s2" value="목록" onClick="window.location='/MURA/page/recipeList.do'">
-  </td>
+	<td colspan="2" align="right">
+		<input type="submit" class="s2" value="글쓰기">
+		<input type="reset" class="s2" value="다시작성">
+		<input type="button" class="s2" value="취소" onClick="window.location='/MURA2/userboard/boardList.mur'">
+	</td>
 </tr>
+
 </table>
 </form>
-<br><br>
+<br>
+<br>
 
-	<!--F 푸터메뉴 -->
+<!--F 푸터메뉴 -->
     <footer class="footer">
 		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
 		<div class="container" style="padding-top:7px;" align="center">

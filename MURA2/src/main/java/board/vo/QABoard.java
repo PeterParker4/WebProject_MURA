@@ -6,7 +6,6 @@ public class QABoard {
 	
 	private int un_mem;
 	private int idx_qt;
-	private int wnum_qt;
 	private String nn_mem;
 	private String wsubject_qt;
 	private String wcontent_qt;
@@ -27,12 +26,6 @@ public class QABoard {
 	}
 	public void setIdx_qt(int idx_qt) {
 		this.idx_qt = idx_qt;
-	}
-	public int getWnum_qt() {
-		return wnum_qt;
-	}
-	public void setWnum_qt(int wnum_qt) {
-		this.wnum_qt = wnum_qt;
 	}
 	public String getNn_mem() {
 		return nn_mem;

@@ -3,39 +3,56 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <title>Document</title>
-    <style>
-        *{margin:0;padding:0}
-        .allWrap{width: 800px;margin:0 auto;}
-        .tabBox{margin:20px 0}
-        .tab-link{width: 47%;display: inline-block;padding:10px;text-align: center;background-color:#929090;border-radius: 20px;color:#fff;cursor: pointer;
-        }
-        .tab-link.current{
-            background-color: #de4c4c;
-            font-weight: 600;
-        }
-        .tab-content{
-            display: none;
-        }
-        .tab-content.current{
-            display: block;
-            width: 100%;
-            height: 500px;
-            background-color:#d5d8d7;
-            font-size: 15px;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<title>MURA :: 요청게시판</title>
+<style>
+    *{margin:0;padding:0}
+    .allWrap{width: 800px;margin:0 auto;}
+    .tabBox{margin:20px 0}
+    .tab-link{width: 47%;display: inline-block;padding:10px;text-align: center;background-color:#929090;border-radius: 20px;color:#fff;cursor: pointer;
+    }
+    .tab-link.current{
+        background-color: #a84781;
+        font-weight: 600;
+    }
+    .tab-content{
+        display: none;
+    }
+    .tab-content.current{
+        display: block;
+        width: 100%;
+        height: 500px;
+        background-color: white;
+        font-size: 15px;
+        text-align: center;
+    }
         
-    </style>
+    .s2{
+		height: 25px;
+		border: thin;
+		border-radius: 5px;
+		border-color: aqua;
+		background-color: #330033;
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+		}
+	
+	.s2:hover{
+	background-color: orange;
+	color:black;
+	}
+
+</style>
 <script type="text/javascript">
 function check() {
-	if(document.find_frm.find_box1.value==""){
+	if(document.find_frm.find_box.value==""){
 		alert("검색어를 입력해 주세요");
 		return false;
 	}
@@ -51,7 +68,13 @@ function check() {
 </head>
 <body>
 
-<div align="center"><b>요청 / Q&A 게시판</b>
+<div align="center">
+
+<div class="logo">
+	  <a href="/MURA2/page/index.jsp"> 
+	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+</div>
+
 <hr>
 
   <div class="allWrap">     
@@ -87,11 +110,11 @@ function check() {
 	<c:forEach var="userBoardArticle" items="${userBoardArticleList }">
 	
 	<tr height="30">
-		<td align="center" width="100"><c:out value="${number1 }"/></td>
-		<c:set var="number" value="${number1 - 1 }"> </c:set>
+		<td align="center" width="100"><c:out value="${number}"/></td>
+		<c:set var="number" value="${number - 1 }"></c:set>
 	
 		<td width="300">	
-		<a href="/MURA2/userboard/content.mur?num=${userBoardArticle.wnum_ut}&pageNum=${currentPage1}">
+		<a href="/MURA2/userboard/content.mur?num=${userBoardArticle.idx_ut}&pageNum=${currentPage}">
 		${userBoardArticle.wsubject_ut}</a>
 		<c:if test="${userBoardArticle.readcount_ut >= 20 }">
 			<img alt="" src="images/hot.png" border="0" height="16">
@@ -114,49 +137,49 @@ function check() {
 	</c:if>	
 	
 	<c:if test="${userCount > 0 }">
-	 <c:set var="imsi1" value="${userCount % pageSize1 == 0 ? 0 : 1 }"/>
-	 <c:set var="pageCount1" value="${userCount / pageSize1 + imsi1 }"/>
-	 <c:set var="pageBlock1" value="${3}"/>
-	 <fmt:parseNumber var="result1" value="${(currentPage1 - 1) / pageBlock1 }" integerOnly="true"/>
+	 <c:set var="imsi" value="${userCount % pageSize == 0 ? 0 : 1 }"/>
+	 <c:set var="pageCount" value="${userCount / pageSize + imsi }"/>
+	 <c:set var="pageBlock" value="${3}"/>
+	 <fmt:parseNumber var="result" value="${(currentPage - 1) / pageBlock }" integerOnly="true"/>
 	 
-	 <c:set var="startPage1" value="${result1 * pageBlock1 + 1 }"/>
-	 <c:set var="endPage1" value="${startPage1 + pageBlock1 - 1 }"/>
+	 <c:set var="startPage" value="${result * pageBlock + 1 }"/>
+	 <c:set var="endPage" value="${startPage + pageBlock - 1 }"/>
 	 
-	 <c:if test="${endPage1 > pageCount1 }">
-	 	<c:set var="endPage1" value="${pageCount1 }"/>
+	 <c:if test="${endPage > pageCount }">
+	 	<c:set var="endPage" value="${pageCount }"/>
 	 </c:if>
 	 
-	 <c:if test="${startPage1 > pageBlock1 }">
-	 	<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage1 - pageBlock1 }" onclick="frm_sub(${startPage1 - pageBlock1})">[이전]</a>
+	 <c:if test="${startPage > pageBlock }">
+	 	<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage - pageBlock }" onclick="frm_sub(${startPage - pageBlock})">[이전]</a>
 	 </c:if>
 	 
-	 <c:forEach var="i" begin="${startPage1 }" end="${endPage1 }">
+	 <c:forEach var="i" begin="${startPage }" end="${endPage }">
 	 	<a href="/MURA2/userboard/boardList.mur?pageNum=${i}" onclick="frm_sub(${i})">[${i}]</a>
 	 </c:forEach>
 	 
-	 <c:if test="${endPage1 < pageCount1 }">
-		<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage1 + pageBlock1 }" onclick="frm_sub(${startPage1 + pageBlock1})">[다음]</a> 
+	 <c:if test="${endPage < pageCount }">
+		<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage + pageBlock }" onclick="frm_sub(${startPage + pageBlock})">[다음]</a> 
 	 </c:if>
 	</c:if>
 	<br><br>
 	
 	<form method="post" name="i_frm">
-  	<input type="hidden" name="find_box1" value="${find_box1 }">
-  	<input type="hidden" name="find1" value="${find1 }">
+  	<input type="hidden" name="find_box" value="${find_box }">
+  	<input type="hidden" name="find" value="${find }">
 	</form>
 	
 	<form action="/MURA2/userboard/boardList.mur" method="post" name="find_frm"
 onsubmit="return check()">
 
-	<select name="find1" size="1">
-  	<option value="nn_mem">작성자</option>
-  	<option value="wsubject_ut">제목</option>
-  	<option value="wcontent_ut">내용</option>
+  <select name="find" size="1" class="s2">
+  	<option value="nn_mem"> 작성자 </option>
+  	<option value="wsubject_ut"> 제목 </option>
+  	<option value="wcontent_ut"> 내용 </option>
   </select>
   &nbsp;
-  <input type="text" name="find_box1">
+  <input type="text" name="find_box">
   &nbsp;
-  <input type="submit" value="검색">
+  <input type="submit" class="s2" value=" 검색 ">
 
 </form>
 	
@@ -169,9 +192,9 @@ onsubmit="return check()">
 	</div>
 	<tr>	
 	<td colspan="2" align="right">
-		<input type="button" value="목록" onclick="window.location='/MURA2/userboard/boardList.mur'">
-		<input type="button" value="작성하기" onclick="window.location='/MURA2/userboard/writeForm.mur'">
-		<input type="reset" value="취소">
+		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">
+		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
+		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>
 	

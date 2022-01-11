@@ -6,7 +6,6 @@ public class UserBoard {
 	
 	private int un_mem;
 	private int idx_ut;
-	private int wnum_ut;
 	private String nn_mem;
 	private String wsubject_ut;
 	private String wcontent_ut;
@@ -25,12 +24,6 @@ public class UserBoard {
 	}
 	public void setIdx_ut(int idx_ut) {
 		this.idx_ut = idx_ut;
-	}
-	public int getWnum_ut() {
-		return wnum_ut;
-	}
-	public void setWnum_ut(int wnum_ut) {
-		this.wnum_ut = wnum_ut;
 	}
 	public String getNn_mem() {
 		return nn_mem;

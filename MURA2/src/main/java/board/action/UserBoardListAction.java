@@ -15,68 +15,61 @@ public class UserBoardListAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-			String pageNum1 = request.getParameter("pageNum1");
+			request.setCharacterEncoding("utf-8");
 			
-			if(pageNum1 == null) {
-				pageNum1 = "1";
+			String pageNum = request.getParameter("pageNum");
+			
+			if(pageNum == null) {
+				pageNum = "1";
 			}
 			
-			int pageSize1 = 5;
-			int currentPage1 = Integer.parseInt(pageNum1);
+			int pageSize = 5;
+			int currentPage = Integer.parseInt(pageNum);
 			
-			int startRow1 = (currentPage1 - 1) * pageSize1 + 1;
+			int startRow = (currentPage - 1) * pageSize + 1;
 			
-			int endRow1 = currentPage1 * pageSize1;
+			int endRow = currentPage * pageSize;
 			
 			int userCount = 0;
-			int number1 = 0;
+			int number = 0;
 			
 			
-			String find1 = null;
-			String find_box1 = null;
+			String find = null;
+			String find_box = null;
 			
-			find1 = request.getParameter("find1");
-			find_box1 = request.getParameter("find_box1");
+			find = request.getParameter("find");
+			find_box = request.getParameter("find_box");
 			
-			if(find1 == null) {
-				find1 = "no";
+			if(find == null) {
+				find = "no";
 			}
 			
-			if(find_box1 == null) {
-				find_box1 = "no";
+			if(find_box == null) {
+				find_box = "no";
 			}
-			
-			
-			number1 = userCount - (currentPage1 - 1) * pageSize1;
 			
 			List<UserBoard> userBoardArticleList = null;
 			
 			UserBoardDAO dbPro = UserBoardDAO.getInstance();
-			/*
-			 * userCount = dbPro.getUserArticleCount();
-			 * 
-			 * if(userCount > 0) { // 현재 페이지에 해당하는 글 목록 userBoardArticleList =
-			 * dbPro.getUserArticles(startRow1, endRow1); }else { userBoardArticleList =
-			 * Collections.emptyList(); }
-			 */
 			
-			userCount = dbPro.getUserArticleCount(find1, find_box1);
+			userCount = dbPro.getUserArticleCount(find, find_box);
 			if(userCount > 0) {
-				userBoardArticleList = dbPro.getUserArticles(find1, find_box1, startRow1, endRow1);
+				userBoardArticleList = dbPro.getUserArticles(find, find_box, startRow, endRow);
 			}else {
 				userBoardArticleList = Collections.emptyList();
 			}
 			
+			number = userCount - (currentPage - 1) * pageSize;
 			
 			request.setAttribute("userBoardArticleList", userBoardArticleList);
-			request.setAttribute("currentPage1", currentPage1);
-			request.setAttribute("startRow1", startRow1);
-			request.setAttribute("endRow1", endRow1);
+			request.setAttribute("currentPage", currentPage);
+			request.setAttribute("startRow", startRow);
+			request.setAttribute("endRow", endRow);
 			request.setAttribute("userCount", userCount);
-			request.setAttribute("pageSize1", pageSize1);
-			request.setAttribute("number1", number1);
-			request.setAttribute("find1", new String(find1));
-			request.setAttribute("find_box1", new String(find_box1));
+			request.setAttribute("pageSize", pageSize);
+			request.setAttribute("number", number);
+			request.setAttribute("find", new String(find));
+			request.setAttribute("find_box", new String(find_box));
 			
 			return "/userboard/boardList.jsp";
 			

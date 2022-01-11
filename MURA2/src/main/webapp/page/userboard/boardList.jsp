@@ -171,7 +171,7 @@ function check() {
 	<form action="/MURA2/userboard/boardList.mur" method="post" name="find_frm"
 onsubmit="return check()">
 
-  <select name="find" size="1" class="s2">
+  <select name="find" size="1">
   	<option value="nn_mem"> 작성자 </option>
   	<option value="wsubject_ut"> 제목 </option>
   	<option value="wcontent_ut"> 내용 </option>
@@ -193,7 +193,9 @@ onsubmit="return check()">
 	<tr>	
 	<td colspan="2" align="right">
 		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">
+		<c:if test="${un_mem!=null }">
 		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
+		</c:if>
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

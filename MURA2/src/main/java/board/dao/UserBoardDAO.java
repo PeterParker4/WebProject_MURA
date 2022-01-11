@@ -29,7 +29,6 @@ public class UserBoardDAO {
 	}
 	
 	
-	
 		
 	public int getUserArticleCount() {
 		

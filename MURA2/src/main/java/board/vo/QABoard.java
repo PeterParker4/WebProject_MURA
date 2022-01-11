@@ -13,6 +13,7 @@ public class QABoard {
 	private int depth_qt;
 	private Timestamp date_qt;
 	private int readcount_qt;
+	private int ref_qt;
 	
 	
 	public int getUn_mem() {
@@ -69,5 +70,12 @@ public class QABoard {
 	public void setReadcount_qt(int readcount_qt) {
 		this.readcount_qt = readcount_qt;
 	}
+	public int getRef_qt() {
+		return ref_qt;
+	}
+	public void setRef_qt(int ref_qt) {
+		this.ref_qt = ref_qt;
+	}
 
+	
 }

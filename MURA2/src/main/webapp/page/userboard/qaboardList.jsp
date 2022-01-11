@@ -6,33 +6,49 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <title>MURA :: Q&A 게시판</title>
-    <style>
-        *{margin:0;padding:0}
-        .allWrap{width: 800px;margin:0 auto;}
-        .tabBox{margin:20px 0}
-        .tab-link{width: 47%;display: inline-block;padding:10px;text-align: center;background-color:#929090;border-radius: 20px;color:#fff;cursor: pointer;
-        }
-        .tab-link.current{
-            background-color: #a84781;
-            font-weight: 600;
-        }
-        .tab-content{
-            display: none;
-        }
-        .tab-content.current{
-            display: block;
-            width: 100%;
-            height: 500px;
-            background-color: white;
-            font-size: 15px;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<title>MURA :: Q&A 게시판</title>
+<style>
+    *{margin:0;padding:0}
+    .allWrap{width: 800px;margin:0 auto;}
+    .tabBox{margin:20px 0}
+    .tab-link{width: 47%;display: inline-block;padding:10px;text-align: center;background-color:#929090;border-radius: 20px;color:#fff;cursor: pointer;
+    }
+    .tab-link.current{
+        background-color: #a84781;
+        font-weight: 600;
+    }
+    .tab-content{
+        display: none;
+    }
+    .tab-content.current{
+        display: block;
+        width: 100%;
+        height: 500px;
+        background-color: white;
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .s2{
+		height: 25px;
+		border: thin;
+		border-radius: 5px;
+		border-color: aqua;
+		background-color: #330033;
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+		}
+	
+	.s2:hover{
+		background-color: orange;
+		color:black;
+		}
         
-    </style>
+</style>
 <script type="text/javascript">
 function check() {
 	if(document.find_frm.find_box.value==""){
@@ -188,9 +204,11 @@ onsubmit="return check()">
 	</div>
 	<tr>	
 	<td colspan="2" align="right">
-		<input type="button" value="목록" onclick="window.location='/MURA2/userboard/qaboardList.mur'">
-		<input type="button" value="작성하기" onclick="window.location='/MURA2/userboard/writeForm.mur'">
-		<input type="reset" value="취소">
+		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/qaboardList.mur'">
+		<c:if test="${un_mem != null }">
+		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
+		</c:if>
+		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>
 	

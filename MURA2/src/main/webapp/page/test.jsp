@@ -14,8 +14,6 @@
 
 <body bgcolor="#FFFFFF">
 
-<!-- logout 페이지 이 안에서 구현 -->
-
 	<!--N 네비메뉴 -->
     <nav>
 		<a href="signinForm.jsp"> Sign In </a> |
@@ -33,49 +31,7 @@
 	<div>
 	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
 	
-	<tr>
-		<td>
-			<a href="a">
-			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
-		<td>
-			<a href="a">
-			<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
-		<td colspan="2">
-			<img src="images/menu_margin.jpg" width="408" height="70" alt=""></td>
-		<td>
-			<a href="/MURA2/userboard/boardList.mur">
-			<img src="images/request_btn.jpg" width="174" height="70" alt=""></a></td>
-		<td>
-			<a href="/MURA2/userboard/qaboardList.mur">
-			<img src="images/qa_btn.jpg" width="204" height="70" border="0" alt=""></a></td>
-	</tr>
-	
-	<!-- 검색창 -->
-	<tr>
-		<td colspan="6">
-			<img src="images/search_area.jpg" width="1194" height="282" alt="">
-			<div class="search-wrapper">
-			    <div class="input-holder">
-			        <input type="text" class="search-input" placeholder="재료를 입력하세요!" />
-			        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-			    </div>
-			    <span class="close" onclick="searchToggle(this, event);"></span>
-			</div>
-        </td>
-	</tr>
-	
-	<!-- 중간 메뉴바 -->
-	<tr>
-		<td colspan="6">
-			<img src="images/midle_bar.jpg" width="1194" height="84" alt=""></td>
-	</tr>
-	
-	<tr>
-		<td colspan="3">
-			<img src="images/best10_area.jpg" width="480" height="414" alt=""></td>
-		<td colspan="3">
-			<img src="images/hot3_area.jpg" width="714" height="414" alt=""></td>
-	</tr>
+	<br><br><br><br><br><br><br><br><br><br>
 	
 	<!-- 여백 -->
 	<tr>

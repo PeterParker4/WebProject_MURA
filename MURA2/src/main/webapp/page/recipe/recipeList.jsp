@@ -106,7 +106,7 @@ function frm_sub(i) {
       <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
       <img alt="" src="upload/${article.thumb_li}" width="100px" height="70px">&nbsp; 
       ${article.wsubject_li}</a>
-      <c:if test="${article.readcount_li >= 20}">
+      <c:if test="${article.readcount_li >= 40}">
       <img alt="" src="images/hot.gif" border="0" height="16">
       </c:if>
      </div>

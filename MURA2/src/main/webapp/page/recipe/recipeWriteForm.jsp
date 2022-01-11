@@ -9,8 +9,10 @@
 <title>MURA :: 레시피 작성</title>
 
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
 <script type="module" src="js/tag_create.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link rel="stylesheet" type="text/css" href="css/recipeStyle.css">
 </head>
@@ -37,7 +39,7 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <input type="hidden" name="idx_li" value="${idx_li}">
 <input type="hidden" name="nn_mem" value="${nn_mem}">
 
-<table width="750" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
+<table width="1000" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
 
 <tr>
 <td align="center" colspan="2" bgcolor="${value_c}">레시피 게시판</td>
@@ -45,7 +47,7 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
-   <td>
+   <td align="center">
      <select name="category_li" style="width:500px">
        <option value="한식">한식</option>
        <option value="일식">일식</option>
@@ -57,39 +59,43 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">제목</td>
-   <td width="300">
-     <input type="text" size="80" maxlength="100" name="wsubject_li">
+   <td width="300" align="center">
+     <input type="text" size="100" maxlength="100" name="wsubject_li">
    </td>
 </tr>
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">재료입력<br>*쉼표(,)구분</td>
    <td width="300" align="center">
-       <div class="content">
+<!--        <div class="content">
         <div>
             <input type="text" id="tag" size="20" placeholder="엔터 버튼 클릭시 태그 입력" />
         </div>
 
           <ul id="tag-list">
           </ul>
-  	   </div>
-<!--      <input type="text" size="80" maxlength="100" name="tag_li"> -->
+  	   </div> -->
+   <input type="text" size="100" maxlength="100" name="tag_li">
    </td>
 </tr>
 
-
+<!-- 내용입력창(ck에디터 폼 적용) -->
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">내용</td>
-   <td width="300">
-     <textarea rows="50" cols="80%" name="wcontent_li"></textarea>
+   <td width="300" align="center">
+   <textarea class="form-control" id="wcontent_li" name="wcontent_li"></textarea>
+     <script type="text/javascript">
+     CKEDITOR.replace('wcontent_li', {height: 600});
+     </script>
+     <!-- <textarea rows="50" cols="80%" name="wcontent_li"></textarea> -->
    </td>
 </tr>
 
 <tr>
-  <td width="100" bgcolor="${value_c}" align="center">사진첨부</td>
+  <td width="100" bgcolor="${value_c}" align="center">썸네일 이미지</td>
   <td>
-    <input type="file" name="thumb_li" multiple="multiple"><br>
-    *첫번째 등록한 사진이 썸네일 이미지로 등록됩니다.
+    <input type="file" name="thumb_li"><br>
+    *등록한 사진이 썸네일 이미지로 등록됩니다.
   </td>
 </tr>
 

@@ -14,7 +14,7 @@
 <body bgcolor = "ffffff">
 <div align="center"><b>레시피 상세보기</b><br><br>
 <form>
-<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor = "${bodyback_c}">
+<table width="1000" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor = "#fff">
 
   <tr height="30">
     <td align="center" width="125" bgcolor="${value_c}">글번호</td>
@@ -44,11 +44,12 @@
     <pre><b>${article.wsubject_li}</b></pre></td>
   </tr>
 
-  <tr >
-    <td align="center" width="125" bgcolor="${value_c}">글내용</td>
-    <td align="left" width="375" colspan="3">
-    <img alt="" src="upload/${article.thumb_li}" id="productImage">
-    <pre>${article.wcontent_li}</pre></td>
+  <tr>
+    <td align="left" width="375" colspan="4">
+    	<br>
+	    <img alt="" src="upload/${article.thumb_li}" id="thumbnailImage" width="80%" height="80%"><br>
+	    ${article.wcontent_li}<br>
+    </td>
   </tr>
 
   <tr height="30">
@@ -60,7 +61,6 @@
       <input type="button" value="글삭제" 
       onclick="document.location.href='/MURA2/page/recipe/recipeDeleteForm.mur?num=${num}&pageNum=${pageNum}'">
       &nbsp;&nbsp;&nbsp;&nbsp;
-
       
       <input type="button" value="글목록" 
       onclick="document.location.href='/MURA2/page/recipe/recipeList.mur?pageNum=${pageNum}'">

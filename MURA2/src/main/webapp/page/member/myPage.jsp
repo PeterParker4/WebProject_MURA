@@ -83,18 +83,20 @@ background-color: black;
 <body>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/member/index.jsp"> 
+	  <a href="index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 <h1> 유저 정보</h1>
 <div id="detail">
 	<ul>
-		<li>아이디 : ${memberInfo.id_mem }</li>
+		<li>이름 : ${memberInfo.name_mem }</li>
 		<li>닉네임 : ${memberInfo.nn_mem }</li>
 		<li>이메일 : ${memberInfo.email_mem }</li>
 		<li>폰번호 : ${memberInfo.tel_mem }</li>
 		<li>집주소 : ${memberInfo.zc1_mem } ${memberInfo.zc2_mem } </li>
 		<li>성별 : ${memberInfo.gender_mem }</li>
+		<a href="modyfyForm.mur">정보 수정</a>
+		<a href="modyfyForm">회원 탈퇴</a>
 	</ul>
 <!-- 좋아요, 게시글 목록 -->		
 </div>	

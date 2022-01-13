@@ -334,6 +334,7 @@ public class MemberDAO {
 		return pw_mem;
 	}
 
+	// 회원 정보를 불러오는 메소드
 	public MemberVO getMember(String id_mem) {
 
 		Connection con = null;
@@ -387,4 +388,52 @@ public class MemberDAO {
 		return memberInfo;
 	}
 
+	// 정보 수정 버튼 클릭시 데이터 베이스에 update를 수행해야함
+	// 정보수정을 처리해줄 메소드
+	public boolean updateMember(MemberVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean result = false;
+		
+		try {
+			
+			con = ConnUtil.getConnection();
+			String sql = "update student set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc_2mem? where id_mem=?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(2, vo.getNn_mem());
+			pstmt.setString(2, vo.getPw_mem());
+			pstmt.setString(3, vo.getName_mem());
+			pstmt.setString(4, vo.getEmail_mem());
+			pstmt.setString(5, vo.getGender_mem());
+			pstmt.setString(6, vo.getTel_mem());
+			pstmt.setString(7, vo.getZipcode_mem());
+			pstmt.setString(8, vo.getZc1_mem());
+			pstmt.setString(9, vo.getZc2_mem());
+			pstmt.setString(10, vo.getId_mem());
+			
+			if(pstmt.executeUpdate() > 0)
+				result = true;
+			
+		} catch (Exception e) {
+			System.out.println("Exception " + e);
+		} finally {
+			
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException s2) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException s3) {
+				}
+		}
+		return result; // update 성공 여부 추가
+	}
+		
+	
 }

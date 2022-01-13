@@ -94,7 +94,7 @@ content="0;url=/MURA2/page/member/index.jsp"> <!-- 로그아웃 인덱스로 바
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/member/index.jsp"> 
+	  <a href="index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 	

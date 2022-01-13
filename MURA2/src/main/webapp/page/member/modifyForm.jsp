@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>        
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 수정</title>
+<title>회원 정보 수정</title>
 <style type="text/css">
 body {
   background-image:#34495e;
@@ -80,12 +80,69 @@ background-color: black;
 <body>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
+	  <a href="index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
-<div id="detail">	
-
+<div align="center">	
+<form action="modifyProc.mur" method="post" class="joinForm" name="signinForm">
+                     
+                                                                        
+      <h2>회원 정보 수정</h2>
+      
+      <div class="textForm">
+        <input name="id_mem" type="hidden" class="id" placeholder="${id_mem }">
+      	<c:out value="${id_mem }" />
+      </div>
+      <div class="textForm">
+        <input name="nn_mem" type="text" class="id" placeholder="${nn_mem }">
+      </div>
+      <div class="textForm">
+        <input name="pw_mem" type="password" class="id" placeholder="${pw_mem }">
+      </div>
+       <div class="textForm">
+        <input name="repass_mem" type="password" class="id" placeholder="비밀번호 확인">
+      </div>
+      <div class="textForm">
+        <input name="name_mem" type="text" class="id" placeholder="${name_mem }">
+      	<c:out value="${name }" />
+      </div>
+       <div class="textForm">
+        <input name="email_mem" type="text" class="id" placeholder="${email_mem }">
+      </div>
+      
+       <div class="textForm">
+         <div class="id">성별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <select name="gender_mem">
+        <option value="남자"
+        ${gender_mem eq '남자' ? "selected=' selected'" : 'null'}>남자</option>
+        <option value="여자"
+        ${gender_mem eq '남자' ? "selected=' selected'" : 'null'}>여자</option>
+        </select>
+        </div> 
+      </div> 
+      <div class="textForm">
+        <input name="tel_mem" type="text" class="id" placeholder="${tel_mem }">
+      </div>
+      
+      <div class="textForm">
+        <input name="zipcode_mem" type="text" class="id" placeholder="${zipcode_mem }">
+        <input type="button" class="btn2" value="찾기" onclick="zipCheck()">
+      </div>
+      
+      <div class="textForm">
+        <input name="zc1_mem" type="text" class="id" placeholder="${zc1_mem }">
+      </div>
+      
+      <div class="textForm">
+        <input name="zc2_mem" type="text" class="id" placeholder="${zc2_mem }">
+      </div>
+      
+      
+      <!-- submit과  button의 차이 -->
+      <input type="button" class="btn" value="J O I N" onClick="inputCheck()">&nbsp;&nbsp;
+    </form>
 </div>	
 
 </body>

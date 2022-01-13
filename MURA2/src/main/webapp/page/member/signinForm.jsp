@@ -79,7 +79,7 @@ background-color: black;
 <body>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
+	  <a href="index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 

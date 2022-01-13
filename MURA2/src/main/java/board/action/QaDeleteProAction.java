@@ -5,22 +5,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
 import board.dao.QABoardDAO;
-import board.vo.QABoard;
 
-public class QaUpdateFormAction implements CommandAction {
+public class QaDeleteProAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		int idx_qt = Integer.parseInt(request.getParameter("idx_qt"));
 		String pageNum = request.getParameter("pageNum");
-		
+
 		QABoardDAO dbPro = QABoardDAO.getInstance();
-		QABoard qaArticle = dbPro.updateGetQaArticle(idx_qt);
+		int check = dbPro.deleteQaArticle(idx_qt);
 		
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("qaArticle", qaArticle);
+		request.setAttribute("pageNum", new Integer(pageNum));
+		request.setAttribute("check", new Integer(check));
 		
-		return "/userboard/qaUpdateForm.jsp";
+		return "/userboard/qaDeletePro.jsp";
 	}
+
 }

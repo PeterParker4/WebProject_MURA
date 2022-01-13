@@ -19,7 +19,7 @@ public class QaWriteProAction implements CommandAction {
 		QABoard qaArticle = new QABoard();
 		
 		/* qaArticle.setUn_mem(Integer.parseInt(request.getParameter("un_mem"))); */
-//		qaArticle.setIdx_qt(Integer.parseInt(request.getParameter("idx_qt")));
+		qaArticle.setIdx_qt(Integer.parseInt(request.getParameter("idx_qt")));
 		qaArticle.setNn_mem(request.getParameter("nn_mem"));
 		qaArticle.setWsubject_qt(request.getParameter("wsubject_qt"));
 		qaArticle.setWcontent_qt(request.getParameter("wcontent_qt"));

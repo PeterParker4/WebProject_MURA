@@ -125,7 +125,7 @@ function check() {
 		
 		<c:if test="${qaBoardArticle.depth_qt > 0}">
 		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
-		<img src="images/reply.png">		
+		<img src="images/reply.png" width="25">		
 		</c:if>
 		
 		<c:if test="${qaBoardArticle.depth_qt == 0 }">
@@ -210,9 +210,10 @@ onsubmit="return check()">
 	<tr>	
 	<td colspan="2" align="right">
 		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/qaboardList.mur'">
-		<c:if test="${loginID ne null }">
+		<%-- <c:if test="${loginID ne null }">
 		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
-		</c:if>
+		</c:if> --%>
+		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

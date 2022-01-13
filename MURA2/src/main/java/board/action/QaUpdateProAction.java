@@ -17,6 +17,7 @@ public class QaUpdateProAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		
+		
 		QABoard qaArticle = new QABoard();
 		
 		qaArticle.setIdx_qt(Integer.parseInt(request.getParameter("idx_qt")));
@@ -26,7 +27,6 @@ public class QaUpdateProAction implements CommandAction {
 		
 		QABoardDAO dbPro = QABoardDAO.getInstance();
 		int check = dbPro.updateQaArticle(qaArticle);
-		
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("check", check);
 		

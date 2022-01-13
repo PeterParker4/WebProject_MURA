@@ -98,12 +98,9 @@ height: 25px;
 	</div>
 
 <div align="center"></div><br><br>
-<form action="/MURA2/userboard/qaWritePro.mur?pageNum=${pageNum }" name="qaWriteForm" method="post"
+<form action="/MURA2/userboard/qaUpdatePro.mur?pageNum=${pageNum }" name="qaWriteForm" method="post"
 onsubmit="return qaWriteSave()">
-<input type="hidden" name="idx_qt" value="${idx_qt }">
-<input type="hidden" name="ref_qt" value="${ref_qt }">
-<input type="hidden" name="step_qt" value="${step_qt }">
-<input type="hidden" name="depth_qt" value="${depth_qt }">
+
 
 <table class="tb">
 
@@ -138,13 +135,17 @@ onsubmit="return qaWriteSave()">
 	<td align="left">		
 		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_qt"
 		value="${qaArticle.wsubject_qt }">
+		<input type="hidden" name="idx_qt" value="${idx_qt }">
+		<input type="hidden" name="ref_qt" value="${ref_qt }">
+		<input type="hidden" name="step_qt" value="${step_qt }">
+		<input type="hidden" name="depth_qt" value="${depth_qt }">
 	</td>
 </tr>
 
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<input type="text" name="nn_mem" readonly="readonly" value="${loginID }">
+		<input type="text" name="nn_mem" readonly="readonly" value="${qaArticle.nn_mem }">
 	</td>
 </tr>
 

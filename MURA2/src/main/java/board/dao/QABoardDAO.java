@@ -108,7 +108,7 @@ private static QABoardDAO instance = null;
 			
 			pstmt = con.prepareStatement("select * from (select rownum rnum, un_mem, idx_qt, nn_mem, wsubject_qt, "
 					+ "wcontent_qt, step_qt, depth_qt, date_qt, readcount_qt, ref_qt from "
-					+ "(select * from qa_board order by idx_qt desc, step_qt asc)) "
+					+ "(select * from qa_board order by ref_qt desc, step_qt asc)) "
 					+ "where rnum >=? and rnum <=?");
 			
 			pstmt.setInt(1, start);
@@ -167,22 +167,22 @@ private static QABoardDAO instance = null;
 			sql.append("(select rownum rnum, un_mem, idx_qt, nn_mem, wsubject_qt, wcontent_qt, step_qt, depth_qt, date_qt, readcount_qt, ref_qt from ");
 			
 			if(find.equals("nn_mem")) {
-				sql.append("(select * from qa_board where nn_mem like '%" + find_box + "%' order by idx_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
+				sql.append("(select * from qa_board where nn_mem like '%" + find_box + "%' order by ref_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else if(find.equals("wsubject_qt")) {
-				sql.append("(select * from qa_board where wsubject_qt like '%" + find_box + "%' order by idx_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
+				sql.append("(select * from qa_board where wsubject_qt like '%" + find_box + "%' order by ref_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else if(find.equals("wcontent_qt")) {
-				sql.append("(select * from qa_board where wcontent_qt like '%" + find_box + "%' order by idx_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
+				sql.append("(select * from qa_board where wcontent_qt like '%" + find_box + "%' order by ref_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else {
-				sql.append("(select * from qa_board order by idx_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
+				sql.append("(select * from qa_board order by ref_qt desc, step_qt asc)) where rnum >=? and rnum <=?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
@@ -390,7 +390,7 @@ private static QABoardDAO instance = null;
 		try {
 			
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select un_mem from qa_board where idx_qt=?");
+			pstmt = con.prepareStatement("select nn_mem from qa_board where idx_qt=?");
 			
 			pstmt.setInt(1, qaArticle.getIdx_qt());
 			rs = pstmt.executeQuery();
@@ -435,7 +435,7 @@ private static QABoardDAO instance = null;
 		try {
 			
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select un_mem from qa_board where idx_qt=?");
+			pstmt = con.prepareStatement("select nn_mem from qa_board where idx_qt=?");
 			
 			pstmt.setInt(1, idx_qt);
 			rs = pstmt.executeQuery();

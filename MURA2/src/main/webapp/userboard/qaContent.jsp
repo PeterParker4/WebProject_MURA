@@ -95,19 +95,21 @@ bgcolor="${bodyback_c }">
 
 
 
-
 <tr height="30">
 <td colspan="7" bgcolor="${value_c }" align="right">
 <input type="button" value="글수정"
 onclick="document.location.href='/MURA2/userboard/qaUpdateForm.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum }'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<input type="button" value="글삭제"
-onclick="document.location.href='/MURA2/userboard/qaDeleteForm.mur?idx_ut=${qaArticle.idx_qt }&pageNum=${pageNum }'">
-&nbsp;&nbsp;&nbsp;&nbsp;
+<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+href="/MURA2/userboard/qaDeletePro.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum}">삭제</a>
+
+<%-- <input type="button" value="글삭제"
+onclick="document.location.href='/MURA2/userboard/qaDeleteForm.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum }'">
+ --%>&nbsp;&nbsp;&nbsp;&nbsp;
 
 <input type="button" value="답변쓰기"
-onclick="document.location.href='/MURA2/userboard/qaWriteForm.mur?idx_ut=${qaArticle.idx_qt }&ref_qt=${qaArticle.ref_qt}&step_qt=${qaArticle.step_qt}&depth_qt=${depth_qt}'">
+onclick="document.location.href='/MURA2/userboard/qaWriteForm.mur?idx_qt=${qaArticle.idx_qt }&ref_qt=${qaArticle.ref_qt}&step_qt=${qaArticle.step_qt}&depth_qt=${qaArticle.depth_qt}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <input type="button" value="글목록"

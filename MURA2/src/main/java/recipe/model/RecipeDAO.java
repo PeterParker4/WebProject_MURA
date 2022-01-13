@@ -431,5 +431,140 @@ public class RecipeDAO {
 	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
 	 * {con.close();}catch(SQLException s3) {} } return result; }
 	 */
+	
+	// 추천 기능
+	public int UpdateRecommand(int num) {
+
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			int recommand = 0;
+
+			while (rs.next()) {
+				recommand = rs.getInt("mi_RECOMMAND");
+			}
+
+			pstmt = con.prepareStatement("UPDATE i_board SET mi_recommand=? WHERE mi_num=?");
+
+			pstmt.setInt(1, recommand + 1);
+			pstmt.setInt(2, num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException s1) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException s2) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException s3) {
+				}
+		}
+
+		return result;
+	}
+
+	//추천 취소
+	public int DeleteRecommand(int num) {
+
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			int recommand = 0;
+
+			while (rs.next()) {
+				recommand = rs.getInt("mi_RECOMMAND");
+			}
+
+			pstmt = con.prepareStatement("UPDATE i_board SET mi_recommand=? WHERE mi_num=?");
+			pstmt.setInt(1, recommand - 1);
+			pstmt.setInt(2, num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException s1) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException s2) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException s3) {
+				}
+		}
+
+		return result;
+	}
+
+	// 추천수 확인하기 ㅅㅂ 추천수 조회까지 쿼리문을 써야하다니 ㅅㅂ;;;
+	public int Recommand(int num) {
+
+		int recommand = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				recommand = rs.getInt("mi_RECOMMAND");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException s1) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException s2) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException s3) {
+				}
+		}
+		return recommand;
+	}
+
 
 }

@@ -237,14 +237,14 @@ public class UserBoardDAO {
 			con = ConnUtil.getConnection();
 			
 			sql = "insert into user_board(un_mem, idx_ut, nn_mem, wsubject_ut, wcontent_ut, date_ut) "
-					+ "values(?, content_seq.nextval, ?, ?, ?, ?)";
+					+ "values('1111' ,content_seq.nextval, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, userArticle.getUn_mem());
-			pstmt.setString(2, userArticle.getNn_mem());
-			pstmt.setString(3, userArticle.getWsubject_ut());
-			pstmt.setString(4, userArticle.getWcontent_ut());
-			pstmt.setTimestamp(5, userArticle.getDate_ut());
+			/* pstmt.setInt(1, userArticle.getUn_mem()); */
+			 pstmt.setString(1, userArticle.getNn_mem()); 
+			pstmt.setString(2, userArticle.getWsubject_ut());
+			pstmt.setString(3, userArticle.getWcontent_ut());
+			pstmt.setTimestamp(4, userArticle.getDate_ut());
 			
 			pstmt.executeUpdate();
 			
@@ -273,9 +273,14 @@ public class UserBoardDAO {
 			pstmt.setInt(1, idx_ut);
 			pstmt.executeQuery();
 			
+			pstmt = con.prepareStatement("select * from user_board where idx_ut=?");
+			
+			pstmt.setInt(1, idx_ut);
+			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				userArticle = new UserBoard();
-				userArticle.setUn_mem(rs.getInt("un_mem"));
+//				userArticle.setUn_mem(rs.getInt("un_mem"));
 				userArticle.setIdx_ut(rs.getInt("idx_ut"));
 				userArticle.setNn_mem(rs.getString("nn_mem"));
 				userArticle.setWsubject_ut(rs.getString("wsubject_ut"));
@@ -310,7 +315,7 @@ public class UserBoardDAO {
 			
 			if(rs.next()) {
 				userArticle = new UserBoard();
-				userArticle.setUn_mem(rs.getInt("un_mem"));
+//				userArticle.setUn_mem(rs.getInt("un_mem"));
 				userArticle.setIdx_ut(rs.getInt("idx_ut"));
 				userArticle.setNn_mem(rs.getString("nn_mem"));
 				userArticle.setWsubject_ut(rs.getString("wsubject_ut"));
@@ -334,20 +339,20 @@ public class UserBoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "";
 		int result = -1;
+		String sql = "";
 		
 		try {
 			
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select un_mem from user_board where idx_ut=?");
+			pstmt = con.prepareStatement("select nn_mem from user_board where idx_ut=?");
 			
 			pstmt.setInt(1, userArticle.getIdx_ut());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				
-				if(userArticle.getUn_mem() != 0) {
+				
 					sql = "update user_board set wsubject_ut=?, wcontent_ut=? where idx_ut=?";
 			
 					pstmt = con.prepareStatement(sql);
@@ -358,9 +363,8 @@ public class UserBoardDAO {
 			
 					pstmt.executeUpdate();
 					result = 1;
-				}else {
-					result = 0;
-				}
+			}else {
+				result = 0;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -384,7 +388,7 @@ public class UserBoardDAO {
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select un_mem from user_board where idx_ut=?");
+			pstmt = con.prepareStatement("select nn_mem from user_board where idx_ut=?");
 			
 			pstmt.setInt(1, idx_ut);
 			rs = pstmt.executeQuery();
@@ -396,7 +400,7 @@ public class UserBoardDAO {
 				pstmt.setInt(1, idx_ut);
 				pstmt.executeUpdate();
 				result = 1;
-			}
+			}else result = 0;
 			
 		}catch(Exception e) {
 			e.printStackTrace();

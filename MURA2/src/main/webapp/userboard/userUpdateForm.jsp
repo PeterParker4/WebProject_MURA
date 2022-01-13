@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="loginID" value="${sessionScope.loginID }" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MURA :: 요청 게시판 글쓰기</title>
+<title>MURA :: 요청 게시판 글수정</title>
 <style type="text/css">
 
 .s1{
@@ -96,10 +98,9 @@ height: 25px;
 	</div>
 
 <div align="center"></div><br><br>
-<form action="/MURA2/userboard/userWritePro.mur" name="userWriteForm" method="post"
-onsubmit="return WriteSave()">
-<input type="hidden" name="un_mem" value="${un_mem}">
-<input type="hidden" name="idx_ut" value="${idx_ut}">
+<form action="/MURA2/userboard/userUpdatePro.mur?pageNum=${pageNum }" name="userWriteForm" method="post"
+onsubmit="return writeSave()">
+<%-- <input type="hidden" name="un_mem" value="${un_mem}"> --%>
 
 <table class="tb">
 
@@ -130,16 +131,16 @@ onsubmit="return WriteSave()">
 <tr>
 	<td class="s1">제목</td>
 	<td align="left">
-		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_ut">
+		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_ut" 
+		value="${userArticle.wsubject_ut }">
+		<input type="hidden" name="idx_ut" value="${userArticle.idx_ut }">
 	</td>
 </tr>
 
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<c:if test="${id_mem == sid }">
-		"${nn_mem }"
-		</c:if>
+		<input type="text" name="nn_mem" readonly="readonly" value="${loginID }">
 	</td>
 </tr>
 
@@ -149,17 +150,17 @@ onsubmit="return WriteSave()">
 
 <tr>
 	<td colspan="2">
-		<textarea rows="30" cols="100%" name="content"></textarea>
+		<textarea rows="30" cols="100%" name="wcontent_ut">${userArticle.wcontent_ut }</textarea>
 	</td>
 </tr>
 
 
 
 <tr>
-	<td colspan="2" align="right">
-		<input type="submit" class="s2" value="글쓰기">
+	<td colspan="2" align="center">
+		<input type="submit" class="s2" value="글수정">
 		<input type="reset" class="s2" value="다시작성">
-		<input type="button" class="s2" value="취소" onClick="window.location='/MURA2/userboard/boardList.mur'">
+		<input type="button" class="s2" value="돌아가기" onClick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNum}'">
 	</td>
 </tr>
 

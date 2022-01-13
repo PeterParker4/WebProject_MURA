@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="loginID" value="${sessionScope.loginID }" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MURA :: Q&A 게시판 글쓰기</title>
+<title>MURA :: 요청 게시판 글쓰기</title>
 <style type="text/css">
 
 .s1{
@@ -96,12 +98,10 @@ height: 25px;
 	</div>
 
 <div align="center"></div><br><br>
-<form action="/MURA2/userboard/qaWritePro.mur" name="qaWriteForm" method="post"
-onsubmit="return qaWriteSave()">
-<input type="hidden" name="idx_qt" value="${idx_qt }">
-<input type="hidden" name="ref_qt" value="${ref_qt }">
-<input type="hidden" name="step_qt" value="${step_qt }">
-<input type="hidden" name="depth_qt" value="${depth_qt }">
+<form action="/MURA2/userboard/userWritePro.mur" name="userWriteForm" method="post"
+onsubmit="return writeSave()">
+<%-- <input type="hidden" name="un_mem" value="${un_mem}"> --%>
+<input type="hidden" name="idx_ut" value="${idx_ut}">
 
 <table class="tb">
 
@@ -113,49 +113,35 @@ onsubmit="return qaWriteSave()">
 
 <tr>
 	<td align="right" colspan="2" bgcolor="${value_c }">
-		<a class="s3" href="/MURA2/userboard/qaboardList.mur">글목록</a> 
+		<a class="s3" href="/MURA2/userboard/boardList.mur">글목록</a> 
 	</td>
 </tr>
 
 <tr>
 	<td class="s1">카테고리</td>
 	<td width="330" align="center">
-		<input type="radio" name="board" value="user"
+		<input type="radio" name="board" value="user" checked="checked"
 		onclick="window.location='/MURA2/userboard/userWriteForm.mur'"/>요청게시판
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="board" value="qa" checked="checked"
+		<input type="radio" name="board" value="qa"
 		onclick="window.location='/MURA2/userboard/qaWriteForm.mur'"/>Q&A게시판
 	</td>
 </tr>
 
-
-
 <tr>
 	<td class="s1">제목</td>
 	<td align="left">
-		<c:if test="${idx_qt == 0 }">
-		<input type="text" class="tx" size="50" maxlength="50" name="subject">
-		</c:if>
-		<c:if test="${idx_qt != 0 }">
-		<input type="text" class="tx" size="50" maxlength="50" name="subject" value="[답변]">
-		</c:if>
+		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_ut">
 	</td>
 </tr>
 
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<c:if test="${id_mem == sid }">
-		"${nn_mem } "
-		</c:if>
-		<c:if test="${id_mem != sid }">
-		비회원입니다. 로그인 후 이용해주세요.
-		</c:if>
+		<input type="text" name="nn_mem" readonly="readonly" value="${loginID }">
 	</td>
 </tr>
-
-
 
 <tr>
 	<td class="s1">내용</td>
@@ -163,7 +149,7 @@ onsubmit="return qaWriteSave()">
 
 <tr>
 	<td colspan="2">
-		<textarea rows="30" cols="100%" name="content"></textarea>
+		<textarea rows="30" cols="100%" name="wcontent_ut"></textarea>
 	</td>
 </tr>
 
@@ -173,7 +159,7 @@ onsubmit="return qaWriteSave()">
 	<td colspan="2" align="right">
 		<input type="submit" class="s2" value="글쓰기">
 		<input type="reset" class="s2" value="다시작성">
-		<input type="button" class="s2" value="취소" onClick="window.location='/MURA2/userboard/qaboardList.mur'">
+		<input type="button" class="s2" value="취소" onClick="window.location='/MURA2/userboard/boardList.mur'">
 	</td>
 </tr>
 

@@ -3,13 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="loginID" value="${sessionScope.loginID }" />
+
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<title>MURA :: Q&A 게시판</title>
+<title>MURA :: 요청게시판</title>
 <style>
     *{margin:0;padding:0}
     .allWrap{width: 800px;margin:0 auto;}
@@ -30,8 +32,7 @@
         background-color: white;
         font-size: 15px;
         text-align: center;
-    }
-    
+    }    
     .s2{
 		height: 25px;
 		border: thin;
@@ -44,10 +45,10 @@
 		}
 	
 	.s2:hover{
-		background-color: orange;
-		color:black;
-		}
-        
+	background-color: orange;
+	color:black;
+	}
+
 </style>
 <script type="text/javascript">
 function check() {
@@ -58,7 +59,7 @@ function check() {
   }
 
   function frm_sub(i) {
-	i_frm.action="/MURA2/userboard/qaboardList.mur?pageNum="+i;
+	i_frm.action="/MURA2/userboard/boardList.mur?pageNum="+i;
 	i_frm.submit();
   }
 
@@ -69,7 +70,10 @@ function check() {
 
 <div align="center">
 
-<div class="logo">
+<div class="logo" style="
+    display: flex;
+    align-items: center;
+    justify-content: center;">
 	  <a href="/MURA2/page/index.jsp"> 
 	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 </div>
@@ -78,20 +82,16 @@ function check() {
 
   <div class="allWrap">     
 	<div class="tabBox">
-          <p class="tab-link" data-tab="tab-1" onclick="window.location='/MURA2/userboard/boardList.mur'"><span><img src="http://mmctxt.com/link/img/icon01.png" alt="icon"></span> 요청게시판</p>
-          <p class="tab-link current"  data-tab="tab-2"><span><img src="http://mmctxt.com/link/img/icon02.png" alt="icon"></span> Q&A 게시판</p>
+          <p class="tab-link current" data-tab="tab-1"><span><img src="http://mmctxt.com/link/img/icon01.png" alt="icon"></span> 요청게시판</p>
+          <p class="tab-link"  data-tab="tab-2" onclick="window.location='/MURA2/userboard/qaboardList.mur'"><span><img src="http://mmctxt.com/link/img/icon02.png" alt="icon"></span> Q&A 게시판</p>
     </div>
 	
-	<div  id="tab-1" class="tab-content">
-
-	</div>
+	<div  id="tab-1" class="tab-content current">
+		<h1>요청 게시판</h1><br>
 	
-	<div  id="tab-2" class="tab-content current">
-			<h1>Q&A 게시판</h1><br>
+	<div align="center"><b>글목록(전체 글:${userCount} )</b><br>
 	
-	<div align="center"><b>글목록(전체 글:${qaCount} )</b><br>
-	
-	<c:if test="${qaCount == 0 }">
+	<c:if test="${userCount == 0 }">
 	<table width="700" border="1" cellpadding="0" cellspacing="0">
 	  <tr align="center">
 	    <td>게시판에 저장된 글이 없습니다.</td>
@@ -99,7 +99,7 @@ function check() {
 	</table>
 	</c:if>
 	
-	<c:if test="${qaCount > 0 }">
+	<c:if test="${userCount > 0 }">
 	<table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
 	
 		<tr height="10">
@@ -110,38 +110,28 @@ function check() {
 		  <td align="center" width="50">조회수</td>
 		</tr>
 	
-	<c:forEach var="qaBoardArticle" items="${qaBoardArticleList }">
+	<c:forEach var="userBoardArticle" items="${userBoardArticleList }">
 	
 	<tr height="30">
-		<td align="center" width="100"><c:out value="${number }"/></td>
-		<c:set var="number" value="${number - 1 }"> </c:set>
+		<td align="center" width="100"><c:out value="${number}"/></td>
+		<c:set var="number" value="${number - 1 }"></c:set>
 	
-		<td width="300">
-		
-		<c:if test="${qaBoardArticle.depth_qt > 0}">
-		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
-		<img src="images/reply.png">		
-		</c:if>
-		
-		<c:if test="${qaBoardArticle.depth_qt == 0 }">
-		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
-		</c:if>
-			
-		<a href="/MURA2/userboard/content.mur?num=${qaBoardArticle.idx_qt}&pageNum=${currentPage}">
-		${qaBoardArticle.wsubject_qt}</a>
-			<c:if test="${qaBoardArticle.readcount_qt >= 20 }">
+		<td width="300">	
+		<a href="/MURA2/userboard/userContent.mur?idx_ut=${userBoardArticle.idx_ut}&pageNum=${currentPage}">
+		${userBoardArticle.wsubject_ut}</a>
+		<c:if test="${userBoardArticle.readcount_ut >= 20 }">
 			<img alt="" src="images/hot.png" border="0" height="16">
 			</c:if>
 		</td>	
 	
 		<td align="center" width="100">
-		${qaBoardArticle.nn_mem }
+		${userBoardArticle.nn_mem }
 		</td>
 		<td align="center" width="150">
-		${qaBoardArticle.date_qt }
+		${userBoardArticle.date_ut }
 		</td>		
 		<td align="center" width="50">
-		${qaBoardArticle.readcount_qt }
+		${userBoardArticle.readcount_ut }
 		</td>
 		
 	</tr>
@@ -149,9 +139,9 @@ function check() {
 	</table>
 	</c:if>	
 	
-	<c:if test="${qaCount > 0 }">
-	 <c:set var="imsi" value="${qaCount % pageSize == 0 ? 0 : 1 }"/>
-	 <c:set var="pageCount" value="${qaCount / pageSize + imsi }"/>
+	<c:if test="${userCount > 0 }">
+	 <c:set var="imsi" value="${userCount % pageSize == 0 ? 0 : 1 }"/>
+	 <c:set var="pageCount" value="${userCount / pageSize + imsi }"/>
 	 <c:set var="pageBlock" value="${3}"/>
 	 <fmt:parseNumber var="result" value="${(currentPage - 1) / pageBlock }" integerOnly="true"/>
 	 
@@ -163,15 +153,15 @@ function check() {
 	 </c:if>
 	 
 	 <c:if test="${startPage > pageBlock }">
-	 	<a href="/MURA2/userboard/qaboardList.mur?pageNum=${startPage - pageBlock }" onclick="frm_sub(${startPage - pageBlock})">[이전]</a>
+	 	<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage - pageBlock }" onclick="frm_sub(${startPage - pageBlock})">[이전]</a>
 	 </c:if>
 	 
 	 <c:forEach var="i" begin="${startPage }" end="${endPage }">
-	 	<a href="/MURA2/userboard/qaboardList.mur?pageNum=${i}" onclick="frm_sub(${i})">[${i}]</a>
+	 	<a href="/MURA2/userboard/boardList.mur?pageNum=${i}" onclick="frm_sub(${i})">[${i}]</a>
 	 </c:forEach>
 	 
 	 <c:if test="${endPage < pageCount }">
-		<a href="/MURA2/userboard/qaboardList.mur?pageNum=${startPage + pageBlock }" onclick="frm_sub(${startPage + pageBlock})">[다음]</a> 
+		<a href="/MURA2/userboard/boardList.mur?pageNum=${startPage + pageBlock }" onclick="frm_sub(${startPage + pageBlock})">[다음]</a> 
 	 </c:if>
 	</c:if>
 	<br><br>
@@ -181,33 +171,37 @@ function check() {
   	<input type="hidden" name="find" value="${find }">
 	</form>
 	
-	<form action="/MURA2/userboard/qaboardList.mur" method="post" name="find_frm"
+	<form action="/MURA2/userboard/boardList.mur" method="post" name="find_frm"
 onsubmit="return check()">
 
   <select name="find" size="1">
-  	<option value="nn_mem">작성자</option>
-  	<option value="wsubject_ut">제목</option>
-  	<option value="wcontent_ut">내용</option>
+  	<option value="nn_mem"> 작성자 </option>
+  	<option value="wsubject_ut"> 제목 </option>
+  	<option value="wcontent_ut"> 내용 </option>
   </select>
   &nbsp;
   <input type="text" name="find_box">
   &nbsp;
-  <input type="submit" value="검색">
+  <input type="submit" class="s2" value=" 검색 ">
 
 </form>
 	
+	</div>
 
 	</div>
 	
-	</div>
-	
+	<div  id="tab-2" class="tab-content">
+
 	</div>
 	<tr>	
 	<td colspan="2" align="right">
-		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/qaboardList.mur'">
-		<c:if test="${un_mem != null }">
-		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
+		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">
+		<%-- <c:if test="${loginID == null }">
+		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/page/login.mur'">
 		</c:if>
+		 --%>
+		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
+		
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

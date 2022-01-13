@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
-<c:set var="loginID" value="${sessionScope.loginID }" />  
+<c:set var="loginID" value="${sessionScope.loginID }" /> 
+
 
 <!DOCTYPE html><html lang="en">
 <head>

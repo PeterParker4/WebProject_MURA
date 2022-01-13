@@ -265,20 +265,20 @@ private static QABoardDAO instance = null;
 				depth_qt = 0;
 			}
 			
-			sql = "insert into qa_board(un_mem, idx_qt, nn_mem, wsubject_qt, wcontent_qt, "
+			sql = "insert into qa_board(idx_qt, nn_mem, wsubject_qt, wcontent_qt, "
 					+ "step_qt, depth_qt, date_qt, readcount_qt, ref_qt) "
-					+ "values(?, content_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "values(content_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, qaArticle.getUn_mem());
-			pstmt.setString(2, qaArticle.getNn_mem());
-			pstmt.setString(3, qaArticle.getWsubject_qt());
-			pstmt.setString(4, qaArticle.getWcontent_qt());
-			pstmt.setInt(5, step_qt);
-			pstmt.setInt(6, depth_qt);
-			pstmt.setTimestamp(7, qaArticle.getDate_qt());
-			pstmt.setInt(8, qaArticle.getReadcount_qt());
-			pstmt.setInt(9, ref_qt);
+//			pstmt.setInt(1, qaArticle.getUn_mem());
+			pstmt.setString(1, qaArticle.getNn_mem());
+			pstmt.setString(2, qaArticle.getWsubject_qt());
+			pstmt.setString(3, qaArticle.getWcontent_qt());
+			pstmt.setInt(4, step_qt);
+			pstmt.setInt(5, depth_qt);
+			pstmt.setTimestamp(6, qaArticle.getDate_qt());
+			pstmt.setInt(7, qaArticle.getReadcount_qt());
+			pstmt.setInt(8, ref_qt);
 			
 			pstmt.executeUpdate();
 			
@@ -308,9 +308,14 @@ private static QABoardDAO instance = null;
 			pstmt.setInt(1, idx_qt);
 			rs = pstmt.executeQuery();
 			
+			pstmt = con.prepareStatement("select * from qa_board where idx_qt=?");
+			
+			pstmt.setInt(1, idx_qt);
+			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				qaArticle = new QABoard();
-				qaArticle.setUn_mem(rs.getInt("un_mem"));
+//				qaArticle.setUn_mem(rs.getInt("un_mem"));
 				qaArticle.setIdx_qt(rs.getInt("idx_qt"));
 				qaArticle.setNn_mem(rs.getString("nn_mem"));
 				qaArticle.setWsubject_qt(rs.getString("wsubject_qt"));
@@ -351,7 +356,7 @@ private static QABoardDAO instance = null;
 			
 			if(rs.next()) {
 				qaArticle = new QABoard();
-				qaArticle.setUn_mem(rs.getInt("un_mem"));
+//				qaArticle.setUn_mem(rs.getInt("un_mem"));
 				qaArticle.setIdx_qt(rs.getInt("idx_qt"));
 				qaArticle.setNn_mem(rs.getString("nn_mem"));
 				qaArticle.setWsubject_qt(rs.getString("wsubject_qt"));
@@ -392,7 +397,7 @@ private static QABoardDAO instance = null;
 			
 			if(rs.next()) {
 				
-				if(qaArticle.getUn_mem() != 0) {
+				
 					sql = "update qa_board set wsubject_qt=?, wcontent_qt=? where idx_qt=?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -406,7 +411,7 @@ private static QABoardDAO instance = null;
 				}else {
 					result = 0;
 				}
-			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -442,7 +447,7 @@ private static QABoardDAO instance = null;
 				pstmt.setInt(1, idx_qt);
 				pstmt.executeUpdate();
 				result = 1;			
-			}
+			}else result = 0;
 			
 		}catch(Exception e) {
 			e.printStackTrace();

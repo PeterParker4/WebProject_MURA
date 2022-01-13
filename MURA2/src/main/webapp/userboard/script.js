@@ -16,13 +16,13 @@ function writeSave() {
 	
 	if(document.userWriteForm.wsubject_ut.value==""){
 		alert("제목을 입력하세요.");
-		document.writeForm.wsubject_ut.focus();
+		document.uwerWriteForm.wsubject_ut.focus();
 		return false;
 	}
 	
 	if(document.userWriteForm.wcontent_ut.value==""){
 		alert("내용을 입력하세요.");
-		document.writeForm.wcontent_ut.focus();
+		document.userWriteForm.wcontent_ut.focus();
 		return false;
 	}
 	
@@ -44,13 +44,7 @@ function qaWriteSave() {
 	
 }
 
-function check(){
-	
-	if(document.userWriteForm)
-	
-	return false;
-	
-}
+
 
 
 

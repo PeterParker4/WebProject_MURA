@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import action.CommandAction;
 import member.model.MemberDAO;
 import member.model.MemberVO;
 import recipe.model.RecipeDAO;
@@ -51,7 +52,7 @@ public class RecipeUpdateProcAction implements CommandAction{
 			
 			int check = dbPro.updateArticle(article);
 			
-			// 뷰에서 사용할 어트리뷰트 저장
+			// 뷰에서 사용할 속성 저장
 			String pageNum = request.getParameter("pageNum");
 			request.setAttribute("pageNum", new Integer(pageNum));
 			request.setAttribute("check", new Integer(check));

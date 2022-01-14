@@ -1,13 +1,12 @@
 package member.action;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import action.CommandAction;
 import member.model.MemberDAO;
-import member.model.MemberVO;
 
 public class LoginProcAction implements CommandAction {
 
@@ -22,11 +21,11 @@ public class LoginProcAction implements CommandAction {
 
 		if (check == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginID", id_mem); // id_mem으로 통일           
+			session.setAttribute("id_mem", id_mem); // id_mem으로 통일           
 		} else if (id_mem != null && pw_mem != null) {
 			request.setAttribute("check", check);
 		}
-		
+
 		return "/page/member/login.jsp";
 	}
 

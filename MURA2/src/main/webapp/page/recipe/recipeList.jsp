@@ -102,7 +102,7 @@ function frm_sub(i) {
     </td>
     
     <td width="350">
-    <div class="subjectbar">
+    <div class="subjectbar"s>
       <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
       <img alt="" src="upload/${article.thumb_li}" width="100px" height="70px">&nbsp; 
       ${article.wsubject_li}</a>

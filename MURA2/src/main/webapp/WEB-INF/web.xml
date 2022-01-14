@@ -12,6 +12,13 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list> -->
 
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/WEB-INF/tlds/el-functions.tld</taglib-uri> <!-- 식별자 -->
+			<taglib-location>/WEB-INF/tlds/el-functions.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
 	<!-- CKFINDER START -->
 	<servlet>
 	  <servlet-name>ConnectorServlet</servlet-name>
@@ -33,7 +40,6 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 	</servlet-mapping>  
 	<!-- CKFINDER END -->
 
-
 	<filter> <!-- 이 필터를 거친 후 밑에 필터가 있다면 그 필터를 거친다 (필터체인 이렇게 일어남) -->
 	  <filter-name>EncodingFilter</filter-name>
 	  <filter-class>com.filter.CharacterEncodingFilter</filter-class>
@@ -48,8 +54,8 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 	</filter-mapping>
 
   	<servlet>
-		<servlet-name>RecipeController</servlet-name>
-		<servlet-class>recipe.controller.ControllerAction</servlet-class>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>controller.ControllerAction</servlet-class>
 		<init-param>
 			<param-name>propertyConfig</param-name>
 			<param-value>Command.properties</param-value>
@@ -57,7 +63,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>RecipeController</servlet-name>
+		<servlet-name>Controller</servlet-name>
 		<url-pattern>*.mur</url-pattern>
 	</servlet-mapping>
   

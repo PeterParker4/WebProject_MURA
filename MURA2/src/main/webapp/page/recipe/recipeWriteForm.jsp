@@ -7,6 +7,62 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
+<style type="text/css">
+
+.s1{
+width: 100px;
+height: 20px;
+padding: 5px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+text-align: center;
+margin: 5px;
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
+.tb{
+width: 55%;
+}
+
+.sl{
+width: 80px;
+height: 30px;
+border-radius: 4px;
+color: black;
+font-weight: bold;
+}
+
+.tx{
+width: 100%;
+height: 20px;
+border-radius: 4px;
+}
+
+.txt{
+border-radius: 4px;
+border-color: graytext;
+}
+
+</style>
 
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
@@ -36,18 +92,25 @@
 <form action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" 
 method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
-<input type="hidden" name="idx_li" value="${idx_li}">
+<input type="hidden" name="un_mem" value="${memberInfo.un_mem}">
+<input type="hidden" name="pw_mem" value="${memberInfo.pw_mem}">
+<input type="hidden" name="nn_mem" value="${memberInfo.nn_mem}">
 
-<table width="1000" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
+<table class="tb" align="center">
 
 <tr>
-<td align="center" colspan="2" bgcolor="${value_c}">레시피 게시판</td>
+<td align="center" colspan="2">
+<img src="../images/recipe.jpg" width="90" height="90">
+<img src="../images/icons/fr.jpg" width="160" height="90">
+</td>
+
 </tr>
 
+
 <tr>
-   <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
-   <td align="center">
-     <select name="category_li" style="width:500px">
+   <td class="s1" >카테고리</td>
+   <td align="left">
+     <select name="category_li" size="1" class="sl">
        <option value="한식">한식</option>
        <option value="일식">일식</option>
        <option value="양식">양식</option>
@@ -57,32 +120,32 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 </tr>
 
 <tr>
-   <td width="100" bgcolor="${value_c}" align="center">제목</td>
-   <td width="300" align="center">
-     <input type="text" size="100" maxlength="100" name="wsubject_li">
+   <td class="s1">제목</td>
+   <td width="300" align="left">
+     <input type="text" size="100" class="tx" maxlength="100" name="wsubject_li">
    </td>
 </tr>
 
 <tr>
-   <td width="100" bgcolor="${value_c}" align="center">재료입력<br>*쉼표(,)구분</td>
-   <td width="300" align="center">
+   <td class="s1">재료입력<br>*쉼표(,)구분</td>
+   <td width="500" align="center">
 <!--        <div class="content">
         <div>
             <input type="text" id="tag" size="20" placeholder="엔터 버튼 클릭시 태그 입력" />
         </div>
-
           <ul id="tag-list">
           </ul>
   	   </div> -->
-   <input type="text" size="100" maxlength="100" name="tag_li">
+   <input type="text" size="80" class="tx" maxlength="100" name="tag_li">
    </td>
 </tr>
 
 <!-- 내용입력창(ck에디터 폼 적용) -->
 <tr>
-   <td width="100" bgcolor="${value_c}" align="center">내용</td>
+   <td class="s1">내용</td>
    <td width="300" align="center">
-   <textarea class="form-control" id="wcontent_li" name="wcontent_li"></textarea>
+   <textarea class="form-control" id="wcontent_li" name="wcontent_li" style="width: 100%;
+    height: 600px;" ></textarea>
      <script type="text/javascript">
      CKEDITOR.replace('wcontent_li', {height: 600});
      </script>
@@ -91,18 +154,24 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 </tr>
 
 <tr>
-  <td width="100" bgcolor="${value_c}" align="center">썸네일 이미지</td>
+  <td class="s1">썸네일 이미지</td>
   <td>
     <input type="file" name="thumb_li"><br>
     *등록한 사진이 썸네일 이미지로 등록됩니다.
   </td>
 </tr>
 
+</table>
+
+<hr width="40%">
+
+<table class="tb" align="center">
+
 <tr>
-  <td colspan="2" bgcolor="${value_c}" align="center">
-  	<input type="submit" value="글쓰기">
-  	<input type="reset" value="다시작성">
-  	<input type="button" value="목록" onClick="window.location='recipeList.mur'">
+  <td align="right" colspan="2">
+  	<input type="submit" value="글쓰기" class="s2">
+  	<input type="reset" value="다시작성" class="s2">
+  	<input type="button" value="목록" class="s2" onClick="window.location='recipeList.mur'">
   </td>
 </tr>
 </table>

@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import board.model.ConnUtil;
+
 public class RecipeDAO {
 
 	private static RecipeDAO instance = null;
@@ -285,16 +287,19 @@ public class RecipeDAO {
 			else number = 1; // 새글이 아닌 경우
 			
 			// 새글을 추가하는 쿼리 작성
-			sql="insert into food_board(idx_li, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
-					+ "values(content_seq.nextval, 'nick',?,?,?,?,?,?)";
+			sql="insert into food_board(idx_li, un_mem, pw_mem, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
+					+ "values(content_seq.nextval, ?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getCategory_li());
-			pstmt.setString(2, article.getWsubject_li());
-			pstmt.setString(3, article.getTag_li());
-			pstmt.setString(4, article.getThumb_li());
-			pstmt.setString(5, article.getWcontent_li());
-			pstmt.setTimestamp(6, article.getDate_li());
+			pstmt.setInt(1, article.getUn_mem());
+			pstmt.setString(2, article.getPw_mem());
+			pstmt.setString(3, article.getNn_mem());
+			pstmt.setString(4, article.getCategory_li());
+			pstmt.setString(5, article.getWsubject_li());
+			pstmt.setString(6, article.getTag_li());
+			pstmt.setString(7, article.getThumb_li());
+			pstmt.setString(8, article.getWcontent_li());
+			pstmt.setTimestamp(9, article.getDate_li());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -414,16 +419,17 @@ public class RecipeDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dbpasswd = rs.getString("pass");
-				if(dbpasswd.equals(article.getPass())) {
+				dbpasswd = rs.getString("pw_mem");
+				if(dbpasswd.equals(article.getPw_mem())) {
 					// 비밀번호가 일치하면 수정쿼리 실행
-					sql = "update food_board set writer=?, email=?, subject=?, content=? where num=?";
+					sql = "update food_board set category_li=?, wsubject_li=?, tag_li=?, wcontent_li=?, thumb_li=? where idx_li=?";
 					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, article.getWriter());
-					pstmt.setString(2, article.getEmail());
-					pstmt.setString(3, article.getSubject());
-					pstmt.setString(4, article.getContent());
-					pstmt.setInt(5, article.getNum());
+					pstmt.setString(1, article.getCategory_li());
+					pstmt.setString(2, article.getWsubject_li());
+					pstmt.setString(3, article.getTag_li());
+					pstmt.setString(4, article.getWcontent_li());
+					pstmt.setString(5, article.getThumb_li());
+					pstmt.setInt(6, article.getIdx_li());
 					pstmt.executeUpdate();
 					result = 1; // 수정 성공
 				}else {
@@ -440,164 +446,108 @@ public class RecipeDAO {
 		return result;
 	}
 	 
-	/* 
-	 * 글 삭제 처리
+	/* 글 삭제 처리
 	 * 
 	 * 데이터베이스에서 비밀번호를 비교하여 실제로 삭제를 수행해 줄 메소드를 구현함
-	 * 
-	 * 
-	 * public int deleteArticle(int num, String pass) { Connection con = null;
-	 * PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * String dbpasswd = ""; String sql = ""; int result = -1;
-	 * 
-	 * try { con = ConnUtil.getConnection(); pstmt =
-	 * con.prepareStatement("select pass from board where num=?"); pstmt.setInt(1,
-	 * num); rs = pstmt.executeQuery();
-	 * 
-	 * if(rs.next()) { dbpasswd = rs.getString("pass"); if(dbpasswd.equals(pass)) {
-	 * // 비밀번호가 일치하면 수정쿼리 실행 sql = "delete from board where num=?"; pstmt =
-	 * con.prepareStatement(sql); pstmt.setInt(1, num); pstmt.executeUpdate();
-	 * result = 1; // 삭제 성공 }else { result = 0; // 비밀번호 틀림 } } }catch(Exception e) {
-	 * System.out.println("Exception "+e); }finally { if(rs != null) try
-	 * {rs.close();}catch(SQLException s1) {} if(pstmt != null) try
-	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
-	 * {con.close();}catch(SQLException s3) {} } return result; }
 	 */
 	
+	public int deleteArticle(int idx_li, String un_mem) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String dbun_mem = "";
+		String sql = "";
+		int result = -1;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select un_mem from food_board where idx_li=?");
+			pstmt.setInt(1, idx_li);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbun_mem = rs.getString("un_mem");
+				if(dbun_mem.equals(un_mem)) {
+					// 유저번호가 일치하면 수정쿼리 실행
+					sql = "delete from food_board where idx_li=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, idx_li);
+					pstmt.executeUpdate();
+					result = 1; // 삭제 성공
+				}else {
+					result = 0; // 유저번호 틀림
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return result;
+	}
+	
 	// 추천 기능
-	public int UpdateRecommand(int num) {
-
-		int result = 0;
+	public int updateRecommend(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+		int result = 0;
+
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
+			pstmt = con.prepareStatement("select recommend_cnt from food_board where idx_li=?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 
-			int recommand = 0;
+			int recommend = 0;
 
 			while (rs.next()) {
-				recommand = rs.getInt("mi_RECOMMAND");
+				recommend = rs.getInt("recommend_cnt");
 			}
 
-			pstmt = con.prepareStatement("UPDATE i_board SET mi_recommand=? WHERE mi_num=?");
+			pstmt = con.prepareStatement("update food_board set recommend_cnt=? where idx_li=?");
 
-			pstmt.setInt(1, recommand + 1);
+			pstmt.setInt(1, recommend + 1);
 			pstmt.setInt(2, num);
 			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
-
 		return result;
 	}
 
-	//추천 취소
-	public int DeleteRecommand(int num) {
-
-		int result = 0;
+	// 추천수 불러오기
+	public int countRecommend(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int recommend = 0;
 
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-
-			int recommand = 0;
-
-			while (rs.next()) {
-				recommand = rs.getInt("mi_RECOMMAND");
-			}
-
-			pstmt = con.prepareStatement("UPDATE i_board SET mi_recommand=? WHERE mi_num=?");
-			pstmt.setInt(1, recommand - 1);
-			pstmt.setInt(2, num);
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
-		}
-
-		return result;
-	}
-
-	// 추천수 확인하기 ㅅㅂ 추천수 조회까지 쿼리문을 써야하다니 ㅅㅂ;;;
-	public int Recommand(int num) {
-
-		int recommand = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT mi_RECOMMAND FROM i_board WHERE mi_num=?");
+			pstmt = con.prepareStatement("select recommend_cnt from food_board where idx_li=?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				recommand = rs.getInt("mi_RECOMMAND");
+				recommend = rs.getInt("mi_RECOMMAND");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
-		return recommand;
+		return recommend;
 	}
-
 
 }

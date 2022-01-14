@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import action.CommandAction;
 import member.model.MemberDAO;
 import member.model.MemberVO;
 
@@ -13,7 +14,7 @@ public class MyPageAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 	      
 		  HttpSession session = request.getSession();
-		  String id_mem = (String)session.getAttribute("loginID");
+		  String id_mem = (String) session.getAttribute("id_mem");
 		
 	      MemberDAO dao = MemberDAO.getInstance();
 	      
@@ -22,5 +23,7 @@ public class MyPageAction implements CommandAction {
 	      request.setAttribute("memberInfo", memberInfo);
 	      
 	      return "/page/member/myPage.jsp";
+
 	}
+
 }

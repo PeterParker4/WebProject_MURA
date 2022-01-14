@@ -1,117 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-request.setCharacterEncoding("utf-8");
-%>
-
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이 페이지</title>
+<title>MURA :: 마이페이지</title>
 <style type="text/css">
-body {
-	background-image: #34495e;
+*{
+font-family:"bmh";
+font-weight: bold;
 }
-
-.joinForm {
-	width: 400px;
-	height: 400px;
-	padding: 30px, 20px;
-	background-color: #FFFFFF;
-	text-align: center;
-	border-radius: 15px;
+.ct{
+width: 30%;
+border-color: threeddarkshadow;
 }
-
-.joinForm h2 {
-	text-align: center;
-	margin: 30px;
+tr{
+width: 300px;
+height : 50px;
 }
-
-.textForm {
-	border-bottom: 2px solid #adadad;
-	margin: 20px;
-	padding: 10px 5px;
+td{
+border-color: black;
+border-radius: 1px;
 }
-
-.id {
-	width: 100%;
-	border: none;
-	outline: none;
-	color: #636e72;
-	font-size: 16px;
-	height: 25px;
-	background: none;
+table{
+border-radius: 5px;
 }
-
-.btn {
-	position: relative;
-	left: 40%;
-	transform: translateX(-50%);
-	margin-bottom: 40px;
-	width: 80%;
-	height: 40px;
-	background: linear-gradient(125deg, #a84781, yellow, green);
-	background-position: left;
-	background-size: 200%;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
-	transition: 0.4s;
-	display: inline;
+.dd{
+background-color: #FFDCFF;
+color: black;
+font-style: oblique;
+font-weight: bolder;
 }
-
-.btn:hover {
-	background-position: right;
+p{
+font-size: 33px;
+font-weight: bold;
+color: black;
 }
-
-.btn2 {
-	background-color: #fff;
-	margin: 4px;
-	width: 40%;
-	height: 50%;
-	border-radius: 10px;
-	transition: 0.8s;
-	display: inline;
-	cursor: pointer;
+.t1{
+width : 30%;
+height: 11px;
 }
-
-.btn2:hover {
-	color: #fff;
-	background-color: black;
+.btt{
+color:#fff;
+font-size: 16px;
+  padding: 12px 40px;
+  text-align:center;
+  width: 25%;
+  background-color: #a84781;
+  border-radius: 10px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  font-style: inherit;
+  cursor: pointer;
+}
+.btt:hover {
+  background-color: #403866;
+}
+b{
+text-align: justify;
 }
 </style>
-</head>
 <script type="text/javascript" src="script.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
 <body>
-	<!-- 상단 로고 -->
-	<div class="logo">
-		<a href="../index.jsp"> <img src="images/topLogo.jpg" width="1194"
-			height="230" border="0" alt=""></a>
-	</div>
-	<h1>유저 정보</h1>
-	<div id="detail">
-		<ul>
-			<li>이름 : ${memberInfo.name_mem }</li>
-			<li>닉네임 : ${memberInfo.nn_mem }</li>
-			<li>이메일 : ${memberInfo.email_mem }</li>
-			<li>폰번호 : ${memberInfo.tel_mem }</li>
-			<li>집주소 : ${memberInfo.zc1_mem } ${memberInfo.zc2_mem }</li>
-			<li>성별 : ${memberInfo.gender_mem }</li>
-			<li><a href="modifyForm.mur">정보 수정</a></li>
-			<li><a href="deleteForm.mur">회원 탈퇴</a></li>
-		</ul>
-		<!-- 좋아요, 게시글 목록 -->
-	</div>
 
+<!-- 상단 로고 -->
+	<div class="logo">
+	  <a href="/MURA2/page/index.jsp"> 
+	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	</div>
+	
+	<p align="center">
+		<img src="../images/mypage.jpg" width="30" height="30">
+	MuRa : : My Page 
+	</p>
+<div>
+	<table class="ct" border="1" cellpadding="3" cellspacing="0">
+		<tr>
+			<td colspan="2">
+			<img src="../images/toki.jpg" width="340" height="314" alt=""></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200" >성명</td><td>${memberInfo.name_mem }</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200" >닉네임</td><td>${memberInfo.nn_mem }</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">이메일</td><td>${memberInfo.email_mem }</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">H.P </td><td>${memberInfo.tel_mem }</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">집주소</td><td>${memberInfo.zc1_mem } ${memberInfo.zc2_mem } </td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">성별</td><td>${memberInfo.gender_mem }</td>
+		</tr>
+		
+	</table>
+	
+	<table class="ct">
+	 	<tr>
+	 		<td align="right"><input type="button" class="btt" name="수정하기" value="수정하기" 
+	 		onclick="window.location.href='http://localhost:9000/MURA2/page/member/modifyForm.mur'">
+					<input type="button" class="btt" name="회원탈퇴" value="회원탈퇴"
+					onclick="window.location.href='http://localhost:9000/MURA2/page/member/deleteForm.mur'"></td>
+	 	</tr>
+	</table>
+</div>	
+<!-- table안닫은 정수현 머리 박겠습니다. -->
+
+
+
+<hr>
+	
+<div align="center"><img src="../images/icons/list.jpg" width="35" height="35"><b>내가 작성한 게시물(전체 글 : ${count })</b></div>
+	
+	<table class="t1" border="1" cellpadding="0" cellspacing="0">
+	<br><br>
+	<tr bgcolor="${value_c }">
+		<td align="center" width="250"><b>제목</b><a href=""></a></td>
+		<td align="center" width="150"><b>작성일</b></td>
+		<td align="center" width="50"><b>조회수</b></td>
+	</tr>
+	
+	</table>
+	<br><br>
+<div align="center"><img src="../images/icons/like.jpg" width="50" height="50"><b>좋아요 누른 게시물</b></div>
+
+	<table class="t1" border="1" cellpadding="0" cellspacing="0">
+	<br><br>
+	<tr height="30" bgcolor="${value_c }">
+		<td align="center" width="250"><b>제목</b></td>
+		<td align="center" width="100"><b>작성자</b></td>
+		<td align="center" width="150"><b>작성일</b></td>
+		<td align="center" width="50"><b>조회수</b></td>
+	</tr>
+	
+	</table>
+	<br><br>
 </body>
 </html>

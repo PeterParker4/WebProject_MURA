@@ -1,149 +1,162 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>        
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- dao 연결 -->   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 수정</title>
+<title>MURA :: 마이페이지 수정</title>
 <style type="text/css">
-body {
-  background-image:#34495e;
+*{
+font-family:"bmh";
+font-weight: bold;
 }
-.joinForm {
-  width:400px;
-  height:400px;
-  padding: 30px, 20px;
-  background-color:#FFFFFF;
-  text-align:center;
-  border-radius: 15px;
+.ct{
+width: 30%;
+border-color: threeddarkshadow;
 }
-.joinForm h2 {
-  text-align: center;
-  margin: 30px;
+tr{
+width: 300px;
+height : 50px;
 }
-.textForm {
-  border-bottom: 2px solid #adadad;
-  margin: 20px;
-  padding: 10px 5px;
+td{
+border-color: black;
+border-radius: 1px;
 }
-.id {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
+table{
+border-radius: 5px;
 }
-.btn {
-  position:relative;
-  left:40%;
-  transform: translateX(-50%);
-  margin-bottom: 40px;
-  width:80%;
-  height:40px;
-  background: linear-gradient(125deg, #a84781, yellow, green);
-  background-position: left;
-  background-size: 200%;
-  color:white;
-  font-weight: bold;
-  border:none;
-  cursor:pointer;
-  transition: 0.4s;
-  display:inline;
+.dd{
+background-color: #FFDCFF;
+color: black;
+font-style: oblique;
+font-weight: bolder;
 }
-.btn:hover {
-  background-position: right;
+p{
+font-size: 33px;
+font-weight: bold;
+color: black;
 }
-.btn2{
-background-color:#fff;
-margin:4px;
-width:40%;
-height:50%;
-border-radius: 10px;
-transition: 0.8s;
-display:inline;
-cursor:pointer;
+.t1{
+width : 30%;
+height: 11px;
 }
-.btn2:hover{
+.btt{
 color:#fff;
-background-color: black;
+font-size: 16px;
+  padding: 12px 40px;
+  text-align:justify;
+  width: 23%;
+  background-color: #a84781;
+  border-radius: 10px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  font-style: inherit;
+  
+}
+.btt:hover {
+  background-color: #403866;
+}
+b{
+text-align: justify;
+}
+.btt2{
+width: 330px;
+height: 30px;
+}
+.tel{
+width:35px;
+height: 25px;
+}
+.btt3{
+width : 100px;
+height: 25px;
+border-radius: 5px;
+float: right;
+}
+.btt3:hover{
+background-color: silver;
 }
 </style>
-</head>
+
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
 <body>
-	<!-- 상단 로고 -->
+
+<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="../index.jsp"> 
+	  <a href="/MURA2/page/index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
-
-<div align="center">	
-<form action="modifyProc.mur" method="post" class="joinForm" name="signinForm">
-                     
-                                                                        
-      <h2>회원 정보 수정</h2>
-      
-      <div class="textForm">
-        <input name="id_mem" type="hidden" class="id" value="${id_mem }" placeholder="아이디">
-      	<c:out value="${id_mem }" />
-      </div>
-      <div class="textForm">
-        <input name="nn_mem" type="text" class="id" value="${nn_mem }" placeholder="닉네임">
-      </div>
-      <div class="textForm">
-        <input name="pw_mem" type="password" class="id" value="${pw_mem }" placeholder="비밀번호">
-      </div>
-       <div class="textForm">
-        <input name="repass_mem" type="password" class="id" placeholder="비밀번호 확인">
-      </div>
-      <div class="textForm">
-        <input name="name_mem" type="text" class="id" value="${name_mem }" placeholder="이름">
-      </div>
-      
-       <div class="textForm">
-        <input name="email_mem" type="text" class="id" value="${email_mem }"placeholder="이메일">
-      </div>
-      
-       <div class="textForm">
-         <div class="id">성별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        <select name="gender_mem">
-        <option value="남자"
-        ${gender_mem eq '남자' ? "selected=' selected'" : 'null'}>남자</option>
-        <option value="여자"
-        ${gender_mem eq '남자' ? "selected=' selected'" : 'null'}>여자</option>
-        </select>
-        </div> 
-      </div> 
-      <div class="textForm">
-        <input name="tel_mem" type="text" class="id" value="${tel_mem }" placeholder="전화번호">
-      </div>
-      
-      <div class="textForm">
-        <input name="zipcode_mem" type="text" class="id" value="${zipcode_mem }" placeholder="우편번호">
-        <input type="button" class="btn2" value="찾기" onclick="zipCheck()">
-      </div>
-      
-      <div class="textForm">
-        <input name="zc1_mem" type="text" class="id" value="${zc1_mem }" placeholder="주소">
-      </div>
-      
-      <div class="textForm">
-        <input name="zc2_mem" type="text" class="id" value="${zc2_mem }" placeholder="상세주소">
-      </div>
-      
-      
-      <!-- submit과  button의 차이 -->
-      <input type="button" class="btn" value="수 정 완 료" onClick="inputCheck()">&nbsp;&nbsp;
-    </form>
+	
+	
+	<p align="center">
+		<img src="../images/mypage.jpg" width="30" height="30">
+	MuRa : : My Page 
+	</p>
+<div>
+	<table class="ct" border="1" cellpadding="3" cellspacing="0">
+		<tr>
+			<td colspan="2">
+			<img src="../images/toki.jpg" width="340" height="314" alt="">
+			<br>
+			<input type="button" name="내사진" class="btt3" value="내사진변경" onclick="">
+			</td>
+			
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200" >성명</td><td>${id_mem }</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200" >닉네임</td><td><input type="text" class="btt2" name="nn_mem" value="${nn_mem }"></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">이메일</td><td><input type="text" class="btt2" name="email_mem" value="${email_mem }"></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">H.P </td><td><input type="text" class="tel" name="tel_mem" maxlength="15" value="${tel_mem }"></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">집주소</td><td><input type="text" class="btt2" name="address" value=" ${zipcode_mem } ${zc1_mem } ${zc2_mem }"></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">성별</td><td>남자</td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">비밀번호 변경</td><td><input type="password" class="btt2" name="pw_mem" value="${pw_mem }"></td>
+		</tr>
+		
+		<tr>
+			<td class="dd" width="200">비밀번호 확인</td><td><input type="password" class="btt2" name="repass_mem"></td>
+		</tr>
+	</table>
+	
+	<table class="ct">
+	 	<tr>
+	 		<td align="right"><input type="button" class="btt" name="저장하기" value="저장" onclick="window.location.href='http://localhost:9000/MURA2/page/modifyProc.mur'" >
+					<input type="button" class="btt" name="돌아가기" value="취소" onclick="window.location.href='http://localhost:9000/MURA2/page/myPage.jsp'"></td>
+	 	</tr>
+	</table>
 </div>	
-
+	
+	
+	
+	
+	
+	
 </body>
 </html>

@@ -20,7 +20,7 @@
 <!-- logout 페이지 이 안에서 구현 -->
 
 	<!--N 네비메뉴 -->
-    
+    <div>
     <nav>
     <c:if test="${id_mem eq null }">
 		<a href="member/signinForm.mur"> Sign In </a> |
@@ -32,10 +32,11 @@
 		<a href="member/myPage.mur"> MyPage </a>
 	</c:if>
 	</nav>
-	
+	</div>
+	<br>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="index.jsp"> 
+	  <a href="/MURA2/page/index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 	

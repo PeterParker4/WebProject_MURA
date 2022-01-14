@@ -5,10 +5,13 @@ import java.sql.Timestamp;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.model.MemberDAO;
+import member.model.MemberVO;
 import recipe.model.*;
 
 // 입력된 글처리
@@ -34,8 +37,16 @@ public class RecipeWriteProcAction implements CommandAction {
 		// 데이터 처리 빈
 		RecipeVO article = new RecipeVO();
 
+		// 세션에서 멤버 번호와 닉네임 불러오기
+		HttpSession session = request.getSession();
+		String id_mem = (String)session.getAttribute("loginID");
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO memberInfo = dao.getMember(id_mem);
+		
+		//set
 		/* article.setIdx_li(Integer.parseInt(request.getParameter("idx_li"))); */
-		/* article.setNn_mem(request.getParameter("nn_mem")); */
+		/* article.setNn_mem(memberInfo.getNn_mem()); */
+		/* article.setUn_mem(memberInfo.getUn_mem()); */
 		article.setCategory_li(multi.getParameter("category_li"));
 		article.setWsubject_li(multi.getParameter("wsubject_li"));
 		article.setTag_li(multi.getParameter("tag_li"));

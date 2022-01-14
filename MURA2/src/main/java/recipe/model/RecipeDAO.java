@@ -133,7 +133,7 @@ public class RecipeDAO {
 			// pstmt = con.prepareStatement("select * from food_board order by num desc");
 			pstmt = con.prepareStatement(
 					"select * from (select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-							+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from "
+							+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li from "
 							+ "(select * from food_board order by idx_li desc)) where rnum >= ? and rnum <= ?");
 
 			// 수정3
@@ -195,7 +195,7 @@ public class RecipeDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("select * from ");
 			sql.append("(select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-					+ "wsubject_li, tag_li, thumb_li, wcontent_li, reply_li, date_li, readcount_li from ");
+					+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li from ");
 
 			if (find.equals("nn_mem")) {
 				sql.append("(select * from food_board where un_mem=? order by idx_li desc)) "
@@ -237,7 +237,6 @@ public class RecipeDAO {
 					article.setTag_li(rs.getString("tag_li"));
 					article.setThumb_li(rs.getString("thumb_li"));
 					article.setWcontent_li(rs.getString("wcontent_li"));
-					article.setReply_li(rs.getString("reply_li"));
 					article.setDate_li(rs.getTimestamp("date_li"));
 					article.setReadcount_li(rs.getInt("readcount_li"));
 					articleList.add(article);
@@ -339,7 +338,6 @@ public class RecipeDAO {
 				article.setTag_li(rs.getString("tag_li"));
 				article.setThumb_li(rs.getString("thumb_li"));
 				article.setWcontent_li(rs.getString("wcontent_li"));
-				article.setReply_li(rs.getString("reply_li"));
 				article.setDate_li(rs.getTimestamp("date_li"));
 				article.setReadcount_li(rs.getInt("readcount_li"));
 			}
@@ -353,61 +351,96 @@ public class RecipeDAO {
 		return article;
 	}
 	
-	/*
-	 * 글 상세보기 화면에서 [글수정] 버튼을 누를 경우 updateForm.jsp로 이동하도록 링크를 걸었으므로 글 수정 화면을 설계해야 함
+	/* 글 상세보기 화면에서 [글수정] 버튼을 누를 경우 updateForm.jsp로 이동하도록 링크를 걸었으므로 
+	 * 글 수정 화면을 설계해야 함
 	 * 
 	 * 글 수정시에는 글목록 보기와 다르게 조회수를 증가시킬 필요가 없음
 	 * 
 	 * 조회수를 증가시키는 부분을 제외하고 num에 해당하는 글을 가져오는 메소드 구현
-	 * 
-	 * public RecipeVO updateGetArticle(int num) { Connection con = null;
-	 * PreparedStatement pstmt = null; ResultSet rs = null; RecipeVO article = null;
-	 * 
-	 * try { con = ConnUtil.getConnection(); pstmt =
-	 * con.prepareStatement("select * from board where num=?"); pstmt.setInt(1,
-	 * num); rs = pstmt.executeQuery();
-	 * 
-	 * if(rs.next()) { article = new RecipeVO(); article.setNum(rs.getInt("num"));
-	 * article.setWriter(rs.getString("writer"));
-	 * article.setEmail(rs.getString("email"));
-	 * article.setSubject(rs.getString("subject"));
-	 * article.setPass(rs.getString("pass"));
-	 * article.setRegdate(rs.getTimestamp("regdate"));
-	 * article.setReadcount(rs.getInt("readcount"));
-	 * article.setRef(rs.getInt("ref")); article.setStep(rs.getInt("step"));
-	 * article.setDepth(rs.getInt("depth"));
-	 * article.setContent(rs.getString("content"));
-	 * article.setIp(rs.getString("ip")); } }catch(Exception e) {
-	 * System.out.println("Exception "+e); }finally { if(rs != null) try
-	 * {rs.close();}catch(SQLException s1) {} if(pstmt != null) try
-	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
-	 * {con.close();}catch(SQLException s3) {} } return article; }
-	 * 
-	 * 데이터베이스에서 실제 수정 처리가 되어야함 글을 수정처리 할 메소드 구현 글이 없을 때 -1, 글 수정 성공 1, 글 수정 실패 : 0
-	 * 
-	 * public int updateArticle(RecipeVO article) {
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * String dbpasswd = ""; String sql = ""; int result = -1;
-	 * 
-	 * try { con = ConnUtil.getConnection(); pstmt =
-	 * con.prepareStatement("select pass from board where num=?"); pstmt.setInt(1,
-	 * article.getNum()); rs = pstmt.executeQuery();
-	 * 
-	 * if(rs.next()) { dbpasswd = rs.getString("pass");
-	 * if(dbpasswd.equals(article.getPass())) { // 비밀번호가 일치하면 수정쿼리 실행 sql =
-	 * "update board set writer=?, email=?, subject=?, content=? where num=?"; pstmt
-	 * = con.prepareStatement(sql); pstmt.setString(1, article.getWriter());
-	 * pstmt.setString(2, article.getEmail()); pstmt.setString(3,
-	 * article.getSubject()); pstmt.setString(4, article.getContent());
-	 * pstmt.setInt(5, article.getNum()); pstmt.executeUpdate(); result = 1; // 수정
-	 * 성공 }else { result = 0; } } }catch(Exception e) {
-	 * System.out.println("Exception "+e); }finally { if(rs != null) try
-	 * {rs.close();}catch(SQLException s1) {} if(pstmt != null) try
-	 * {pstmt.close();}catch(SQLException s2) {} if(con != null) try
-	 * {con.close();}catch(SQLException s3) {} } return result; }
-	 * 
+	 */
+	public RecipeVO updateGetArticle(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RecipeVO article = null;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select * from food_board where idx_li=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				article = new RecipeVO();
+				article.setIdx_li(rs.getInt("idx_li"));
+				article.setUn_mem(rs.getInt("un_mem"));
+				article.setNn_mem(rs.getString("nn_mem"));
+				article.setCategory_li(rs.getString("category_li"));
+				article.setWsubject_li(rs.getString("wsubject_li"));
+				article.setTag_li(rs.getString("tag_li"));
+				article.setThumb_li(rs.getString("thumb_li"));
+				article.setWcontent_li(rs.getString("wcontent_li"));
+				article.setDate_li(rs.getTimestamp("date_li"));
+				article.setReadcount_li(rs.getInt("readcount_li"));
+			}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return article;
+	}
+	
+	/* 데이터베이스에서 실제 수정 처리가 되어야함
+	 * 글을 수정처리 할 메소드 구현
+	 * 글이 없을 때 -1, 글 수정 성공 1, 글 수정 실패 : 0
+	 */
+	public int updateArticle(RecipeVO article) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String dbpasswd = "";
+		String sql = "";
+		int result = -1;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select pass from food_board where idx_li=?");
+			pstmt.setInt(1, article.getIdx_li());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbpasswd = rs.getString("pass");
+				if(dbpasswd.equals(article.getPass())) {
+					// 비밀번호가 일치하면 수정쿼리 실행
+					sql = "update food_board set writer=?, email=?, subject=?, content=? where num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, article.getWriter());
+					pstmt.setString(2, article.getEmail());
+					pstmt.setString(3, article.getSubject());
+					pstmt.setString(4, article.getContent());
+					pstmt.setInt(5, article.getNum());
+					pstmt.executeUpdate();
+					result = 1; // 수정 성공
+				}else {
+					result = 0;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return result;
+	}
+	 
+	/* 
 	 * 글 삭제 처리
 	 * 
 	 * 데이터베이스에서 비밀번호를 비교하여 실제로 삭제를 수행해 줄 메소드를 구현함

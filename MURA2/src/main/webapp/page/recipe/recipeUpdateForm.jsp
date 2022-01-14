@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MURA :: 레시피 작성</title>
+<title>MURA :: 레시피 수정</title>
 
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
@@ -33,7 +33,7 @@
 	</div>
 
 <br><br>
-<form action="/MURA2/page/recipe/recipeWriteProc.mur" name="recipeWriteForm" 
+<form action="/MURA2/page/recipe/recipeUpdateProc.mur?pageNum=${pageNum}" name="recipeUpdateForm" 
 method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <input type="hidden" name="idx_li" value="${idx_li}">
@@ -48,6 +48,8 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
    <td width="100" bgcolor="${value_c}" align="center">카테고리</td>
    <td align="center">
      <select name="category_li" style="width:500px">
+       <option value="${article.category_li}">${article.category_li}</option>
+       <option value="---">----------------</option>
        <option value="한식">한식</option>
        <option value="일식">일식</option>
        <option value="양식">양식</option>
@@ -59,22 +61,14 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">제목</td>
    <td width="300" align="center">
-     <input type="text" size="100" maxlength="100" name="wsubject_li">
+     <input type="text" size="100" maxlength="100" name="wsubject_li" value="${article.wsubject_li}">
    </td>
 </tr>
 
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">재료입력<br>*쉼표(,)구분</td>
    <td width="300" align="center">
-<!--        <div class="content">
-        <div>
-            <input type="text" id="tag" size="20" placeholder="엔터 버튼 클릭시 태그 입력" />
-        </div>
-
-          <ul id="tag-list">
-          </ul>
-  	   </div> -->
-   <input type="text" size="100" maxlength="100" name="tag_li">
+   <input type="text" size="100" maxlength="100" name="tag_li" value="${article.tag_li}">
    </td>
 </tr>
 
@@ -82,7 +76,7 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <tr>
    <td width="100" bgcolor="${value_c}" align="center">내용</td>
    <td width="300" align="center">
-   <textarea class="form-control" id="wcontent_li" name="wcontent_li"></textarea>
+   <textarea class="form-control" id="wcontent_li" name="wcontent_li">${article.wcontent_li}</textarea>
      <script type="text/javascript">
      CKEDITOR.replace('wcontent_li', {height: 600});
      </script>
@@ -93,8 +87,8 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <tr>
   <td width="100" bgcolor="${value_c}" align="center">썸네일 이미지</td>
   <td>
-    <input type="file" name="thumb_li"><br>
-    *등록한 사진이 썸네일 이미지로 등록됩니다.
+    <input type="file" name="thumb_li" value="${thumb_li}"><br>
+    *등록한 사진이 썸네일 이미지로 등록됩니다. (게시글 수정시 재업로드 해주세요.)
   </td>
 </tr>
 
@@ -102,7 +96,8 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
   <td colspan="2" bgcolor="${value_c}" align="center">
   	<input type="submit" value="글쓰기">
   	<input type="reset" value="다시작성">
-  	<input type="button" value="목록" onClick="window.location='recipeList.mur'">
+  	<input type="button" value="목록" 
+  	onClick="document.location.href='/MURA2/page/recipe/recipeList.mur?pageNum=${pageNum}'">
   </td>
 </tr>
 </table>
@@ -110,41 +105,6 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <br><br>
 
 	<!--F 푸터메뉴 -->
-    <footer class="footer">
-		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
-		<div class="container" style="padding-top:7px;" align="center">
-			<div class="row">
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-info-circle fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>(주)MURA</h3>
-					<p class="text-muted">대표이사: 성세연<br>서울특별시 영등포구<br>010-1234-1234<br>jinsu9337@naver.com
-					</p>
-					</div>
-      			</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-file-o fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>Site Info</h3>
-					<p class="text-muted">"MURA" Designed by <a href="http://readiz.com" target="_blank">YJS</a><br/>with <a href="http://yongzz.com" target="_blank">yongzz</a>, <a href="http://wincomi.com" target="_blank">wincomi</a>, <a href="http://markquery.com" target="_blank">Ungki. H</a><br/><a href="http://blog.readiz.com/22">Further Information</a>
-					</p>
-					</div>
-				</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-link fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%"><h3>Other Links</h3>
-						<p class="text-muted">
-							<a href="/MURA2/page/index.jsp" title="홈">Top</a> | <a href="/tag" title="태그">태그</a>
-						</p><br><br>
-					</div>
-				</div>
-			</div>
-			<br><br>
-			<div class="row">
-				<div class="col-md-12" >
-					<hr style="width:75%;height:6px;border:none;background-color:#a84781;"><br>
-					<p class="text-muted">Copyright ⓒ 2021-2022 MURA All rights reserved.</p>
-				</div>
-			</div>
-		</div>
-    </footer>
 
 </body>
 </html>

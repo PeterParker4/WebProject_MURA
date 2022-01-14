@@ -135,9 +135,8 @@ function dongCheck() {
 	document.zipForm.submit();
 }
 
-function backToLogin() {
-	document.login.submit();
-	// 로그인 화면으로 돌아가게 구현
+function begin() {
+	document.myForm.pw_mem.focus();
 }
 
 

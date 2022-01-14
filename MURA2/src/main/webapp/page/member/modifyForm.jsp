@@ -80,7 +80,7 @@ background-color: black;
 <body>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="index.jsp"> 
+	  <a href="../index.jsp"> 
 	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
@@ -95,20 +95,20 @@ background-color: black;
       	<c:out value="${id_mem }" />
       </div>
       <div class="textForm">
-        <input name="nn_mem" type="text" class="id" placeholder="${nn_mem }">
+        <input name="nn_mem" type="text" class="id" value="${nn_mem }" placeholder="닉네임">
       </div>
       <div class="textForm">
-        <input name="pw_mem" type="password" class="id" placeholder="${pw_mem }">
+        <input name="pw_mem" type="password" class="id" value="${pw_mem }" placeholder="비밀번호">
       </div>
        <div class="textForm">
         <input name="repass_mem" type="password" class="id" placeholder="비밀번호 확인">
       </div>
       <div class="textForm">
-        <input name="name_mem" type="text" class="id" placeholder="${name_mem }">
+        <input name="name_mem" type="text" class="id" value="${name_mem }" placeholder="이름">
       </div>
       
        <div class="textForm">
-        <input name="email_mem" type="text" class="id" placeholder="${email_mem }">
+        <input name="email_mem" type="text" class="id" value="${email_mem }"placeholder="이메일">
       </div>
       
        <div class="textForm">
@@ -123,25 +123,25 @@ background-color: black;
         </div> 
       </div> 
       <div class="textForm">
-        <input name="tel_mem" type="text" class="id" placeholder="${tel_mem }">
+        <input name="tel_mem" type="text" class="id" value="${tel_mem }" placeholder="전화번호">
       </div>
       
       <div class="textForm">
-        <input name="zipcode_mem" type="text" class="id" placeholder="${zipcode_mem }">
+        <input name="zipcode_mem" type="text" class="id" value="${zipcode_mem }" placeholder="우편번호">
         <input type="button" class="btn2" value="찾기" onclick="zipCheck()">
       </div>
       
       <div class="textForm">
-        <input name="zc1_mem" type="text" class="id" placeholder="${zc1_mem }">
+        <input name="zc1_mem" type="text" class="id" value="${zc1_mem }" placeholder="주소">
       </div>
       
       <div class="textForm">
-        <input name="zc2_mem" type="text" class="id" placeholder="${zc2_mem }">
+        <input name="zc2_mem" type="text" class="id" value="${zc2_mem }" placeholder="상세주소">
       </div>
       
       
       <!-- submit과  button의 차이 -->
-      <input type="button" class="btn" value="J O I N" onClick="inputCheck()">&nbsp;&nbsp;
+      <input type="button" class="btn" value="수 정 완 료" onClick="inputCheck()">&nbsp;&nbsp;
     </form>
 </div>	
 

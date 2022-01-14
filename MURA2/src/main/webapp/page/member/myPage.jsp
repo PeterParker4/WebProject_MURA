@@ -93,15 +93,9 @@ body {
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <body>
-	<c:if test="${id_mem eq null }">
-		<script type="text/javascript">
-			alert("로그인을 먼저 해주세요!");
-			history.back(-1)  // 좀 더 깔끔하게 구현
-		</script>
-	</c:if>
 	<!-- 상단 로고 -->
 	<div class="logo">
-		<a href="index.jsp"> <img src="images/topLogo.jpg" width="1194"
+		<a href="../index.jsp"> <img src="images/topLogo.jpg" width="1194"
 			height="230" border="0" alt=""></a>
 	</div>
 	<h1>유저 정보</h1>
@@ -114,7 +108,7 @@ body {
 			<li>집주소 : ${memberInfo.zc1_mem } ${memberInfo.zc2_mem }</li>
 			<li>성별 : ${memberInfo.gender_mem }</li>
 			<li><a href="modifyForm.mur">정보 수정</a></li>
-			<li><a href="#">회원 탈퇴</a></li>
+			<li><a href="deleteForm.mur">회원 탈퇴</a></li>
 		</ul>
 		<!-- 좋아요, 게시글 목록 -->
 	</div>

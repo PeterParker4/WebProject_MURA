@@ -54,7 +54,7 @@
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-		<a href="index.jsp"> <img src="images/topLogo.jpg" width="1194"
+		<a href="../index.jsp"> <img src="images/topLogo.jpg" width="1194"
 			height="230" border="0" alt=""></a>
 	</div>
 
@@ -73,7 +73,7 @@
 			<div class="row">
 				<div class="col-md-10 inputbb">
 					<button type="button" class="btn btn-outline-secondary loginbtn"
-						onclick="#">로그인
+						onclick="location.href='login.mur'">로그인
 						화면으로 돌아가기</button>
 				</div>
 			</div>

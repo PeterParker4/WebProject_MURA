@@ -53,11 +53,11 @@
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-		<a href="index.jsp"> <img src="images/topLogo.jpg" width="1194"
+		<a href="../index.jsp"> <img src="images/topLogo.jpg" width="1194"
 			height="230" border="0" alt=""></a>
 	</div>
 
-	<form action="member.mur?cmd=findPwProc" method="post"
+	<form action="findPwAfter.mur" method="post"
 		class="form-horizontal" role="form">
 		<span class="login100-form-title p-b-51"> 비밀번호 찾기 </span>
 		<h4 align="center">비밀번호는 이름, 아이디, 이메일을 통해 찾을 수 있습니다.</h4>
@@ -99,7 +99,7 @@
 
 		<div class="row">
 			<div class="col-md-10 inputbb">
-				<button type="sumbit" class="btn btn-outline-secondary findbtn">찾기</button>
+				<button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
 			</div>
 		</div>
 	</form>

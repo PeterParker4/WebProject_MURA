@@ -14,7 +14,6 @@ public class MyPageAction implements CommandAction {
 	      
 		  HttpSession session = request.getSession();
 		  String id_mem = (String) session.getAttribute("id_mem");
-		  System.out.println(id_mem);
 		
 	      MemberDAO dao = MemberDAO.getInstance();
 	      

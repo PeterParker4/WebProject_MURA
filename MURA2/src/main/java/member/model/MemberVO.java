@@ -136,8 +136,8 @@ public class MemberVO {
 	}
 
 	// 사용자가 입력한 정보만 받아오는 생성자?
-	public MemberVO(String id_mem, String pw_mem, String nn_mem, String name_mem, String tel_mem, String email_mem,
-			String zipcode_mem, String zc1_mem, String zc2_mem, String gender_mem) {
+	public MemberVO(String id_mem, String nn_mem, String pw_mem, String name_mem, String email_mem, String gender_mem,
+			String tel_mem, String zipcode_mem, String zc1_mem, String zc2_mem) {
 
 		this.id_mem = id_mem;
 		this.pw_mem = pw_mem;

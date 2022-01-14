@@ -97,7 +97,7 @@ public class ControllerAction extends HttpServlet {
 		
 		try {
 			String command = request.getRequestURI();
-			System.out.println(request.getRequestURI());
+			// System.out.println(request.getRequestURI());
 			if(command.indexOf(request.getContextPath()) == 0) {
 				command = command.substring(request.getContextPath().length());
 			}

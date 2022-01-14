@@ -391,18 +391,18 @@ public class MemberDAO {
 	// 정보 수정 버튼 클릭시 데이터 베이스에 update를 수행해야함
 	// 정보수정을 처리해줄 메소드
 	public boolean updateMember(MemberVO vo) {
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		boolean result = false;
-		
+
 		try {
-			
+
 			con = ConnUtil.getConnection();
 			String sql = "update member_board set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc2_mem=? where id_mem=?";
-			
+
 			pstmt = con.prepareStatement(sql);
-			
+
 //			pstmt.setString(1, vo.getNn_mem());
 //			pstmt.setString(2, vo.getPw_mem());
 //			pstmt.setString(3, vo.getName_mem());
@@ -423,14 +423,14 @@ public class MemberDAO {
 			pstmt.setString(8, vo.getZc1_mem());
 			pstmt.setString(9, vo.getZc2_mem());
 			pstmt.setString(10, vo.getId_mem());
-			
-			if(pstmt.executeUpdate() > 0)
+
+			if (pstmt.executeUpdate() > 0)
 				result = true;
-			
+
 		} catch (Exception e) {
 			System.out.println("Exception " + e);
 		} finally {
-			
+
 			if (pstmt != null)
 				try {
 					pstmt.close();
@@ -444,6 +444,56 @@ public class MemberDAO {
 		}
 		return result; // update 성공 여부 추가
 	}
-		
-	
+
+	// 회원 탈퇴 처리 메소드
+	public int deleteMember(String id_mem, String pw_mem) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String dbPw_mem = ""; // 데이터베이스에 저장되어있는 비밀번호
+		int result = -1;
+
+		try {
+			con = ConnUtil.getConnection();
+
+			String sql = "select pw_mem from member_board where id_mem=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id_mem);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dbPw_mem = rs.getString("pw_mem");
+				System.out.println(dbPw_mem); // 확인용
+				if (dbPw_mem.equals(pw_mem)) {
+					String delSql = "delete from member_board where id_mem=?";
+					pstmt = con.prepareStatement(delSql);
+					pstmt.setString(1, id_mem);
+					pstmt.executeUpdate();
+					result = 1; // 회원탈퇴 성공
+				} else {
+					result = 0; // 비밀번호 오류
+				}
+			}
+			System.out.println(result);
+		} catch (Exception e) {
+			System.out.println("Exception " + e);
+		} finally {
+
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException s2) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException s3) {
+				}
+		}
+
+		return result;
+	}
+
 }

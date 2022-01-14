@@ -83,7 +83,7 @@
 				alert("${id_mem }님 환영합니다. 메인 페이지로 이동합니다.");
 			</script>
 			<meta http-equiv="refresh"
-				content="0;url=/MURA2/page/member/index.jsp">
+				content="0;url=/MURA2/page/index.jsp">
 			<!-- 로그아웃 인덱스로 바뀔예정 -->
 
 		</c:when>
@@ -105,7 +105,7 @@
 
 			<!-- 상단 로고 -->
 			<div class="logo">
-				<a href="index.jsp"> <img src="images/topLogo.jpg" width="1194"
+				<a href="../index.jsp"> <img src="images/topLogo.jpg" width="1194"
 					height="230" border="0" alt=""></a>
 			</div>
 
@@ -140,11 +140,11 @@
 								</div>
 
 								<div>
-									<a href="findId.jsp" class="txt1"> 아이디 찾기 </a>
+									<a href="findId.mur" class="txt1"> 아이디 찾기 </a>
 								</div>
 								|
 								<div>
-									<a href="findPw.jsp" class="txt1"> 비밀번호 찾기 </a>
+									<a href="findPw.mur" class="txt1"> 비밀번호 찾기 </a>
 								</div>
 
 
@@ -160,7 +160,7 @@
 
 						</form>
 						<div align="right">
-							<a href="signinForm.jsp" class="txt1"> <b>회원가입</b>
+							<a href="signinForm.mur" class="txt1"> <b>회원가입</b>
 							</a>
 						</div>
 					</div>

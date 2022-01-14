@@ -13,7 +13,7 @@ public class MyPageAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 	      
 		  HttpSession session = request.getSession();
-		  String id_mem = (String)session.getAttribute("loginID");
+		  String id_mem = (String) session.getAttribute("id_mem");
 		  System.out.println(id_mem);
 		
 	      MemberDAO dao = MemberDAO.getInstance();

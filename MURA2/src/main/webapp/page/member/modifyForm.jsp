@@ -91,7 +91,7 @@ background-color: black;
       <h2>회원 정보 수정</h2>
       
       <div class="textForm">
-        <input name="id_mem" type="hidden" class="id" placeholder="${id_mem }">
+        <input name="id_mem" type="hidden" class="id" value="${id_mem }" placeholder="아이디">
       	<c:out value="${id_mem }" />
       </div>
       <div class="textForm">
@@ -105,8 +105,8 @@ background-color: black;
       </div>
       <div class="textForm">
         <input name="name_mem" type="text" class="id" placeholder="${name_mem }">
-      	<c:out value="${name }" />
       </div>
+      
        <div class="textForm">
         <input name="email_mem" type="text" class="id" placeholder="${email_mem }">
       </div>

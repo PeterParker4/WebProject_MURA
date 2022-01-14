@@ -399,11 +399,21 @@ public class MemberDAO {
 		try {
 			
 			con = ConnUtil.getConnection();
-			String sql = "update student set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc_2mem? where id_mem=?";
+			String sql = "update member_board set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc2_mem=? where id_mem=?";
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(2, vo.getNn_mem());
+//			pstmt.setString(1, vo.getNn_mem());
+//			pstmt.setString(2, vo.getPw_mem());
+//			pstmt.setString(3, vo.getName_mem());
+//			pstmt.setString(4, vo.getEmail_mem());
+//			pstmt.setString(5, vo.getGender_mem());
+//			pstmt.setString(6, vo.getTel_mem());
+//			pstmt.setString(7, vo.getZipcode_mem());
+//			pstmt.setString(8, vo.getZc1_mem());
+//			pstmt.setString(9, vo.getZc2_mem());
+//			pstmt.setString(10, vo.getId_mem());
+			pstmt.setString(1, vo.getNn_mem());
 			pstmt.setString(2, vo.getPw_mem());
 			pstmt.setString(3, vo.getName_mem());
 			pstmt.setString(4, vo.getEmail_mem());

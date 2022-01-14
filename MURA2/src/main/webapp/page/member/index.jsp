@@ -22,12 +22,12 @@
 	<!--N 네비메뉴 -->
     
     <nav>
-    <c:if test="${loginID eq null }">
+    <c:if test="${id_mem eq null }">
 		<a href="signinForm.mur"> Sign In </a> |
 		<a href="login.mur"> Login </a> |
 		<a href="myPage.mur"> MyPage </a>
 	</c:if>
-	<c:if test="${loginID ne null }">
+	<c:if test="${id_mem ne null }">
 		<a href="signinForm.mur"> Sign In </a> |
 		<a href="logout.mur"> Logout </a> |
 		<a href="myPage.mur"> MyPage </a>

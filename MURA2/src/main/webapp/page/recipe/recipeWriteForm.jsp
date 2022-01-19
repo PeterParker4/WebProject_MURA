@@ -66,7 +66,6 @@ border-color: graytext;
 
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
-<script type="module" src="js/tag_create.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
@@ -75,11 +74,26 @@ border-color: graytext;
 
 <body bgcolor = "#FFFFFF">
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<div>
+		<nav>
+		 	 <c:choose>
+				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
+					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+				</c:when>
+				
+				<c:when test="${id_mem ne null}">
+					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:when>
+							
+				<c:otherwise>
+					<a href="/MURA2/page/member/signinForm.mur"> Sign In </a> |
+					<a href="/MURA2/page/member/login.mur"> Login </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:otherwise>
+			</c:choose> 
+		</nav>
+	</div>
 	<br><br>
 
 	<!-- 상단 로고 -->
@@ -93,7 +107,6 @@ border-color: graytext;
 method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <input type="hidden" name="un_mem" value="${memberInfo.un_mem}">
-<input type="hidden" name="pw_mem" value="${memberInfo.pw_mem}">
 <input type="hidden" name="nn_mem" value="${memberInfo.nn_mem}">
 
 <table class="tb" align="center">

@@ -29,6 +29,7 @@ public class ModifyProcAction implements CommandAction {
 				request.getParameter("zipcode_mem"),
 				request.getParameter("zc1_mem"),
 				request.getParameter("zc2_mem"));
+
 		
 		dao.updateMember(vo); 
 		

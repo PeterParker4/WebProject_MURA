@@ -17,8 +17,8 @@ public class RecipeDeleteProcAction implements CommandAction{
 		request.setCharacterEncoding("utf-8");
 		
 		int num = Integer.parseInt(request.getParameter("num"));
+		int un_mem = Integer.parseInt(request.getParameter("un_mem"));
 		String pageNum = request.getParameter("pageNum");
-		String un_mem = request.getParameter("un_mem");
 		
 		RecipeDAO dbPro = RecipeDAO.getInstance();
 		int check = dbPro.deleteArticle(num, un_mem);

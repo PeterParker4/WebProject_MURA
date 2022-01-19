@@ -26,11 +26,27 @@ function frm_sub(i) {
 </head>
 <body bgcolor = "#ffffff">
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign Up </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<!--N 네비메뉴 -->
+	<div>
+		<nav>
+		 	 <c:choose>
+				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
+					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+				</c:when>
+				
+				<c:when test="${id_mem ne null}">
+					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:when>
+							
+				<c:otherwise>
+					<a href="/MURA2/page/member/signinForm.mur"> Sign In </a> |
+					<a href="/MURA2/page/member/login.mur"> Login </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:otherwise>
+			</c:choose> 
+		</nav>
+	</div>
 	<br><br>
 
 	<!-- 상단 로고 -->
@@ -102,8 +118,8 @@ function frm_sub(i) {
     </td>
     
     <td width="350">
-    <div class="subjectbar"s>
-      <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
+    <div class="subjectbar">
+      <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}&thumb_li=${article.thumb_li}">
       <img alt="" src="upload/${article.thumb_li}" width="100px" height="70px">&nbsp; 
       ${article.wsubject_li}</a>
       <c:if test="${article.readcount_li >= 40}">
@@ -128,6 +144,7 @@ function frm_sub(i) {
   </c:forEach>
 </table>
 </c:if>
+<br>
 
 <!-- 페이징 처리 -->
 <c:if test="${count > 0 }">
@@ -158,6 +175,7 @@ function frm_sub(i) {
 
 <br><br>
 
+<!-- 게시판 내 검색 -->
 <form method="post" name="i_frm">
   <input type="hidden" name="find_box" value="${find_box}">
   <input type="hidden" name="find" value="${find}">
@@ -165,9 +183,9 @@ function frm_sub(i) {
 
 <form action="/MURA2/page/recipe/recipeList.mur" method="post" name="find_frm" onsubmit="return check()">
   <select name="find" size="1">
-    <option value="writer">작성자</option>
-    <option value="subject">제목</option>
-    <option value="content">내용</option>
+    <option value="nn_mem">작성자</option>
+    <option value="wsubject_li">제목</option>
+    <option value="wcontent_li">내용</option>
   </select>
   &nbsp;
   <input type="text" name="find_box">
@@ -176,8 +194,47 @@ function frm_sub(i) {
 </form>
 
 <br><br>
-<b>전체 글 : ${count}</b>
+<%-- <b>전체 글 : ${count}</b> --%>
 </div>
+
+
+<c:if test="${todayImageList ne null }">
+ <div id="todayImageList" align="center">
+  <h2>오늘 본 레시피</h2>
+  <table align="center">
+   <tr>
+    <c:forEach var="todayImage" items="${todayImageList }">
+     <td>
+     <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}&thumb_li=${todayImage}">
+      <img alt="" src="upload/${todayImage}" id="todayImage" width="180px" height="120px" border="1"></a>&nbsp;
+     </td>
+      <c:if test="${((status.index+1) mod 4) == 0 }">
+     </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
+    </tr>
+  </table>
+ </div>
+</c:if>
+
+<!-- 오늘 본 레시피 -->
+<c:if test="${todayImageList ne null }">
+<div id="todayImageList" align="center" class="cart">
+<b>최근 둘러본 레시피</b><br>
+	<table>
+		<tr>
+		<c:forEach var="todayImage" items="${todayImageList }">
+			<td width="100" align="center">
+				<a href=""><img alt="" src="upload/${todayImage}" id="todayImage" width="160" height="100" 
+				style="padding-right: 10px; margin-top: 5px;" border="1"></a></td>
+		</tr>
+		<c:if test="${((status.index+1) mod 4) == 0 }">
+		</c:if>
+    </c:forEach>
+	</table>
+</div>
+</c:if>
 
 </body>
 </html>

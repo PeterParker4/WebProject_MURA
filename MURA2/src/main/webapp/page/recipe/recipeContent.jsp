@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레시피 상세보기</title>
+<title>MURA :: 레시피 상세보기</title>
 <style type="text/css">
-
 
 .s2{
 height: 35px;
@@ -74,17 +73,36 @@ padding-top: 4px;
 </style>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </head>
 
 <body bgcolor = "ffffff">
 
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<!--N 네비메뉴 -->
+	<div>
+		<nav>
+		 	 <c:choose>
+				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
+					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+				</c:when>
+				
+				<c:when test="${id_mem ne null}">
+					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:when>
+							
+				<c:otherwise>
+					<a href="/MURA2/page/member/signinForm.mur"> Sign In </a> |
+					<a href="/MURA2/page/member/login.mur"> Login </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:otherwise>
+			</c:choose> 
+
+		</nav>
+	</div>
 	<br><br>
 
 	<!-- 상단 로고 -->
@@ -117,15 +135,21 @@ padding-top: 4px;
 
 <table>
 <tr align="center">
-<td align="center">추천수</td>
+<td align="center">추천수 : ${article.recommend_cnt}</td>
 </tr>
 
- <tr>
- <td>
- <input type=button value="좋아요" onclick="document.location.href='/MURA2/page/recipe/recipeRecommed.mur'">
- </td>
+<c:if test="${memberInfo.id_mem ne null}">
+ <tr align="center">
+ <td align="center">
+   <input type=button value="좋아요" onclick="document.location.href='/MURA2/page/recipe/recipeRecommend.mur?num=${num}&pageNum=${pageNum}&board_num=${article.board_num}'"></td>
  </tr>
+</c:if>
 </table>    
+
+<br>
+<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter('${article.wsubject_li}',${num},${pageNum});"></a>&nbsp;
+<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${num},${pageNum});"></a>&nbsp;
+<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>&nbsp; 
     
 <hr>
 
@@ -150,43 +174,6 @@ padding-top: 4px;
 <br>
 
 <!--F 푸터메뉴 -->
-<div>
-    <footer class="footer">
-		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
-		<div class="container" style="padding-top:7px;" align="center">
-			<div class="row">
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-info-circle fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>(주)MURA</h3>
-					<p class="text-muted">대표이사: 성세연<br>서울특별시 영등포구<br>010-1234-1234<br>jinsu9337@naver.com
-					</p>
-					</div>
-      			</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-file-o fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>Site Info</h3>
-					<p class="text-muted">"MURA" Designed by <a href="http://readiz.com" target="_blank">YJS</a><br/>with <a href="http://yongzz.com" target="_blank">yongzz</a>, <a href="http://wincomi.com" target="_blank">wincomi</a>, <a href="http://markquery.com" target="_blank">Ungki. H</a><br/><a href="http://blog.readiz.com/22">Further Information</a>
-					</p>
-					</div>
-				</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-link fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%"><h3>Other Links</h3>
-						<p class="text-muted">
-							<a href="/MURA2/page/index.jsp" title="홈">Top</a> | <a href="/tag" title="태그">태그</a>
-						</p><br><br>
-					</div>
-				</div>
-			</div>
-			<br><br>
-			<div class="row">
-				<div class="col-md-12" >
-					<hr style="width:75%;height:6px;border:none;background-color:#a84781;"><br>
-					<p class="text-muted">Copyright ⓒ 2021-2022 MURA All rights reserved.</p>
-				</div>
-			</div>
-		</div>
-    </footer>
 
-</div>
 </body>
 </html>

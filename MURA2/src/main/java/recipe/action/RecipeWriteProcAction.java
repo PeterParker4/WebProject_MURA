@@ -39,9 +39,7 @@ public class RecipeWriteProcAction implements CommandAction {
 		RecipeVO article = new RecipeVO();
 
 		//set
-		/* article.setIdx_li(Integer.parseInt(request.getParameter("idx_li"))); */
 		article.setUn_mem(Integer.parseInt(multi.getParameter("un_mem")));
-		article.setPw_mem(multi.getParameter("pw_mem"));
 		article.setNn_mem(multi.getParameter("nn_mem"));
 		article.setCategory_li(multi.getParameter("category_li"));
 		article.setWsubject_li(multi.getParameter("wsubject_li"));

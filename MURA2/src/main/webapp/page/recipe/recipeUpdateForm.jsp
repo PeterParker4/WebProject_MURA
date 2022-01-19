@@ -7,10 +7,64 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 수정</title>
+<style type="text/css">
 
+.s1{
+width: 100px;
+height: 20px;
+padding: 5px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+text-align: center;
+margin: 5px;
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
+.tb{
+width: 55%;
+}
+
+.sl{
+width: 80px;
+height: 30px;
+border-radius: 4px;
+color: black;
+font-weight: bold;
+}
+
+.tx{
+width: 100%;
+height: 20px;
+border-radius: 4px;
+}
+
+.txt{
+border-radius: 4px;
+border-color: graytext;
+}
+
+</style>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
-<script type="module" src="js/tag_create.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
@@ -19,11 +73,26 @@
 
 <body bgcolor = "#FFFFFF">
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<div>
+		<nav>
+		 	 <c:choose>
+				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
+					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+				</c:when>
+				
+				<c:when test="${id_mem ne null}">
+					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:when>
+							
+				<c:otherwise>
+					<a href="/MURA2/page/member/signinForm.mur"> Sign In </a> |
+					<a href="/MURA2/page/member/login.mur"> Login </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:otherwise>
+			</c:choose> 
+		</nav>
+	</div>
 	<br><br>
 
 	<!-- 상단 로고 -->
@@ -33,10 +102,11 @@
 	</div>
 
 <br><br>
-<form action="/MURA2/page/recipe/recipeUpdateProc.mur?pageNum=${pageNum}" name="recipeUpdateForm" 
+<form action="/MURA2/page/recipe/recipeUpdateProc.mur?pageNum=${pageNum}" name="recipeWriteForm" 
 method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <input type="hidden" name="idx_li" value="${idx_li}">
+<input type="hidden" name="un_mem" value="${memberInfo.un_mem}">
 
 <table width="1000" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="${bodyback_c}">
 
@@ -94,9 +164,9 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 
 <tr>
   <td colspan="2" bgcolor="${value_c}" align="center">
-  	<input type="submit" value="글쓰기">
-  	<input type="reset" value="다시작성">
-  	<input type="button" value="목록" 
+  	<input type="submit" class="s2" value="수정하기">
+  	<input type="reset" class="s2" value="돌아가기" onclick="javascript:history.go(-1)">
+  	<input type="button" class="s2" value="목록" 
   	onClick="document.location.href='/MURA2/page/recipe/recipeList.mur?pageNum=${pageNum}'">
   </td>
 </tr>

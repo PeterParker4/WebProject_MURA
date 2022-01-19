@@ -23,21 +23,20 @@ public class RecommendDAO {
 		return instance;
 	}
 
-	public boolean recommendInsert(RecommendVO vo) {
+	// 추천 정보 입력
+	public void recommendInsert(int num, String id, int board_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		boolean flag = false;
+		String sql = "";
 		
 		try { 
 			con = ConnUtil.getConnection();
-			String sql = "insert into recommend_board values(?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getNum());
-			pstmt.setString(2, vo.getName());
-			
-			int count = pstmt.executeUpdate();
-			if(count > 0) flag = true;
+			pstmt = con.prepareStatement("insert into recommend_board values(?,?,?)");
+			pstmt.setInt(1, num);
+			pstmt.setString(2, id);
+			pstmt.setInt(3, board_num);
+			pstmt.executeUpdate();
 		
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -46,21 +45,20 @@ public class RecommendDAO {
 			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
 			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
-		return flag;
 	}
 	
-	public int recommend(int num, String id) {
+	// 추천 중복 체크
+	public int recommendChek(int num, String id, int board_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int check = -1;
 		
 		try {
-			String sql = "select id_mem from member_board where num=?";
-			
-			pstmt = con.prepareStatement(sql);
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select id_mem from recommend_board where idx_num=? and board_num=?");
 			pstmt.setInt(1, num);
-			
+			pstmt.setInt(2, board_num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

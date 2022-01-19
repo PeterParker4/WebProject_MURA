@@ -1,59 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="dao" class="board.BoardDAO" />
-<jsp:useBean id="recommand" class="board.RecommandDAO" />
-<jsp:useBean id="vo" class="board.RecommandVO" />
-<jsp:setProperty property="*" name="vo"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title></title>
-</head>
-<body>
-<%
-request.setCharacterEncoding("utf-8");
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-String pageNum = request.getParameter("pageNum");
-String num = request.getParameter("mi_num");	
+<c:choose>
+  <c:when test="${check == 1}">
+    <script type="text/javascript">
+	alert("이미 추천한 게시글입니다.");
+	location.href = document.referrer;
+	</script>
+  </c:when>
 
-
-String loginID = (String)session.getAttribute("loginID");
-
-%>
-
-<%
-boolean flag = recommand.recommandinsert(vo); 
-
-int check = recommand.recommand(Integer.parseInt(num), loginID);
-
-
-if(check==0) {
-out.println("<script>");
-out.println("alert('추천 완료하였습니다.')");
-out.println("window.history.back()");
-out.println("</script>");
-int result = dao.UpdateRecommand(Integer.parseInt(num));
-
-}else {
-	
-	out.println("<script>");
-	out.println("alert('이미 추천하였습니다.')");
-	out.println("window.history.back()");
-	out.println("</script>");
-}
-	 %>	
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
+  <c:otherwise>
+    <script type="text/javascript">
+	alert("추천을 완료하였습니다.");
+	location.href = document.location.href="/MURA2/page/recipe/recipeRecommendProc.mur?num=${num}&pageNum=${pageNum}&board_num=${board_num}";
+	</script>
+  </c:otherwise>
+</c:choose>

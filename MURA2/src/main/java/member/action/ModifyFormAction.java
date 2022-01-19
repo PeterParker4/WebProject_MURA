@@ -30,6 +30,11 @@ public class ModifyFormAction implements CommandAction {
 		request.setAttribute("zc1_mem", vo.getZc1_mem());
 		request.setAttribute("zc2_mem", vo.getZc2_mem());
 		
+		// È®ÀÎ¿ë
+		/*System.out.println(id_mem);
+		System.out.println(vo.getNn_mem());
+		*/
+		
 		return "/page/member/modifyForm.jsp";
 	}
 

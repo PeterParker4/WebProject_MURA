@@ -73,14 +73,14 @@ background-color: black;
 </head>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <body>
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="../index.jsp"> 
+	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
 <div align="center">	

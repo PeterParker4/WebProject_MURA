@@ -4,11 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import board.model.ConnUtil;
+import db.ConnUtil;
 
 public class RecipeDAO {
 
@@ -45,24 +44,12 @@ public class RecipeDAO {
 			if (rs.next()) {
 				x = rs.getInt(1);
 			}
-		} catch (Exception e) {
-			System.out.println("Exception " + e);
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
 		return x;
 	}
@@ -80,7 +67,7 @@ public class RecipeDAO {
 			con = ConnUtil.getConnection();
 
 			if (find.equals("nn_mem")) {
-				pstmt = con.prepareStatement("select count(*) from food_board where un_mem=?");
+				pstmt = con.prepareStatement("select count(*) from food_board where nn_mem=?");
 				pstmt.setString(1, find_box);
 			} else if (find.equals("wsubject_li")) {
 				pstmt = con.prepareStatement(
@@ -97,24 +84,12 @@ public class RecipeDAO {
 			if (rs.next()) {
 				x = rs.getInt(1);
 			}
-		} catch (Exception e) {
-			System.out.println("Exception " + e);
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
 		return x;
 	}
@@ -135,7 +110,7 @@ public class RecipeDAO {
 			// pstmt = con.prepareStatement("select * from food_board order by num desc");
 			pstmt = con.prepareStatement(
 					"select * from (select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-							+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li from "
+							+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num from "
 							+ "(select * from food_board order by idx_li desc)) where rnum >= ? and rnum <= ?");
 
 			// 수정3
@@ -158,28 +133,18 @@ public class RecipeDAO {
 					article.setReply_li(rs.getString("reply_li"));
 					article.setDate_li(rs.getTimestamp("date_li"));
 					article.setReadcount_li(rs.getInt("readcount_li"));
+					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
+					article.setBoard_num(rs.getInt("board_num"));
 					articleList.add(article);
 				} while (rs.next());
 			}
 
-		} catch (Exception e) {
-			System.out.println("Exception " + e);
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
 		return articleList;
 	}
@@ -197,10 +162,10 @@ public class RecipeDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("select * from ");
 			sql.append("(select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-					+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li from ");
+					+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num from ");
 
 			if (find.equals("nn_mem")) {
-				sql.append("(select * from food_board where un_mem=? order by idx_li desc)) "
+				sql.append("(select * from food_board where nn_mem=? order by idx_li desc)) "
 						+ "where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setString(1, find_box);
@@ -241,28 +206,18 @@ public class RecipeDAO {
 					article.setWcontent_li(rs.getString("wcontent_li"));
 					article.setDate_li(rs.getTimestamp("date_li"));
 					article.setReadcount_li(rs.getInt("readcount_li"));
+					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
+					article.setBoard_num(rs.getInt("board_num"));
 					articleList.add(article);
 				} while (rs.next());
 			}
 
-		} catch (Exception e) {
-			System.out.println("Exception " + e);
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException s1) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException s2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException s3) {
-				}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
 		return articleList;
 	}
@@ -287,19 +242,18 @@ public class RecipeDAO {
 			else number = 1; // 새글이 아닌 경우
 			
 			// 새글을 추가하는 쿼리 작성
-			sql="insert into food_board(idx_li, un_mem, pw_mem, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
-					+ "values(content_seq.nextval, ?,?,?,?,?,?,?,?,?)";
+			sql="insert into food_board(idx_li, un_mem, nn_mem, category_li, wsubject_li, tag_li, thumb_li, wcontent_li, date_li) "
+					+ "values(content_seq.nextval, ?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, article.getUn_mem());
-			pstmt.setString(2, article.getPw_mem());
-			pstmt.setString(3, article.getNn_mem());
-			pstmt.setString(4, article.getCategory_li());
-			pstmt.setString(5, article.getWsubject_li());
-			pstmt.setString(6, article.getTag_li());
-			pstmt.setString(7, article.getThumb_li());
-			pstmt.setString(8, article.getWcontent_li());
-			pstmt.setTimestamp(9, article.getDate_li());
+			pstmt.setString(2, article.getNn_mem());
+			pstmt.setString(3, article.getCategory_li());
+			pstmt.setString(4, article.getWsubject_li());
+			pstmt.setString(5, article.getTag_li());
+			pstmt.setString(6, article.getThumb_li());
+			pstmt.setString(7, article.getWcontent_li());
+			pstmt.setTimestamp(8, article.getDate_li());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -345,6 +299,8 @@ public class RecipeDAO {
 				article.setWcontent_li(rs.getString("wcontent_li"));
 				article.setDate_li(rs.getTimestamp("date_li"));
 				article.setReadcount_li(rs.getInt("readcount_li"));
+				article.setRecommend_cnt(rs.getInt("recommend_cnt"));
+				article.setBoard_num(rs.getInt("board_num"));
 			}
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -387,6 +343,8 @@ public class RecipeDAO {
 				article.setWcontent_li(rs.getString("wcontent_li"));
 				article.setDate_li(rs.getTimestamp("date_li"));
 				article.setReadcount_li(rs.getInt("readcount_li"));
+				article.setRecommend_cnt(rs.getInt("recommend_cnt"));
+				article.setBoard_num(rs.getInt("board_num"));
 			}
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -408,20 +366,20 @@ public class RecipeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String dbpasswd = "";
+		int dbun_mem = 0;
 		String sql = "";
 		int result = -1;
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select pass from food_board where idx_li=?");
+			pstmt = con.prepareStatement("select un_mem from food_board where idx_li=?");
 			pstmt.setInt(1, article.getIdx_li());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dbpasswd = rs.getString("pw_mem");
-				if(dbpasswd.equals(article.getPw_mem())) {
-					// 비밀번호가 일치하면 수정쿼리 실행
+				dbun_mem = rs.getInt("un_mem");
+				if(dbun_mem == article.getUn_mem()) {
+					// 유저번호가 일치하면 수정쿼리 실행
 					sql = "update food_board set category_li=?, wsubject_li=?, tag_li=?, wcontent_li=?, thumb_li=? where idx_li=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, article.getCategory_li());
@@ -451,12 +409,12 @@ public class RecipeDAO {
 	 * 데이터베이스에서 비밀번호를 비교하여 실제로 삭제를 수행해 줄 메소드를 구현함
 	 */
 	
-	public int deleteArticle(int idx_li, String un_mem) {
+	public int deleteArticle(int idx_li, int un_mem) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String dbun_mem = "";
+		int dbun_mem = 0;
 		String sql = "";
 		int result = -1;
 		
@@ -467,8 +425,8 @@ public class RecipeDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dbun_mem = rs.getString("un_mem");
-				if(dbun_mem.equals(un_mem)) {
+				dbun_mem = rs.getInt("un_mem");
+				if(dbun_mem == un_mem) {
 					// 유저번호가 일치하면 수정쿼리 실행
 					sql = "delete from food_board where idx_li=?";
 					pstmt = con.prepareStatement(sql);
@@ -489,7 +447,7 @@ public class RecipeDAO {
 		return result;
 	}
 	
-	// 추천 기능
+	// 게시글 추천수 올리기
 	public int updateRecommend(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -499,20 +457,8 @@ public class RecipeDAO {
 
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select recommend_cnt from food_board where idx_li=?");
+			pstmt = con.prepareStatement("update food_board set recommend_cnt = recommend_cnt + 1 where idx_li=?");
 			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-
-			int recommend = 0;
-
-			while (rs.next()) {
-				recommend = rs.getInt("recommend_cnt");
-			}
-
-			pstmt = con.prepareStatement("update food_board set recommend_cnt=? where idx_li=?");
-
-			pstmt.setInt(1, recommend + 1);
-			pstmt.setInt(2, num);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -522,32 +468,6 @@ public class RecipeDAO {
 			if(con != null) try {con.close();}catch(SQLException s3) {}
 		}
 		return result;
-	}
-
-	// 추천수 불러오기
-	public int countRecommend(int num) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int recommend = 0;
-
-		try {
-			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select recommend_cnt from food_board where idx_li=?");
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				recommend = rs.getInt("mi_RECOMMAND");
-			}
-		}catch(Exception e) {
-			System.out.println("Exception "+e);
-		}finally {
-			if(rs != null) try {rs.close();}catch(SQLException s1) {}
-			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
-			if(con != null) try {con.close();}catch(SQLException s3) {}
-		}
-		return recommend;
 	}
 
 }

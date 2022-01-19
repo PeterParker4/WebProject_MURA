@@ -13,38 +13,38 @@
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/bootstrap/css/bootstrap.min.css">
+	href="../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/animsition/css/animsition.min.css">
+	href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/select2/select2.min.css">
+	href="../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/daterangepicker/daterangepicker.css">
+	href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="css/util.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="../vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
 <!--===============================================================================================-->
 
 </head>
@@ -83,9 +83,17 @@
 				alert("${id_mem }님 환영합니다. 메인 페이지로 이동합니다.");
 			</script>
 			<meta http-equiv="refresh"
-				content="0;url=/MURA2/page/member/index.jsp">
+				content="0;url=/MURA2/page/index.jsp">
 			<!-- 로그아웃 인덱스로 바뀔예정 -->
 
+		</c:when>
+		
+		<c:when test="${id_mem ne null && id_mem eq 'aaaa1111'}">
+		<script type="text/javascript">
+				alert("관리자로 로그인합니다.");
+		</script>
+			<meta http-equiv="refresh"
+				content="0;url=/MURA2/page/index.jsp">
 		</c:when>
 
 
@@ -105,7 +113,7 @@
 
 			<!-- 상단 로고 -->
 			<div class="logo">
-				<a href="index.jsp"> <img src="images/topLogo.jpg" width="1194"
+				<a href="../index.jsp"> <img src="../images/topLogo.jpg" width="1194"
 					height="230" border="0" alt=""></a>
 			</div>
 
@@ -140,11 +148,11 @@
 								</div>
 
 								<div>
-									<a href="findId.jsp" class="txt1"> 아이디 찾기 </a>
+									<a href="findId.mur" class="txt1"> 아이디 찾기 </a>
 								</div>
 								|
 								<div>
-									<a href="findPw.jsp" class="txt1"> 비밀번호 찾기 </a>
+									<a href="findPw.mur" class="txt1"> 비밀번호 찾기 </a>
 								</div>
 
 
@@ -160,7 +168,7 @@
 
 						</form>
 						<div align="right">
-							<a href="signinForm.jsp" class="txt1"> <b>회원가입</b>
+							<a href="signinForm.mur" class="txt1"> <b>회원가입</b>
 							</a>
 						</div>
 					</div>

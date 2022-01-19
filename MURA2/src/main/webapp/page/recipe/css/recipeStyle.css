@@ -41,3 +41,33 @@ a {
 }
 
 p { margin: 0px 0px 0px 0px; line-height: 150%; }
+
+/* SNS 공유 아이콘 */
+.link-icon { position: relative; display: inline-block; width: 40px; font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.twitter { background-image: url(../images/icon-twitter.png); background-repeat: no-repeat; }
+.link-icon.facebook { background-image: url(../images/icon-facebook.png); background-repeat: no-repeat; } 
+.link-icon.kakao { background-image: url(../images/icon-kakao.png); background-repeat: no-repeat; }
+
+/* 오늘 본 레시피 */
+.cart{
+width: 260px;
+height: 400px;
+border: black 2px solid;
+color: black;
+position: fixed;
+left: 50px;
+top: 400px;
+z-index: 1;
+}
+
+.cart::after {
+width: 260px;
+height: 400px;
+background-color: #fff;
+content:"";
+position: absolute;
+left: 0;
+top: 0;
+z-index:-1;
+opacity: 0.8;
+}

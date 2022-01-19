@@ -6,7 +6,6 @@ public class RecipeVO {
 
 	private int idx_li;
 	private int un_mem;
-	private String pw_mem;
 	private String nn_mem;
 	private String category_li;
 	private String wsubject_li;
@@ -16,6 +15,8 @@ public class RecipeVO {
 	private String reply_li;
 	private Timestamp date_li;
 	private int readcount_li;
+	private int recommend_cnt;
+	private int board_num;
 	
 	public int getIdx_li() {
 		return idx_li;
@@ -28,12 +29,6 @@ public class RecipeVO {
 	}
 	public void setUn_mem(int un_mem) {
 		this.un_mem = un_mem;
-	}
-	public String getPw_mem() {
-		return pw_mem;
-	}
-	public void setPw_mem(String pw_mem) {
-		this.pw_mem = pw_mem;
 	}
 	public String getNn_mem() {
 		return nn_mem;
@@ -88,6 +83,18 @@ public class RecipeVO {
 	}
 	public void setReadcount_li(int readcount_li) {
 		this.readcount_li = readcount_li;
+	}
+	public int getRecommend_cnt() {
+		return recommend_cnt;
+	}
+	public void setRecommend_cnt(int recommend_cnt) {
+		this.recommend_cnt = recommend_cnt;
+	}
+	public int getBoard_num() {
+		return board_num;
+	}
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package recipe.action;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ public class RecipeContentAction implements CommandAction {
 		
 		// 해당 글 번호
 		int num = Integer.parseInt(request.getParameter("num"));
+		String thumb_li = request.getParameter("thumb_li");
 		
 		// 해당 페이지 번호
 		String pageNum = request.getParameter("pageNum");
@@ -29,6 +31,12 @@ public class RecipeContentAction implements CommandAction {
 		String id_mem = (String) session.getAttribute("id_mem");
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO memberInfo = dao.getMember(id_mem);
+		
+		// 쿠키 정보 저장
+		Cookie todayImageCookie = new Cookie("today"+id_mem, thumb_li);
+		todayImageCookie.setMaxAge(60*60*24);
+		response.addCookie(todayImageCookie);
+		
 		
 		// 해당 뷰에서 사용할 속성 저장
 		request.setAttribute("num", num);

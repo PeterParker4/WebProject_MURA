@@ -5,14 +5,11 @@ import java.sql.Timestamp;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.CommandAction;
-import member.model.MemberDAO;
-import member.model.MemberVO;
 import recipe.model.RecipeDAO;
 import recipe.model.RecipeVO;
 
@@ -39,7 +36,8 @@ public class RecipeUpdateProcAction implements CommandAction{
 			RecipeVO article = new RecipeVO();
 			
 			//set
-			article.setIdx_li(Integer.parseInt(request.getParameter("idx_li")));
+			article.setIdx_li(Integer.parseInt(multi.getParameter("idx_li")));
+			article.setUn_mem(Integer.parseInt(multi.getParameter("un_mem")));
 			article.setCategory_li(multi.getParameter("category_li"));
 			article.setWsubject_li(multi.getParameter("wsubject_li"));
 			article.setTag_li(multi.getParameter("tag_li"));
@@ -49,11 +47,10 @@ public class RecipeUpdateProcAction implements CommandAction{
 			
 			// 데이터베이스 처리
 			RecipeDAO dbPro = RecipeDAO.getInstance();
-			
 			int check = dbPro.updateArticle(article);
 			
 			// 뷰에서 사용할 속성 저장
-			String pageNum = request.getParameter("pageNum");
+			String pageNum = multi.getParameter("pageNum");
 			request.setAttribute("pageNum", new Integer(pageNum));
 			request.setAttribute("check", new Integer(check));
 			

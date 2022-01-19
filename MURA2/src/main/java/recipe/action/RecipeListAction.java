@@ -66,7 +66,7 @@ public class RecipeListAction implements CommandAction {
 		// 글 목록에 표시할 글번호를 의미함
 		number = count - (currentPage - 1) * pageSize;
 		
-		// 해당 뷰에서 사용할 속성 저장(list.jsp)
+		// 해당 뷰에서 사용할 속성 저장
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("startRow", startRow);
 		request.setAttribute("endRow", endRow);
@@ -90,7 +90,6 @@ public class RecipeListAction implements CommandAction {
 				}
 			}
 		}
-		
 		request.setAttribute("todayImageList", todayRecipeList);
 		
 		return "/page/recipe/recipeList.jsp";

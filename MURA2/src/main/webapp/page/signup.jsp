@@ -127,8 +127,8 @@ background-color: black;
       <div class="textForm">
         <div class="id">성별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        <label><input type="checkbox" name="gender" value="남자">남자</label>
-        <label><input type="checkbox" value="여자">여자</label>
+        <label><input type="checkbox" name="gender" value="남자" checked="true">남자</label>
+        <label><input type="checkbox" value="여자" checked="true">여자</label>
         </div>
       </div>
       <div class="textForm">

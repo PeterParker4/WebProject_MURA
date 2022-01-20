@@ -7,6 +7,10 @@
 <title>MURA :: 마이페이지 수정</title>
 <style type="text/css">
 
+*{
+font-family:"bmh";
+font-weight: bold;
+}
 
 .ct{
 
@@ -91,6 +95,9 @@ height: 25px;
 border-radius: 5px;
 float: right;
 
+}
+.btt3:hover{
+background-color: silver;
 }
 
 </style>

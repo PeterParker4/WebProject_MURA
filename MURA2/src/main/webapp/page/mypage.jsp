@@ -7,6 +7,12 @@
 <title>MURA :: 마이페이지</title>
 <style type="text/css">
 
+*{
+font-family:"bmh";
+font-weight: bold;
+}
+
+
 .ct{
 
 
@@ -63,7 +69,7 @@ font-size: 16px;
   transition: all 0.4s;
   font-style: inherit;
   cursor: pointer;
-  
+
 }
 
 .btt:hover {

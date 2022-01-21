@@ -98,14 +98,5 @@ public class ReplyDAO {
 		return replyList;
 	}
 	
-	
-	
-	
-	
-	
-		
-		
-		
-	
 
 }

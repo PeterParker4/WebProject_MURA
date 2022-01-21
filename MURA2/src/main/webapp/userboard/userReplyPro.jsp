@@ -19,8 +19,6 @@ replyVO.setNn_reply(nn_reply); replyVO.setMem_reply(mem_reply);
 replyVO.setContent_reply(content_reply); replyVO.setBoard_reply(board_reply);
 ReplyDAO replyDAO = new ReplyDAO();
 replyDAO.insertReply(replyVO, board_reply);
-
 %>
-
 
 <meta http-equiv="Refresh" content="0;url=/MURA2/userboard/userContent.mur?idx_ut=<%= board_reply%>&pageNum=<%= pageNum%>">

@@ -29,7 +29,6 @@ public class LoginProcAction implements CommandAction {
 		if (check == 1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginID", id_mem);
-			session.setAttribute("un_mem", un_mem);
 		} else if (id_mem != null && pw_mem != null) {
 			request.setAttribute("check", check);
 		}

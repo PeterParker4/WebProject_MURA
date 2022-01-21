@@ -154,7 +154,9 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 <input type="hidden" value="${userArticle.idx_ut }" name="board_reply">
 <input type="hidden" value="${pageNum }" name="pageNum">
 </td></tr>
+<c:if test="${sessionScope.loginID != null }">
 <tr><td colspan="2" align="right"><input type="submit" value="댓글 작성"></td></tr>
+</c:if>
 </table>
 <br><br><br>
 </form>

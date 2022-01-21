@@ -17,11 +17,13 @@
    		  <param-value>CommandPro.properties</param-value>
    </init-param>
  </servlet>
+
  
 <servlet-mapping>
    <servlet-name>Controller</servlet-name>
    <url-pattern>*.mur</url-pattern>
 </servlet-mapping>
- 
+
+
   
 </web-app>

@@ -23,10 +23,10 @@ public class QaUpdateProAction implements CommandAction {
 		qaArticle.setIdx_qt(Integer.parseInt(request.getParameter("idx_qt")));
 		qaArticle.setWsubject_qt(request.getParameter("wsubject_qt"));
 		qaArticle.setWcontent_qt(request.getParameter("wcontent_qt"));
-		qaArticle.setDate_qt(new Timestamp(System.currentTimeMillis()));
 		
 		QABoardDAO dbPro = QABoardDAO.getInstance();
 		int check = dbPro.updateQaArticle(qaArticle);
+		
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("check", check);
 		

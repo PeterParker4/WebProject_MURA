@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="reply.model.*" %>
+<%@ page import="java.util.List" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,14 +40,6 @@ position: relative;
 <link href="../page/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 
-function deleteCheck(){
-	if(confirm("정말로 삭제하시겠습니까?"); == true){
-		document.form.submit();
-		alert("삭제되었습니다.");
-	}else{
-		return;
-	}
-}
 </script>
 </head>
 <body bgcolor="${bodyback_c }">
@@ -88,7 +84,6 @@ bgcolor="${bodyback_c }">
 <td class="blank" align="center" width="460" colspan="3"></td>
 <td align="center" width="80" bgcolor="${value_c }">작성자</td>
 <td align="center" width="80">${userArticle.nn_mem }</td>
-
 </tr>
 
 
@@ -104,23 +99,7 @@ bgcolor="${bodyback_c }">
 </tr>
 </table>
 
-
-<div class="dat">
-  댓글 
-</div>
-
-<div class="dat">
-  댓글 입력창
-</div>
-
-<div class="dat">
-  등록
-</div>
-
-<div class="dat">
-  댓글보기
-</div>
-
+<br><br>
 
 
 <tr height="30">
@@ -134,15 +113,50 @@ href="/MURA2/userboard/userDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=$
 
 <input type="button" value="글목록"
 onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNum }'">
-
-
 </td>
 </tr>
-
-
-
-
 </form>
+<br><br><br><br>
 
+
+<table border="1" width="700" align="center">
+
+<c:if test="${userArticle.replycnt_ut == 0}">
+<tr align="center" >
+	    <td colspan="3">댓글이 없습니다.</td>
+</tr>
+</c:if>
+
+<c:forEach var="reply" items="${replyList }">
+
+<c:if test="${userArticle.replycnt_ut > 0 }">
+<tr>
+<td align="center" width="100">작성자</td>
+<td align="center" width="500">댓글 내용</td>
+<td align="center" width="100">작성일자</td>
+</tr>
+<tr>
+<td>${reply.nn_reply }</td>
+<td>${reply.content_reply }</td>
+<td>${reply.date_reply }</td>
+</tr>
+</c:if>
+
+</c:forEach>
+</table>
+
+
+<br><br><br>
+<form action="userReplyPro.jsp" method="post">
+<table>
+<tr><td>${nn_mem }</td>
+<td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
+<input type="hidden" value="${userArticle.idx_ut }" name="board_reply">
+<input type="hidden" value="${pageNum }" name="pageNum">
+</td></tr>
+<tr><td colspan="2" align="right"><input type="submit" value="댓글 작성"></td></tr>
+</table>
+<br><br><br>
+</form>
 </body>
 </html>

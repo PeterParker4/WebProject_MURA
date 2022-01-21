@@ -22,7 +22,7 @@ public class UserUpdateProAction implements CommandAction {
 		userArticle.setIdx_ut(Integer.parseInt(request.getParameter("idx_ut")));
 		userArticle.setWsubject_ut(request.getParameter("wsubject_ut"));
 		userArticle.setWcontent_ut(request.getParameter("wcontent_ut"));
-		userArticle.setDate_ut(new Timestamp(System.currentTimeMillis()));
+//		userArticle.setDate_ut(new Timestamp(System.currentTimeMillis()));
 		
 		UserBoardDAO dbPro = UserBoardDAO.getInstance();
 		int check = dbPro.updateUserArticle(userArticle);

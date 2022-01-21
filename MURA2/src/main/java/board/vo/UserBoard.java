@@ -9,9 +9,9 @@ public class UserBoard {
 	private String nn_mem;
 	private String wsubject_ut;
 	private String wcontent_ut;
-	private String reply_ut;
 	private Timestamp date_ut;
 	private int readcount_ut;
+	private int replycnt_ut;
 	
 	public int getUn_mem() {
 		return un_mem;
@@ -43,12 +43,6 @@ public class UserBoard {
 	public void setWcontent_ut(String wcontent_ut) {
 		this.wcontent_ut = wcontent_ut;
 	}
-	public String getReply_ut() {
-		return reply_ut;
-	}
-	public void setReply_ut(String reply_ut) {
-		this.reply_ut = reply_ut;
-	}
 	public Timestamp getDate_ut() {
 		return date_ut;
 	}
@@ -61,6 +55,14 @@ public class UserBoard {
 	public void setReadcount_ut(int readcount_ut) {
 		this.readcount_ut = readcount_ut;
 	}
+	public int getReplycnt_ut() {
+		return replycnt_ut;
+	}
+	public void setReplycnt_ut(int replycnt_ut) {
+		this.replycnt_ut = replycnt_ut;
+	}
+	
+	
 	
 	
 }

@@ -18,7 +18,7 @@ public class QaUpdateFormAction implements CommandAction {
 		QABoardDAO dbPro = QABoardDAO.getInstance();
 		QABoard qaArticle = dbPro.updateGetQaArticle(idx_qt);
 		
-		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("qaArticle", qaArticle);
 		
 		return "/userboard/qaUpdateForm.jsp";

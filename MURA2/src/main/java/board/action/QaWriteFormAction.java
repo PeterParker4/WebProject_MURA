@@ -2,13 +2,21 @@ package board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.CommandAction;
+import member.model.MemberDAO;
 
 public class QaWriteFormAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		
+		HttpSession session = request.getSession();
+		String id_mem = (String) session.getAttribute("loginID");
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		String nn_mem = dao.getMember(id_mem).getNn_mem();
 		
 		int idx_qt = 0, ref_qt = 1, step_qt = 0, depth_qt = 0;
 		
@@ -27,6 +35,7 @@ public class QaWriteFormAction implements CommandAction {
 		request.setAttribute("ref_qt", ref_qt);
 		request.setAttribute("step_qt", step_qt);
 		request.setAttribute("depth_qt", depth_qt);
+		request.setAttribute("nn_mem", nn_mem);
 		
 		return "/userboard/qaWriteForm.jsp";
 	}

@@ -4,10 +4,12 @@ import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.CommandAction;
 import board.dao.QABoardDAO;
 import board.vo.QABoard;
+import member.model.MemberDAO;
 
 public class QaWriteProAction implements CommandAction {
 
@@ -16,9 +18,13 @@ public class QaWriteProAction implements CommandAction {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		HttpSession session = request.getSession();
+		String id_mem = (String) session.getAttribute("loginID");
+		
+		MemberDAO dao = MemberDAO.getInstance();
 		QABoard qaArticle = new QABoard();
 		
-		/* qaArticle.setUn_mem(Integer.parseInt(request.getParameter("un_mem"))); */
+		qaArticle.setUn_mem(dao.getMember(id_mem).getUn_mem());
 		qaArticle.setIdx_qt(Integer.parseInt(request.getParameter("idx_qt")));
 		qaArticle.setNn_mem(request.getParameter("nn_mem"));
 		qaArticle.setWsubject_qt(request.getParameter("wsubject_qt"));

@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import board.vo.UserBoard;
 import db.ConnUtil;
+import reply.model.ReplyVO;
 
 
 
@@ -111,7 +113,7 @@ public class UserBoardDAO {
 			con = ConnUtil.getConnection();
 			
 			pstmt = con.prepareStatement("select * from (select rownum rnum, un_mem, idx_ut, nn_mem, wsubject_ut, "
-					+ "wcontent_ut, date_ut, readcount_ut from "
+					+ "wcontent_ut, date_ut, readcount_ut, replycnt_ut from "
 					+ "(select * from user_board order by idx_ut desc)) "
 					+ "where rnum >=? and rnum <=?");
 			
@@ -134,6 +136,7 @@ public class UserBoardDAO {
 					userArticle.setWcontent_ut(rs.getString("wcontent_ut"));
 					userArticle.setDate_ut(rs.getTimestamp("date_ut"));
 					userArticle.setReadcount_ut(rs.getInt("readcount_ut"));
+					userArticle.setReplycnt_ut(rs.getInt("replycnt_ut"));
 					
 					userArticleList.add(userArticle);
 					
@@ -165,7 +168,7 @@ public class UserBoardDAO {
 			
 			StringBuffer sql = new StringBuffer();
 			sql.append("select * from ");
-			sql.append("(select rownum rnum, un_mem, idx_ut, nn_mem, wsubject_ut, wcontent_ut, date_ut, readcount_ut from ");
+			sql.append("(select rownum rnum, un_mem, idx_ut, nn_mem, wsubject_ut, wcontent_ut, date_ut, readcount_ut, replycnt_ut from ");
 			
 			if(find.equals("nn_mem")) {
 				sql.append("(select * from user_board where nn_mem like '%" + find_box + "%' order by idx_ut desc)) where rnum >=? and rnum <=?");
@@ -205,7 +208,7 @@ public class UserBoardDAO {
 					userArticle.setWcontent_ut(rs.getString("wcontent_ut"));
 					userArticle.setDate_ut(rs.getTimestamp("date_ut"));
 					userArticle.setReadcount_ut(rs.getInt("readcount_ut"));
-					
+					userArticle.setReplycnt_ut(rs.getInt("replycnt_ut"));
 					userArticleList.add(userArticle);
 					
 				}while(rs.next());
@@ -228,7 +231,7 @@ public class UserBoardDAO {
 		ResultSet rs = null;
 		
 		
-		int number = 0;
+//		int number = 0;
 		
 		String sql = "";
 		
@@ -237,14 +240,14 @@ public class UserBoardDAO {
 			con = ConnUtil.getConnection();
 			
 			sql = "insert into user_board(un_mem, idx_ut, nn_mem, wsubject_ut, wcontent_ut, date_ut) "
-					+ "values('1111' ,content_seq.nextval, ?, ?, ?, ?)";
+					+ "values(?, content_seq.nextval, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
-			/* pstmt.setInt(1, userArticle.getUn_mem()); */
-			 pstmt.setString(1, userArticle.getNn_mem()); 
-			pstmt.setString(2, userArticle.getWsubject_ut());
-			pstmt.setString(3, userArticle.getWcontent_ut());
-			pstmt.setTimestamp(4, userArticle.getDate_ut());
+			pstmt.setInt(1, userArticle.getUn_mem());
+			pstmt.setString(2, userArticle.getNn_mem()); 
+			pstmt.setString(3, userArticle.getWsubject_ut());
+			pstmt.setString(4, userArticle.getWcontent_ut());
+			pstmt.setTimestamp(5, userArticle.getDate_ut());
 			
 			pstmt.executeUpdate();
 			
@@ -280,14 +283,16 @@ public class UserBoardDAO {
 			
 			if(rs.next()) {
 				userArticle = new UserBoard();
-//				userArticle.setUn_mem(rs.getInt("un_mem"));
+				userArticle.setUn_mem(rs.getInt("un_mem"));
 				userArticle.setIdx_ut(rs.getInt("idx_ut"));
 				userArticle.setNn_mem(rs.getString("nn_mem"));
 				userArticle.setWsubject_ut(rs.getString("wsubject_ut"));
 				userArticle.setWcontent_ut(rs.getString("wcontent_ut"));
 				userArticle.setDate_ut(rs.getTimestamp("date_ut"));
 				userArticle.setReadcount_ut(rs.getInt("readcount_ut"));	
+				userArticle.setReplycnt_ut(rs.getInt("replycnt_ut"));
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -315,7 +320,7 @@ public class UserBoardDAO {
 			
 			if(rs.next()) {
 				userArticle = new UserBoard();
-//				userArticle.setUn_mem(rs.getInt("un_mem"));
+				userArticle.setUn_mem(rs.getInt("un_mem"));
 				userArticle.setIdx_ut(rs.getInt("idx_ut"));
 				userArticle.setNn_mem(rs.getString("nn_mem"));
 				userArticle.setWsubject_ut(rs.getString("wsubject_ut"));
@@ -411,6 +416,16 @@ public class UserBoardDAO {
 		}
 		return result;
 	}
+	
+	
+
+
+	
+	
+	
+	
+	
+	
 	
 	
 

@@ -140,7 +140,7 @@ onsubmit="return writeSave()">
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<input type="text" name="nn_mem" readonly="readonly" value="${loginID }">
+		<input type="text" name="nn_mem" readonly="readonly" value="${userArticle.nn_mem }">
 	</td>
 </tr>
 

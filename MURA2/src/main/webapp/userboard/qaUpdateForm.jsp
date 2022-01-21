@@ -135,10 +135,10 @@ onsubmit="return qaWriteSave()">
 	<td align="left">		
 		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_qt"
 		value="${qaArticle.wsubject_qt }">
-		<input type="hidden" name="idx_qt" value="${idx_qt }">
-		<input type="hidden" name="ref_qt" value="${ref_qt }">
+		<input type="hidden" name="idx_qt" value="${qaArticle.idx_qt }">
+		<%-- <input type="hidden" name="ref_qt" value="${ref_qt }">
 		<input type="hidden" name="step_qt" value="${step_qt }">
-		<input type="hidden" name="depth_qt" value="${depth_qt }">
+		<input type="hidden" name="depth_qt" value="${depth_qt }"> --%>
 	</td>
 </tr>
 

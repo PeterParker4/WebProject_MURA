@@ -2,8 +2,10 @@ package board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.CommandAction;
+import member.model.MemberDAO;
 
 
 public class UserWriteFormAction implements CommandAction {
@@ -11,19 +13,15 @@ public class UserWriteFormAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
+		HttpSession session = request.getSession();
+		String id_mem = (String) session.getAttribute("loginID");
+		try {
+			
+		MemberDAO dao = new MemberDAO();
+		String nn_mem = dao.getMember(id_mem).getNn_mem();
 		
-//		int idx_ut = 0;
-//		
-//		
-//		try {
-//			if(request.getParameter("idx_ut") != null) {
-//				idx_ut = Integer.parseInt(request.getParameter("idx_ut"));
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		request.setAttribute("idx_ut", idx_ut);
+		request.setAttribute("nn_mem", nn_mem);
+		}catch(Exception e) {}
 		
 		return "/userboard/userWriteForm.jsp";
 	}

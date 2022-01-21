@@ -1,51 +1,3 @@
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-});
-
-function writeSave() {
-	
-	if(document.userWriteForm.wsubject_ut.value==""){
-		alert("제목을 입력하세요.");
-		document.userWriteForm.wsubject_ut.focus();
-		return false;
-	}
-	
-	if(document.userWriteForm.wcontent_ut.value==""){
-		alert("내용을 입력하세요.");
-		document.userWriteForm.wcontent_ut.focus();
-		return false;
-	}
-	
-}
-
-function qaWriteSave() {
-	
-	if(document.qaWriteForm.wsubject_qt.value==""){
-		alert("제목을 입력하세요.");
-		document.qaWriteForm.wsubject_qt.focus();
-		return false;
-	}
-	
-	if(document.qaWriteForm.wcontent_qt.value==""){
-		alert("내용을 입력하세요.");
-		document.qaWriteForm.wcontent_qt.focus();
-		return false;
-	}
-	
-}
-
-
-
 $.ajaxSetup({
     type:"POST",
     async:true,
@@ -61,7 +13,7 @@ $(function() {
             url:"/MURA2/userboard/replyWrite.mur",
             data:{
                 content_reply:$("#content_reply").val(),
-                board_reply:"#board_reply"
+                board_reply:"${userArticle.idx_ut}"
             },
             beforeSend:function() {
                 console.log("시작 전...");
@@ -109,7 +61,7 @@ function getReply(commPageNum, event) {
         url:"/MURA2/userboard/replyRead.mur",
         data:{
             commPageNum:commPageNum*10,
-            board_reply:"#board_reply"
+            board_reply:"${userArticle.idx_ut}"
         },
         beforeSend:function() {
             console.log("읽어오기 시작 전...");
@@ -126,8 +78,3 @@ function getReply(commPageNum, event) {
         }
     })
 }
-
-
-
-
-

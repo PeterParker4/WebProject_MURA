@@ -18,7 +18,7 @@ public class UserUpdateFormAction implements CommandAction {
 		UserBoardDAO dbPro = UserBoardDAO.getInstance();
 		UserBoard userArticle = dbPro.updateGetUserArticle(idx_ut);
 		
-		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("userArticle", userArticle);
 		
 		return "/userboard/userUpdateForm.jsp";

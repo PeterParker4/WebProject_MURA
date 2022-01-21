@@ -62,6 +62,16 @@ function check() {
 	i_frm.action="/MURA2/userboard/boardList.mur?pageNum="+i;
 	i_frm.submit();
   }
+  
+ function loginCheck(){
+	 if(${loginID} == null){
+		 var test = confirm("로그인 후 이용해주세요.");
+		 if(test == true){
+			 location.href="/MURA2/page/lndex.jsp";
+		 }else if(test == false){
+			 history.back();
+		 } 
+ }
 
 </script>    
     
@@ -118,7 +128,7 @@ function check() {
 	
 		<td width="300">	
 		<a href="/MURA2/userboard/userContent.mur?idx_ut=${userBoardArticle.idx_ut}&pageNum=${currentPage}">
-		${userBoardArticle.wsubject_ut}</a>
+		${userBoardArticle.wsubject_ut} <c:if test="${userBoardArticle.replycnt_ut > 0}">(${userBoardArticle.replycnt_ut })</c:if></a>
 		<c:if test="${userBoardArticle.readcount_ut >= 20 }">
 			<img alt="" src="images/hot.png" border="0" height="16">
 			</c:if>
@@ -201,7 +211,7 @@ onsubmit="return check()">
 		</c:if>
 		 --%>
 		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
-		
+		 <!-- onsubmit="return loginCheck()" -->
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

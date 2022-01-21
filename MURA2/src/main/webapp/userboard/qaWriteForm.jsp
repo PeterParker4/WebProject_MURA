@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="loginID" value="${sessionScope.loginID }" />
 
 <!DOCTYPE html>
 <html>
@@ -148,7 +147,7 @@ onsubmit="return qaWriteSave()">
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<input type="text" name="nn_mem" readonly="readonly" value="${loginID }">
+		<input type="text" name="nn_mem" readonly="readonly" value="${nn_mem }">
 	</td>
 </tr>
 

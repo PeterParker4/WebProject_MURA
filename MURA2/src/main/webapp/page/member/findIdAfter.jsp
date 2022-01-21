@@ -52,9 +52,9 @@ font-size: 17px;
 				<div>
 					<div>
 						<h2>아이디 찾기</h2>
-						<h4>
-							회원가입 시 사용한 아이디는 '<strong>${id_mem}</strong>' 입니다.
-						</h4>
+						<h3>
+							회원님의 아이디는 [ &nbsp;<strong style="color: #a84781;">${id_mem}</strong>&nbsp;] 입니다.
+						</h3>
 					</div>
 				</div>
 			</div>

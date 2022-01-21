@@ -23,16 +23,28 @@ font-size: 24px;
 }
 
 .txt::placeholder{
-fon
-color:black;
+color: black;
 opacity: 0.5;
 }
 
 .bt{
-width: 100px;
-height: 40px;
+color:#fff;
+font-size: 24px;
+  padding: 6px 10px;
+  width: 70px;
+  background-color: #a84781;
+  border-radius: 5px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: none;
+  box-shadow: 1px 1px 2px 1px black;
 }
 
+.bt:hover {
+  background-color: #403866;
+}
 </style>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript"
@@ -61,8 +73,8 @@ height: 40px;
 	
 				<form action="findIdAfter.mur" method="post" role="form">
 					 
-					<h2 align="center">이름 더하기 이메일 = 아이디 !</h2>
-					<br><br>
+					<h2 align="center">이름과 이메일을 입력해주세요</h2>
+					
 					<div align="center">
 						
 						<input type="text" class="txt" name="name_mem" placeholder="이름">

@@ -19,13 +19,35 @@ background-color: #FFC31E;
 font-size: 24px;
 font-weight: bold;
 }
-.button1{
-width: 100px;
-height: 30px;
+.button5{
+width: 120px;
+height: 110px;
 background-color: #fff;
+background-image: url("../images/nem2.png");
+background-size: 100px 100px;
+background-position:center;
+background-repeat:no-repeat;
+transition: all 0.3s;
+border-radius: 5px;
 
 }
+
+.button5:hover{
+color:#fff;
+font-size: 15px;
+background-image: url("../images/nem1.png");
+background-size: 110px 100px;
+background-position:center;
+background-repeat:no-repeat;
+
+}
+
+ 
+
+
+
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
@@ -95,10 +117,14 @@ function frm_sub(i) {
 	</div>
 
 <div align="center">
+<h3 style="color: olive;">< 나만의 레시피 공유하기 ></h3>
 <table width="980">
   <tr>
-	<td align="right">
-	  <a href="/MURA2/page/recipe/recipeWriteForm.mur"><button class="button1">레시피 작성</button></a></td>
+	<td align="center">
+	<div class="buttons buttons2">
+	  <a href="/MURA2/page/recipe/recipeWriteForm.mur"><button class="button5">
+	  </button></a></div></td>
+	
   </tr>
 </table>
 <br><br>

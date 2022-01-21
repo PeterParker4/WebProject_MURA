@@ -102,19 +102,34 @@ height:75px;
 width:250px;
 height:60px;
 margin:15px;
-
   padding: 5px;
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  font-size: 21px;
-  display: inline-block;
+  color: black;
+  font-size: 30px;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
   border-radius: 0.3em;
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
   background-color: transparent;
+  z-index: 1;
+  border: none;
 }
+
+.button::after{
+background-color: #a84781;
+width:250px;
+height:60px;width:250px;
+height:60px;
+opacity: 0.5;
+color:black;
+content: "먼지풀풀";
+position: absolute;
+left: 0px;
+top: 24px;
+}
+
 .button:before {
   content: "";
   background-color: rgba(255, 255, 255, 0.5);
@@ -129,7 +144,7 @@ margin:15px;
 }
 .button:hover {
   background-color: transparent;
-  color: #fff;
+  color: gray;
   /* border: 1px solid #fff; */
   font-size: 24px;
   font-weight: normal;
@@ -149,8 +164,7 @@ z-index: 1;
 .tr1{
 width: 100%;
 height: 90px;
-background-image: url('images/banner1.jpg');
-
+box-shadow: 1px;
 }
 
 .cart{
@@ -175,6 +189,14 @@ top: 0;
 z-index:-1;
 opacity: 0.8;
 }
+
+.back{
+background-image: url("images/pink.jpg");
+background-size: cover;
+}
+
+
+
 
 
 
@@ -227,7 +249,7 @@ opacity: 0.8;
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<div class="back">
 	<!--N 네비메뉴 -->
     <nav>
 		<a href="signup.jsp"> Sign Up </a> |
@@ -239,7 +261,7 @@ opacity: 0.8;
 	<!-- 상단 로고 -->
 	<div class="logo">
 	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <img src="images/mura_logo.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 	
 	<br><br><br>
@@ -292,6 +314,92 @@ opacity: 0.8;
       <img id="next" src="img/right.jpg" alt="" width="100">
     </div>
   
+<div align="center">
+	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;
+	position: relative;" border="1">
+		<tr height="30">
+			<td width="50">작성자</td>
+			<td width="180">글제목</td>
+			<td width="50">추천수</td>
+		</tr>
+		<tr height="30">
+			<td width="50">최수민</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">한강에서 만드는 간단요리</div></a></td>
+			<td width="50">9999</td>
+		</tr>
+		<tr height="30">
+			<td width="50">유진수</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">소맥맛있게 마는법</div></a></td>
+			<td width="50">922</td>
+		</tr>
+		<tr height="30">
+			<td width="50">성세연</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">펩시+귤파인애플</div></a></td>
+			<td width="50">218</td>
+		</tr>
+		<tr height="30">
+			<td width="50">정수현</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">민트초코 버리는법</div></a></td>
+			<td width="50">199</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">시기다른 래퍼들의 반대편을 바라보는 래퍼들의 배포</div></a></td>
+			<td width="50">188</td>
+		</tr>
+	
+	</table>
+	
+
+
+	<table style="display: inline-flex; border-collapse: collapse;
+	position: relative; top: 30px; right: -7px;" border="0">
+		
+		<tr style="margin-bottom: 5px;">
+			<td><img src="images/icons/kin.png" width="50" height="60"></td>
+			<td><img src="images/icons/gin.png" width="50" height="60"></td>
+			<td><img src="images/icons/dong.png" width="50" height="60"></td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/burin.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/dak.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/jind.jpg" width="230" height="230"></td>
+		</tr>	
+		<tr height="30">
+			<td style="background-color: #FF8C8C; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">첫번째로 맛있는 음식 </td>
+			<td style="background-color: #5ABEFF; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">두번째로 맛있는 음식 </td>
+			<td style="background-color: #acffef; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">세번째로 맛있는 음식 </td>
+		</tr>	
+		
+	</table>
+</div>
+  
+  
 
 <div class="cart">
 <b>&nbsp;최근 둘러본 레시피</b>
@@ -325,17 +433,13 @@ opacity: 0.8;
 	</table>
 
 </div>
+<br><br>
 	
-	
-	
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <%@ include file="footer.jsp" %>
 
 
-
+</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function(){

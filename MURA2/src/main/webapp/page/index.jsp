@@ -143,6 +143,45 @@
 	</div>
 
 	<!--F 푸터메뉴 -->
-	
+	<%@ include file="footer.jsp" %>
 </body>
+<script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
+
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
+
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
+
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=1000px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=1000px'
+          });
+          img_position++;
+        }
+      }
+
+
+      
+
+
+    });
+  </script>
 </html>

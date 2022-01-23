@@ -65,8 +65,8 @@ text-align: justify;
 </style>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -74,7 +74,7 @@ text-align: justify;
 <!-- 상단 로고 -->
 	<div class="logo">
 	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 	
 	<p align="center">
@@ -139,7 +139,31 @@ text-align: justify;
 		<td align="center" width="50"><b>조회수</b></td>
 	</tr>
 	
-	</table>
+	
+<c:if test="${count > 0 }">
+<c:forEach var="article" items="${articleList}">
+  
+  <tr height="30">
+      
+    <td width="350">
+      <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
+       ${article.wsubject_li}</a>
+    </td>
+    
+    <td align="center" width="150">
+    ${article.date_li}
+    </td>
+    
+    <td align="center" width="50">
+    ${article.readcount_li}
+    </td>
+    
+  </tr>
+  </c:forEach>
+
+</c:if>
+</table>
+	
 	<br><br>
 <div align="center"><img src="../images/icons/like.jpg" width="50" height="50"><b>좋아요 누른 게시물</b></div>
 
@@ -152,7 +176,35 @@ text-align: justify;
 		<td align="center" width="50"><b>조회수</b></td>
 	</tr>
 	
-	</table>
+	
+	
+	<c:if test="${count > 0 }">
+<c:forEach var="article" items="${articleList}">
+  
+  <tr height="30">
+    
+    <td width="350">
+      <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}">
+      ${article.wsubject_li}</a>
+    </td>
+    
+    <td align="center" width="110">
+    ${article.nn_mem}
+    </td>
+    
+    <td align="center" width="150">
+    ${article.date_li}
+    </td>
+    
+    <td align="center" width="50">
+    ${article.readcount_li}
+    </td>
+    
+  </tr>
+  </c:forEach>
+</c:if>
+</table>
+
 	<br><br>
 </body>
 </html>

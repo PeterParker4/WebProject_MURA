@@ -202,7 +202,7 @@ function frm_sub(i) {
 </div>
 
 <!-- 게시판 내 검색 -->
-<div align="right" style="margin-right: 100px;">
+<div align="right" style="margin-right: 300px;">
 <form method="post" name="i_frm">
   <input type="hidden" name="find_box" value="${find_box}">
   <input type="hidden" name="find" value="${find}">

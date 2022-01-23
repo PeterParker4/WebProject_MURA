@@ -243,27 +243,33 @@ background-size: cover;
 	<table  width="1000" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td>
-	      <img alt="" src="images/korea.png" width="100" height="100">
+	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=한식">
+	      <img alt="" src="images/korea.png" width="100" height="100"></a>
 	    </td>
 
 	    <td>
-	      <img alt="" src="images/japan.png" width="100" height="100">
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=일식">
+	      <img alt="" src="images/japan.png" width="100" height="100"></a>
 	    </td>
 
 	    <td>
-	      <img alt="" src="images/western.png" width="100" height="100">
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=양식">
+	      <img alt="" src="images/western.png" width="100" height="100"></a>
 	    </td>
 
 	    <td>
-	      <img alt="" src="images/china.png" width="100" height="100">
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=중식">
+	      <img alt="" src="images/china.png" width="100" height="100"></a>
 	    </td>
 
 	    <td>
-	      <img alt="" src="images/bunsik.png" width="100" height="100">
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=분식">
+	      <img alt="" src="images/bunsik.png" width="100" height="100"></a>
 	    </td>
 
 	    <td>
-	      <img alt="" src="images/desert.png" width="100" height="100">
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=디저트">
+	      <img alt="" src="images/desert.png" width="100" height="100"></a>
 	    </td>
 	    
 	  </tr>

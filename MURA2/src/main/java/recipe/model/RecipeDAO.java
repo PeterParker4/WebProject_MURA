@@ -72,6 +72,9 @@ public class RecipeDAO {
 			} else if (find.equals("wsubject_li")) {
 				pstmt = con.prepareStatement(
 						"select count(*) from food_board where wsubject_li like '%" + find_box + "%'");
+			} else if (find.equals("category_li")) {
+				pstmt = con.prepareStatement(
+						"select count(*) from food_board where category_li like '%" + find_box + "%'");
 			} else if (find.equals("wcontent_li")) {
 				pstmt = con.prepareStatement(
 						"select count(*) from food_board where wcontent_li like '%" + find_box + "%'");

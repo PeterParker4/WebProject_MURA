@@ -276,18 +276,22 @@ opacity: 0.8;
 	<table border="0" cellpadding="0" cellspacing="0">
 	
 	<tr>
-		
-		
 	 	
 		<td>
-			<input style="margin-left: 300px" type="button" class="button" name="레시피 보기" value="레시피 보기"></td>
+		<a href="/MURA2/page/recipe/recipeList.mur">
+		<input style="margin-left: 300px" type="button" class="button" name="레시피 보기" value="레시피 보기"></a></td>
+
 		<td>
-			<input type="button" class="button" name="글 쓰기" value="글 쓰기" >
-		<td>
-			<input type="button" class="button" name="요청게시판" value="요청게시판" ></td>
-		<td>
-			<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A" ></td>
+		<a href="/MURA2/page/recipe/recipeWriteForm.mur">
+		<input type="button" class="button" name="레시피 작성" value="레시피 작성"></a></td>
 		
+		<td>
+		<a href="/MURA2/page/recipe/recipeList.mur">
+		<input type="button" class="button" name="레시피 요청" value="레시피 요청"></a></td>
+		
+		<td>
+		<a href="/MURA2/page/recipe/recipeList.mur">
+		<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A"></a></td>
 		
 	</tr>
 		
@@ -308,9 +312,116 @@ opacity: 0.8;
       </ul>
       <img id="next" src="img/right.jpg" alt="" width="100">
     </div>
-  
 
-<div class="cart">
+<br><br>
+
+<div align="center">
+	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;
+	position: relative;" border="1">
+		<tr height="30">
+			<td width="50">작성자</td>
+			<td width="180">글제목</td>
+			<td width="50">추천수</td>
+		</tr>
+		<tr height="30">
+			<td width="50">최수민</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">한강에서 만드는 간단요리</div></a></td>
+			<td width="50">9999</td>
+		</tr>
+		<tr height="30">
+			<td width="50">유진수</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">소맥맛있게 마는법</div></a></td>
+			<td width="50">922</td>
+		</tr>
+		<tr height="30">
+			<td width="50">성세연</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">펩시+귤파인애플</div></a></td>
+			<td width="50">218</td>
+		</tr>
+		<tr height="30">
+			<td width="50">정수현</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">민트초코 버리는법</div></a></td>
+			<td width="50">199</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">갬성 잌만들기</div></a></td>
+			<td width="50">188</td>
+		</tr>
+		<tr height="30">
+			<td width="50">이혜인</td>
+			<td width="180"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">시기다른 래퍼들의 반대편을 바라보는 래퍼들의 배포</div></a></td>
+			<td width="50">188</td>
+		</tr>
+	
+	</table>
+	
+
+
+	<table style="display: inline-flex; border-collapse: collapse;
+	position: relative; top: 30px; right: -7px;" border="0">
+		
+		<tr style="margin-bottom: 5px;">
+			<td><img src="images/icons/kin.png" width="50" height="60"></td>
+			<td><img src="images/icons/gin.png" width="50" height="60"></td>
+			<td><img src="images/icons/dong.png" width="50" height="60"></td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/burin.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/dak.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/jind.jpg" width="230" height="230"></td>
+		</tr>	
+		<tr height="30">
+			<td style="background-color: #FF8C8C; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">첫번째로 맛있는 음식 </td>
+			<td style="background-color: #5ABEFF; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">두번째로 맛있는 음식 </td>
+			<td style="background-color: #acffef; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">세번째로 맛있는 음식 </td>
+		</tr>	
+		
+	</table>
+</div>
+
+<c:forEach var="article" items="${articleList}" end="2">
+	<div>
+	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed; word-break:break-all; table-layout: fixed;" border="1" >
+		<tr>
+			<td colspan="3" width="480">
+		    <div align="center" class="txt">${article.wsubject_li}</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+
+	<div>
+	<table>
+		<tr>
+			<td align="center" width="238"><img alt="" src="upload/${article.thumb_li}" width="200px" height="140px"><br>
+			${article.wsubject_li}</td>
+		</tr>
+	</table>
+	</div>
+</c:forEach>
+
+<!-- 	<div class="cart">
 <b>&nbsp;최근 둘러본 레시피</b>
 
 	<table>
@@ -340,7 +451,7 @@ opacity: 0.8;
 		</tr>
 	</table>
 	
-</div>
+</div> -->
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

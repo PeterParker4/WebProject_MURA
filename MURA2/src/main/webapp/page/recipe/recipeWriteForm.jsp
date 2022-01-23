@@ -7,67 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 작성</title>
-<style type="text/css">
-
-.s1{
-width: 100px;
-height: 20px;
-padding: 5px;
-border: thin;
-border-radius: 5px;
-border-color: aqua;
-background-color: #a84781;
-color: white;
-font-weight: bold;
-text-align: center;
-margin: 5px;
-}
-
-.s2{
-height: 25px;
-border: thin;
-border-radius: 5px;
-border-color: aqua;
-background-color: #330033;
-color: white;
-font-weight: bold;
-cursor: pointer;
-}
-
-.s2:hover{
-background-color: orange;
-color:black;
-}
-
-.tb{
-width: 55%;
-}
-
-.sl{
-width: 80px;
-height: 30px;
-border-radius: 4px;
-color: black;
-font-weight: bold;
-}
-
-.tx{
-width: 100%;
-height: 20px;
-border-radius: 4px;
-}
-
-.txt{
-border-radius: 4px;
-border-color: graytext;
-}
-
-</style>
-
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="/MURA2/ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link rel="stylesheet" type="text/css" href="css/recipeStyle.css">
 </head>
@@ -98,7 +40,7 @@ border-color: graytext;
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
+	  <a href="/MURA2/page/index.mur"> 
 	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 	</div>
 
@@ -192,41 +134,7 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
 <br><br>
 
 	<!--F 푸터메뉴 -->
-    <footer class="footer">
-		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
-		<div class="container" style="padding-top:7px;" align="center">
-			<div class="row">
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-info-circle fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>(주)MURA</h3>
-					<p class="text-muted">대표이사: 성세연<br>서울특별시 영등포구<br>010-1234-1234<br>jinsu9337@naver.com
-					</p>
-					</div>
-      			</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-file-o fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>Site Info</h3>
-					<p class="text-muted">"MURA" Designed by <a href="http://readiz.com" target="_blank">YJS</a><br/>with <a href="http://yongzz.com" target="_blank">yongzz</a>, <a href="http://wincomi.com" target="_blank">wincomi</a>, <a href="http://markquery.com" target="_blank">Ungki. H</a><br/><a href="http://blog.readiz.com/22">Further Information</a>
-					</p>
-					</div>
-				</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-link fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%"><h3>Other Links</h3>
-						<p class="text-muted">
-							<a href="/MURA2/page/index.jsp" title="홈">Top</a> | <a href="/tag" title="태그">태그</a>
-						</p><br><br>
-					</div>
-				</div>
-			</div>
-			<br><br>
-			<div class="row">
-				<div class="col-md-12" >
-					<hr style="width:75%;height:6px;border:none;background-color:#a84781;"><br>
-					<p class="text-muted">Copyright ⓒ 2021-2022 MURA All rights reserved.</p>
-				</div>
-			</div>
-		</div>
-    </footer>
+    <%@ include file="../footer.jsp" %>
 
 </body>
 </html>

@@ -31,7 +31,7 @@
         		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-link fa-2x fa-fw"></i></div>
 					<div class="media-body" style="float:left;width:33%"><h3>Other Links</h3>
 						<p class="text-muted">
-							<a href="/MURA2/page/index.jsp" title="홈">Top</a> | <a href="/tag" title="태그">태그</a>
+							<a href="/MURA2/page/index.mur" title="홈">Home</a> | <a href="/tag" title="태그">태그</a>
 						</p><br><br>
 					</div>
 				</div>

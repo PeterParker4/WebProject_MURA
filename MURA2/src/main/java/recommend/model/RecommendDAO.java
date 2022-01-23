@@ -28,7 +28,6 @@ public class RecommendDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
 		
 		try { 
 			con = ConnUtil.getConnection();
@@ -55,17 +54,18 @@ public class RecommendDAO {
 		int check = -1;
 		
 		try {
+			
 			con = ConnUtil.getConnection();
 			pstmt = con.prepareStatement("select id_mem from recommend_board where idx_num=? and board_num=?");
 			pstmt.setInt(1, num);
 			pstmt.setInt(2, board_num);
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();			
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				String dbid = rs.getString("id_mem");
 				if(id.equals(dbid)) check = 1;
-				else check = 0;
 			}
+			
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
 		}finally {

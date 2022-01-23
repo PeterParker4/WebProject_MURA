@@ -75,6 +75,9 @@ public class RecipeDAO {
 			} else if (find.equals("category_li")) {
 				pstmt = con.prepareStatement(
 						"select count(*) from food_board where category_li like '%" + find_box + "%'");
+			} else if (find.equals("tag_li")) {
+				pstmt = con.prepareStatement(
+						"select count(*) from food_board where tag_li like '%" + find_box + "%'");
 			} else if (find.equals("wcontent_li")) {
 				pstmt = con.prepareStatement(
 						"select count(*) from food_board where wcontent_li like '%" + find_box + "%'");
@@ -267,6 +270,12 @@ public class RecipeDAO {
 				pstmt.setInt(2, end);
 			} else if (find.equals("category_li")) {
 				sql.append("(select * from food_board where category_li like '%" + find_box + "%' "
+						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
+				pstmt = con.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			} else if (find.equals("tag_li")) {
+				sql.append("(select * from food_board where tag_li like '%" + find_box + "%' "
 						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);

@@ -205,11 +205,10 @@ background-size: cover;
 	
 	<!-- 검색 토글 -->
 	<div class="search-wrapper">
-	<form action="/MURA2/page/recipe/recipeList.mur" method="post" name="find_frm" onsubmit="return check()">
+	<form action="/MURA2/page/recipe/recipeList.mur?find=tag_li" method="post" name="find_frm" onsubmit="return check()">
 			    <div class="input-holder">
-			        <input type="text" class="search-input" placeholder="재료를 입력하세요!"/>
-			        <a href="">
-			        <button type="submit" class="search-icon" onclick="searchToggle(this, event);"><span></span></button></a>
+			        <input type="text" name="find_box" class="search-input" placeholder="재료를 입력하세요!"/>
+			        <button type="submit" class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
 			    </div>
 			    <span class="close" onclick="searchToggle(this, event);"></span>
 	</form>

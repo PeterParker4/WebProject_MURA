@@ -55,27 +55,8 @@ function frm_sub(i) {
 	</div>
 	
 	<!-- 상단 메뉴바 -->
-	<div class="tr1">
-	<table border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td>
-		<a href="/MURA2/page/recipe/recipeList.mur">
-		<input style="margin-left: 300px" type="button" class="button" name="레시피 보기" value="레시피 보기"></a></td>
-		
-		<td>
-		<a href="/MURA2/page/recipe/recipeWriteForm.mur">
-		<input type="button" class="button" name="레시피 작성" value="레시피 작성" ></a></td>
-		
-		<td>
-		<a href="/MURA2/userboard/boardList.mur">
-		<input type="button" class="button" name="레시피 요청" value="레시피 요청" ></a></td>
-		
-		<td>
-		<a href="/MURA2/userboard/qaboardList.mur">
-		<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A" ></a></td>
-	</tr>
-	</table>
-	</div>
+	<%@ include file="../menubar.jsp" %>
+	<br>
 
 <div align="center">
 <table width="980">
@@ -95,7 +76,7 @@ function frm_sub(i) {
 		</c:choose>
   </tr>
 </table>
-<h3 style="color: olive;"> 나만의 레시피를 공유해보세요! </h3>
+<h3 style="color: black;"> 나만의 레시피를 공유해보세요! </h3>
 
 <br>
 <c:if test="${count == 0 }">
@@ -132,15 +113,8 @@ function frm_sub(i) {
 </table>
 
 
-  <c:forEach var="article" items="${articleList}" varStatus="status">
+<c:forEach var="article" items="${articleList}" varStatus="status">
 <table style="display: inline-flex; border-collapse: collapse; table-layout: fixed; word-break:break-all; table-layout: fixed;" border="1" >  
- <%--  <tr height="30">
-    <td class="tt" align="center" width="50">번호</td>
-    <td align="center" width="50">
-    <c:out value="${number}"/>
-    <c:set var="number" value="${number-1}"/>
-    </td>
-  </tr> --%>
   
   <tr height="30">
   	
@@ -236,6 +210,7 @@ function frm_sub(i) {
 <form action="/MURA2/page/recipe/recipeList.mur" method="post" name="find_frm" onsubmit="return check()">
   <select name="find" size="1">
     <option value="nn_mem">작성자</option>
+    <option value="category_li">카테고리</option>
     <option value="wsubject_li">제목</option>
     <option value="wcontent_li">내용</option>
   </select>
@@ -246,11 +221,24 @@ function frm_sub(i) {
 </form>
 
 <br><br>
-<%-- <b>전체 글 : ${count}</b> --%>
 </div>
 
 
-<c:if test="${todayImageList ne null}">
+<div class="cart">
+<b>&nbsp;최근 둘러본 레시피</b>
+	<table>
+		<c:forEach var="todayImage" items="${todayImageList}" end="3">
+		<tr>
+			<td width="100">
+				<a href=""><img align="left" alt="" src="upload/${todayImage}" width="90" height="90" style="padding-right: 10px; margin-top: 5px;"></a></td>
+				<td width="150" align="left" valign="middle"><a href="">너구리 맛있게 먹는법</a>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
+</div>
+
+<%-- <c:if test="${todayImageList ne null}">
  <div id="todayImageList" align="center">
   <h2>오늘 본 레시피</h2>
   <table align="center">
@@ -267,7 +255,7 @@ function frm_sub(i) {
     </tr>
   </table>
  </div>
-</c:if>
+</c:if> --%>
 <br>
 <%@ include file="../footer.jsp" %>
 </body>

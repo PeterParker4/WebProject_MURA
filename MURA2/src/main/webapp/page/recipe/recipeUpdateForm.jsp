@@ -97,8 +97,8 @@ border-color: graytext;
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 
 <br><br>
@@ -124,6 +124,9 @@ method="post" onsubmit="return writeSave()" encType="multipart/form-data">
        <option value="일식">일식</option>
        <option value="양식">양식</option>
        <option value="중식">중식</option>
+       <option value="기타">기타</option>
+       <option value="분식">분식</option>
+       <option value="디저트">디저트</option>
      </select>
    </td>
 </tr>

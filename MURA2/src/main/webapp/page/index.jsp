@@ -99,62 +99,6 @@ height:75px;
   transform: translate(-50%, -50%);
 }
 
-.button {
-width:250px;
-height:60px;
-margin:15px;
-  padding: 5px;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  font-size: 30px;
-  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
-  border-radius: 0.3em;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  overflow: hidden;
-  background-color: transparent;
-  z-index: 1;
-  border: none;
-}
-
-.button:after{
-background-color: #a84781;
-width:250px;
-height:60px;width:250px;
-height:60px;
-opacity: 0.5;
-color:black;
-content: "먼지풀풀";
-position: absolute;
-left: 0px;
-top: 24px;
-}
-
-.button:before {
-  content: "";
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 100%;
-  width: 3em;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -4.5em;
-  transform: skewX(-45deg) translateX(0);
-  transition: none;
-}
-.button:hover {
-  background-color: transparent;
-  color: gray;
-  /* border: 1px solid #fff; */
-  font-size: 24px;
-  font-weight: normal;
-}
-.button:hover:before {
-  transform: skewX(-45deg) translateX(13.5em);
-  transition: all 0.5s ease-in-out;
-}
-
 .img{
 position: relative;
 right: 80px;
@@ -277,6 +221,7 @@ background-size: cover;
 	
 	<br><br><br>
 	
+	<!-- 검색 토글 -->
 	<div class="search-wrapper">
 			    <div class="input-holder">
 			        <input type="text" class="search-input" placeholder="재료를 입력하세요!"/>
@@ -285,44 +230,48 @@ background-size: cover;
 			    <span class="close" onclick="searchToggle(this, event);"></span>
 	</div>
 			
-	
 	<br><br><br><br>		
 	
 	<!-- 상단 메뉴바 -->
-	<div class="tr1">
-	<table border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td>
-		<a href="/MURA2/page/recipe/recipeList.mur">
-		<input style="margin-left: 300px" type="button" class="button" name="레시피 보기" value="레시피 보기"></a></td>
+	<%@ include file="menubar.jsp" %>
+	<br>
+	<hr style="width:100%;height:3px;border:none;background-color:#a84781;">
+	<br><br>
+	
+	<!-- 카테고리 이동 -->
+	<div class="category">
+	<table  width="1000" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <td>
+	      <img alt="" src="images/korea.png" width="100" height="100">
+	    </td>
 
-		<c:choose>
-			<c:when test="${id_mem eq null}">
-				<td>
-				<input type="button" class="button" name="레시피 작성" value="레시피 작성" onClick="alert('로그인 후 이용해 주세요!!');">
-				</td>
-			</c:when>
+	    <td>
+	      <img alt="" src="images/japan.png" width="100" height="100">
+	    </td>
 
-			<c:otherwise>
-				<td><a href="/MURA2/page/recipe/recipeWriteForm.mur"> 
-				<input type="button" class="button" name="레시피 작성" value="레시피 작성"></a></td>
-			</c:otherwise>
-		</c:choose>
-		
-		<td>
-		<a href="/MURA2/userboard/boardList.mur">
-		<input type="button" class="button" name="레시피 요청" value="레시피 요청" ></a></td>
-		
-		<td>
-		<a href="/MURA2/userboard/qaboardList.mur">
-		<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A" ></a></td>
-	</tr>
+	    <td>
+	      <img alt="" src="images/western.png" width="100" height="100">
+	    </td>
+
+	    <td>
+	      <img alt="" src="images/china.png" width="100" height="100">
+	    </td>
+
+	    <td>
+	      <img alt="" src="images/bunsik.png" width="100" height="100">
+	    </td>
+
+	    <td>
+	      <img alt="" src="images/desert.png" width="100" height="100">
+	    </td>
+	    
+	  </tr>
 	</table>
 	</div>
 	
 	<br><br>
-	
-	
+	<!-- 슬라이드쇼 -->
 	<div class="slide">
       <img id="back" src="img/left.jpg" alt="" width="100">
       <ul>
@@ -348,7 +297,11 @@ background-size: cover;
 		</tr>
 		<c:forEach var="article" items="${articleList}" end="9">
 		<tr height="30">
-			<td align="left" width="230"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">${article.wsubject_li}</div></a></td>
+			<td align="left" width="230">
+			<div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">
+			<a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=1&thumb_li=${article.thumb_li}">${article.wsubject_li}</a>
+			<img alt="" src="recipe/images/hot.gif" border="0" height="20"></div>
+			</td>
 			<td align="center" width="50">${article.readcount_li}</td>
 		</tr>
 		</c:forEach>
@@ -361,17 +314,21 @@ background-size: cover;
 			<td><img src="images/icons/gin.png" width="50" height="60"></td>
 			<td><img src="images/icons/dong.png" width="50" height="60"></td>
 		</tr>
+
 		<tr>
-			<td><img alt="" src="images/burin.jpg" width="230" height="230"></td>
-			<td><img alt="" src="images/dak.jpg" width="230" height="230"></td>
-			<td><img alt="" src="images/jind.jpg" width="230" height="230"></td>
+		<c:forEach var="article2" items="${articleList2}" end="2">
+			<td><a href="/MURA2/page/recipe/recipeContent.mur?num=${article2.idx_li}&pageNum=1&thumb_li=${article2.thumb_li}">
+			<img alt="" src="recipe/upload/${article2.thumb_li}" width="230" height="230"></a></td>
+		</c:forEach>
 		</tr>	
+
 		<tr height="30">
-			<td style="background-color: #FF8C8C; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">첫번째로 맛있는 음식 </td>
-			<td style="background-color: #5ABEFF; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">두번째로 맛있는 음식 </td>
-			<td style="background-color: #acffef; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">세번째로 맛있는 음식 </td>
+		<c:forEach var="article2" items="${articleList2}" end="2">
+			<td style="background-color: #FFBCD9; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+			<a style="color: white" href="/MURA2/page/recipe/recipeContent.mur?num=${article2.idx_li}&pageNum=1&thumb_li=${article2.thumb_li}">
+			${article2.wsubject_li}</a></td>
+		</c:forEach>
 		</tr>	
-		
 	</table>
 </div>
 <br><br>  
@@ -411,9 +368,7 @@ background-size: cover;
 </div>
 <br><br>
 	
-
 <%@ include file="footer.jsp" %>
-
 
 </div>
 </body>

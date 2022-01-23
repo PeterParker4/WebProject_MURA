@@ -81,7 +81,6 @@ padding-top: 4px;
 <body bgcolor = "ffffff">
 
 	<!--N 네비메뉴 -->
-	<!--N 네비메뉴 -->
 	<div>
 		<nav>
 		 	 <c:choose>
@@ -107,9 +106,12 @@ padding-top: 4px;
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
+	
+	<!-- 상단 메뉴바 -->
+	<%@ include file="../menubar.jsp" %>
 
 <div style="display: flex; justify-content: center; align-items: center;">
 <div align="center" class="div1"><br><br>
@@ -141,12 +143,12 @@ padding-top: 4px;
 <c:if test="${memberInfo.id_mem ne null}">
  <tr align="center">
  <td align="center">
-   <input type=button value="좋아요" onclick="document.location.href='/MURA2/page/recipe/recipeRecommend.mur?num=${num}&pageNum=${pageNum}&board_num=${article.board_num}'"></td>
+ 	<a href="/MURA2/page/recipe/recipeRecommend.mur?num=${num}&pageNum=${pageNum}&board_num=${article.board_num}"> 
+	  <img src="images/heart.png" width="40" height="40" border="0" alt=""></a></td>
  </tr>
 </c:if>
 </table>    
-
-<br>
+<br><br>
 <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter('${article.wsubject_li}',${num},${pageNum});"></a>&nbsp;
 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${num},${pageNum});"></a>&nbsp;
 <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>&nbsp; 
@@ -174,6 +176,7 @@ padding-top: 4px;
 <br>
 
 <!--F 푸터메뉴 -->
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

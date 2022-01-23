@@ -138,6 +138,49 @@ public class RecipeDAO {
 		return articleList;
 	}
 
+	// 인덱스 추천순으로 글 가져오기
+	public List<RecipeVO> getArticlesRecommend() {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RecipeVO> articleList = null;
+		
+		try {
+			con = ConnUtil.getConnection();
+			
+			pstmt = con.prepareStatement("select * from food_board order by recommend_cnt desc");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				articleList = new ArrayList<RecipeVO>();
+				do {
+					RecipeVO article = new RecipeVO();
+					article.setIdx_li(rs.getInt("idx_li"));
+					article.setUn_mem(rs.getInt("un_mem"));
+					article.setNn_mem(rs.getString("nn_mem"));
+					article.setCategory_li(rs.getString("category_li"));
+					article.setWsubject_li(rs.getString("wsubject_li"));
+					article.setTag_li(rs.getString("tag_li"));
+					article.setThumb_li(rs.getString("thumb_li"));
+					article.setWcontent_li(rs.getString("wcontent_li"));
+					article.setDate_li(rs.getTimestamp("date_li"));
+					article.setReadcount_li(rs.getInt("readcount_li"));
+					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
+					article.setBoard_num(rs.getInt("board_num"));
+					articleList.add(article);
+				} while (rs.next());
+			}
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return articleList;
+	}
+
 	// food_board table에서 가져올 메소드 구현 (List로 구현)
 	// 검색할 내용을 리스트로 받아옴(what:검색 조건, content:검색 내용, start:시작번호,end:끝번호)
 	public List<RecipeVO> getArticles(int start, int end) {// 수정1
@@ -215,6 +258,12 @@ public class RecipeDAO {
 				pstmt.setInt(3, end);
 			} else if (find.equals("wsubject_li")) {
 				sql.append("(select * from food_board where wsubject_li like '%" + find_box + "%' "
+						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
+				pstmt = con.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			} else if (find.equals("category_li")) {
+				sql.append("(select * from food_board where category_li like '%" + find_box + "%' "
 						+ "order by idx_li desc)) where rnum >= ? and rnum <= ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);

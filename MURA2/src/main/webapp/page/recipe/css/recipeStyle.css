@@ -175,6 +175,19 @@ text-align: center;
 margin: 5px;
 }
 
+.s1_1{
+height: 20px;
+padding: 5px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+text-align: center;
+margin: 5px;
+}
+
 .s2{
 height: 25px;
 border: thin;

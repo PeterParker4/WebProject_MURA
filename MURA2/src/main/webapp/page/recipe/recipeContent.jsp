@@ -7,8 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 상세보기</title>
+<script type="text/javascript">
+function check() {
+	if(document.replyWriteForm.content_reply.value==""){
+		alert("댓글 내용을 입력해 주세요");
+		return false;
+	}
+  }
+</script>
 <style type="text/css">
-
 .s2{
 height: 35px;
 width: 60px;
@@ -154,6 +161,47 @@ padding-top: 4px;
 </div>
 <br>
 <br>
+
+<table border="0" width="700" align="center">
+
+<tr>
+<td class="s1_1" align="center" width="100">작성자</td>
+<td class="s1_1" align="center" width="500">댓글 내용</td>
+<td class="s1_1" align="center" width="100">작성일</td>
+</tr>
+<c:if test="${userArticle.replycnt_ut == 0}">
+<tr align="center" >
+	    <td colspan="3">댓글이 없습니다.</td>
+</tr>
+</c:if>
+
+<c:forEach var="reply" items="${replyList}">
+
+<c:if test="${userArticle.replycnt_ut > 0}">
+<tr>
+<td>${reply.nn_reply}</td>
+<td>${reply.content_reply}</td>
+<td>${reply.date_reply}</td>
+</tr>
+</c:if>
+
+</c:forEach>
+</table>
+
+<br><br>
+<c:if test="${id_mem != null}">
+<form action="userReplyPro.jsp" method="post" name="replyWriteForm" onsubmit="return check()">
+<table width="700" align="center">
+<tr><td>${nn_mem}</td>
+<td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
+<input type="hidden" value="${userArticle.idx_ut}" name="board_reply">
+<input type="hidden" value="${pageNum }" name="pageNum">
+</td></tr>
+<tr><td colspan="2" align="right"><input type="submit" class="s2" value="댓글"></td></tr>
+</table>
+</form>
+</c:if>
+<br><br>
 
 <!--F 푸터메뉴 -->
 <%@ include file="../footer.jsp" %>

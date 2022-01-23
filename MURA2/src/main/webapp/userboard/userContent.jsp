@@ -45,7 +45,6 @@ function check() {
 		return false;
 	}
   }
-
 </script>
 </head>
 <body bgcolor="${bodyback_c }">

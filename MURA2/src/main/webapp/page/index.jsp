@@ -196,7 +196,8 @@ background-size: cover;
 		<nav>
 		 	 <c:choose>
 				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
-					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+					<a href="/MURA2/adminboard/adminList.mur"> 회원관리 </a> |
+					<a href="/MURA2/page/member/logout.mur"> Logout </a>&nbsp;
 				</c:when>
 				
 				<c:when test="${id_mem ne null}">

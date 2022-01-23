@@ -27,25 +27,7 @@ function frm_sub(i) {
 </head>
 <body bgcolor = "#ffffff">
 	<!--N 네비메뉴 -->
-	<div>
-		<nav>
-		 	 <c:choose>
-				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
-					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
-				</c:when>
-				
-				<c:when test="${id_mem ne null}">
-					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
-					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
-				</c:when>
-							
-				<c:otherwise>
-					<a href="/MURA2/page/member/signinForm.mur"> Sign Up </a> |
-					<a href="/MURA2/page/member/login.mur"> Login </a>&nbsp;
-				</c:otherwise>
-			</c:choose> 
-		</nav>
-	</div>
+	<%@ include file="../nav.jsp" %>
 	<br><br>
 
 	<!-- 상단 로고 -->
@@ -57,28 +39,48 @@ function frm_sub(i) {
 	<!-- 상단 메뉴바 -->
 	<%@ include file="../menubar.jsp" %>
 	<br>
+	<hr style="width:100%;height:3px;border:none;background-color:#a84781;">
+	<br><br>
+	
+	<!-- 카테고리 이동 -->
+	<div class="category">
+	<table  width="1000" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+	    <td>
+	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=한식">
+	      <img alt="" src="../images/korea.png" width="100" height="100"></a>
+	    </td>
 
-<div align="center">
-<table width="980">
-  <tr>
-  		<c:choose>
-			<c:when test="${id_mem eq null}">
-				<td align="center">
-				<div class="buttons buttons2">
-				<button class="button5" onClick="alert('로그인 후 이용해 주세요!!');"></button></div></td>
-			</c:when>
+	    <td>
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=일식">
+	      <img alt="" src="../images/japan.png" width="100" height="100"></a>
+	    </td>
 
-			<c:otherwise>
-				<td align="center">
-				<div class="buttons buttons2">
-	            <a href="/MURA2/page/recipe/recipeWriteForm.mur"><button class="button5"></button></a></div></td>
-			</c:otherwise>
-		</c:choose>
-  </tr>
-</table>
-<h3 style="color: black;"> 나만의 레시피를 공유해보세요! </h3>
+	    <td>
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=양식">
+	      <img alt="" src="../images/western.png" width="100" height="100"></a>
+	    </td>
 
-<br>
+	    <td>
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=중식">
+	      <img alt="" src="../images/china.png" width="100" height="100"></a>
+	    </td>
+
+	    <td>
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=분식">
+	      <img alt="" src="../images/bunsik.png" width="100" height="100"></a>
+	    </td>
+
+	    <td>
+   	    <a href="/MURA2/page/recipe/recipeList.mur?find=category_li&find_box=디저트">
+	      <img alt="" src="../images/desert.png" width="100" height="100"></a>
+	    </td>
+	    
+	  </tr>
+	</table>
+	</div>
+<br><br>
+
 <c:if test="${count == 0 }">
 <table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr align="center">
@@ -87,7 +89,7 @@ function frm_sub(i) {
 </table>
 </c:if>
 
-<div>
+<div align="center">
 <c:if test="${count > 0 }">
 
 <table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;" border="1">
@@ -95,8 +97,11 @@ function frm_sub(i) {
 <tr height="30">
 <td class="tt" align="center" width="45">카테 고리</td>
 </tr>
-<tr height="380">
+<tr height="330">
   <td class="tt" align="center" width="45">제목</td> 
+  </tr>
+  <tr height="50">
+  <td class="tt" align="center" width="45">재료</td>
   </tr>
   <tr height="30">
   <td class="tt" align="center" width="45">작성자</td>
@@ -105,26 +110,22 @@ function frm_sub(i) {
   <td class="tt" align="center" width="45">작성일</td>
   </tr>
   <tr height="30">
-  <td class="tt" align="center" width="45">추천수</td>
-  </tr>
-  <tr height="30">
   <td class="tt" align="center" width="45">조회수</td>
   </tr>
+  <tr height="30">
+  <td class="tt" align="center" width="45">추천수</td>
+  </tr>
 </table>
-
 
 <c:forEach var="article" items="${articleList}" varStatus="status">
 <table style="display: inline-flex; border-collapse: collapse; table-layout: fixed; word-break:break-all; table-layout: fixed;" border="1" >  
   
   <tr height="30">
-  	
     <td align="center" width="90">
-    ${article.category_li}
-    </td>
-  </tr>  
-    
-  <tr height="380">
-  	
+    ${article.category_li}</td>
+  </tr>
+  
+  <tr height="330">
     <td width="300">
     <div class="subjectbar">
       <a href="/MURA2/page/recipe/recipeContent.mur?num=${article.idx_li}&pageNum=${currentPage}&thumb_li=${article.thumb_li}">
@@ -139,29 +140,31 @@ function frm_sub(i) {
     </td>
   </tr>
   
+  <tr height="50">
+    <td align="center" width="110">
+    ${article.tag_li}</td>
+  </tr>  
+  
   <tr height="30">
     <td align="center" width="110">
-    ${article.nn_mem}
-    </td>
+    ${article.nn_mem}</td>
   </tr>  
   
   <tr height="30">
     <td align="center" width="150">
-    ${article.date_li}
-    </td>
+    ${article.date_li}</td>
   </tr>
     
   <tr height="30">
     <td align="center" width="50">
-    ${article.recommend_cnt}
-    </td>
+    ${article.readcount_li}</td>
   </tr>
-
+  
   <tr height="30">
     <td align="center" width="50">
-    ${article.readcount_li}
-    </td>
-  </tr>
+    ${article.recommend_cnt}</td>
+  </tr>  
+  
 </table>
   </c:forEach>
 
@@ -170,7 +173,7 @@ function frm_sub(i) {
 <br>
 
 <!-- 페이징 처리 -->
-<div>
+<div align="center">
 <c:if test="${count > 0 }">
   <c:set var="imsi" value="${count % pageSize == 0 ? 0 : 1}"/>
   <c:set var="pageCount" value="${count / pageSize + imsi }"/>
@@ -198,10 +201,8 @@ function frm_sub(i) {
 </c:if>
 </div>
 
-<br><br>
-
-<div>
 <!-- 게시판 내 검색 -->
+<div align="right" style="margin-right: 100px;">
 <form method="post" name="i_frm">
   <input type="hidden" name="find_box" value="${find_box}">
   <input type="hidden" name="find" value="${find}">
@@ -219,44 +220,41 @@ function frm_sub(i) {
   &nbsp;
   <input type="submit" class="c2" value="검색">
 </form>
-
-<br><br>
 </div>
 
+<!-- 레시피 작성 버튼 -->
+<div align="center">
+<table width="980">
+  <tr>
+  		<c:choose>
+			<c:when test="${id_mem eq null}">
+				<td align="center">
+				<div class="buttons buttons2">
+				<button class="button5" onClick="alert('로그인 후 이용해 주세요!!');"></button></div></td>
+			</c:when>
+
+			<c:otherwise>
+				<td align="center">
+				<div class="buttons buttons2">
+	            <a href="/MURA2/page/recipe/recipeWriteForm.mur"><button class="button5"></button></a></div></td>
+			</c:otherwise>
+		</c:choose>
+  </tr>
+</table>
+<h3 style="color: black;"> 나만의 레시피를 공유해보세요! </h3>
 
 <div class="cart">
-<b>&nbsp;최근 둘러본 레시피</b>
+<b>&nbsp;최근 둘러본 레시피</b><br>
 	<table>
 		<c:forEach var="todayImage" items="${todayImageList}" end="3">
 		<tr>
 			<td width="100">
-				<a href=""><img align="left" alt="" src="upload/${todayImage}" width="90" height="90" style="padding-right: 10px; margin-top: 5px;"></a></td>
-				<td width="150" align="left" valign="middle"><a href="">너구리 맛있게 먹는법</a>
-			</td>
-		</tr>
+			<a href=""><img alt="" src="upload/${todayImage}" width="150" height="110" style="padding-right: 10px; margin-top: 5px;"></a></td>
+		</tr><br>
 		</c:forEach>
 	</table>
 </div>
 
-<%-- <c:if test="${todayImageList ne null}">
- <div id="todayImageList" align="center">
-  <h2>오늘 본 레시피</h2>
-  <table align="center">
-   <tr>
-    <c:forEach var="todayImage" items="${todayImageList}">
-     <td>
-      <img alt="" src="upload/${todayImage}" id="todayImage" width="170px" height="110px" border="1"></a>&nbsp;
-     </td>
-      <c:if test="${((status.index+1) mod 4) == 0 }">
-     </tr>
-    <tr>
-    </c:if>
-    </c:forEach>
-    </tr>
-  </table>
- </div>
-</c:if> --%>
-<br>
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

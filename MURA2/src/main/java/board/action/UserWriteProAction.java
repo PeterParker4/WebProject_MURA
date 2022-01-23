@@ -22,7 +22,6 @@ public class UserWriteProAction implements CommandAction {
 		
 		HttpSession session = request.getSession();
 		String id_mem = (String) session.getAttribute("id_mem");
-		System.out.println(id_mem);
 		
 		UserBoard userArticle = new UserBoard();
 		MemberDAO dao = new MemberDAO();

@@ -42,8 +42,6 @@ public class RecipeListAction implements CommandAction {
 		
 		find = request.getParameter("find");
 		find_box = request.getParameter("find_box");
-		System.out.println("find="+find);
-		System.out.println("find_box="+find_box);
 		
 		if(find == null) {
 			find = "no";

@@ -192,26 +192,7 @@ background-size: cover;
 <body>
 <div class="back">
 	<!--N 네비메뉴 -->
-	<div>
-		<nav>
-		 	 <c:choose>
-				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
-					<a href="/MURA2/adminboard/adminList.mur"> 회원관리 </a> |
-					<a href="/MURA2/page/member/logout.mur"> Logout </a>&nbsp;
-				</c:when>
-				
-				<c:when test="${id_mem ne null}">
-					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
-					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
-				</c:when>
-							
-				<c:otherwise>
-					<a href="/MURA2/page/member/signinForm.mur"> Sign Up </a> |
-					<a href="/MURA2/page/member/login.mur"> Login </a>&nbsp;
-				</c:otherwise>
-			</c:choose> 
-		</nav>
-	</div>
+	<%@ include file="nav.jsp" %>
 	<br><br>
 	
 	<!-- 상단 로고 -->
@@ -224,11 +205,14 @@ background-size: cover;
 	
 	<!-- 검색 토글 -->
 	<div class="search-wrapper">
+	<form action="/MURA2/page/recipe/recipeList.mur" method="post" name="find_frm" onsubmit="return check()">
 			    <div class="input-holder">
 			        <input type="text" class="search-input" placeholder="재료를 입력하세요!"/>
-			        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+			        <a href="">
+			        <button type="submit" class="search-icon" onclick="searchToggle(this, event);"><span></span></button></a>
 			    </div>
 			    <span class="close" onclick="searchToggle(this, event);"></span>
+	</form>
 	</div>
 			
 	<br><br><br><br>		
@@ -325,7 +309,7 @@ background-size: cover;
 		<tr>
 		<c:forEach var="article2" items="${articleList2}" end="2">
 			<td><a href="/MURA2/page/recipe/recipeContent.mur?num=${article2.idx_li}&pageNum=1&thumb_li=${article2.thumb_li}">
-			<img alt="" src="recipe/upload/${article2.thumb_li}" width="230" height="230"></a></td>
+			<img alt="" src="recipe/upload/${article2.thumb_li}" width="230" height="180"></a></td>
 		</c:forEach>
 		</tr>	
 
@@ -380,6 +364,7 @@ background-size: cover;
 </div>
 </body>
 <script type="text/javascript">
+
     $(document).ready(function(){
       var imgs;
       var img_count;

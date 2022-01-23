@@ -18,11 +18,17 @@ public class UserContentAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		try {
+
 		HttpSession session = request.getSession();
-		String id_mem = (String) session.getAttribute("loginID");
-		MemberDAO dao = new MemberDAO();
-		String nn_mem = dao.getMember(id_mem).getNn_mem();
-		int un_mem = dao.getMember(id_mem).getUn_mem();
+		String id_mem = (String) session.getAttribute("id_mem");
+		
+		if(id_mem != null) {
+			MemberDAO dao = new MemberDAO();
+			String nn_mem = dao.getMember(id_mem).getNn_mem(); 
+			int un_mem = dao.getMember(id_mem).getUn_mem();
+			request.setAttribute("nn_mem", nn_mem);
+			request.setAttribute("un_mem", un_mem);
+		}
 		
 		int idx_ut = Integer.parseInt(request.getParameter("idx_ut"));
 		String pageNum = request.getParameter("pageNum");
@@ -34,8 +40,7 @@ public class UserContentAction implements CommandAction {
 		List<ReplyVO> replyList = null;
 		replyList = replyDAO.getReply(idx_ut);
 		
-		request.setAttribute("nn_mem", nn_mem);
-		request.setAttribute("un_mem", un_mem);
+		
 		request.setAttribute("idx_ut", idx_ut);
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("userArticle", userArticle);

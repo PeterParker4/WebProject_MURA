@@ -63,10 +63,13 @@ border-color: graytext;
 .s3{
 font-style:inherit;
 font-weight:bolder;
+font-family:sans-serif;
 color: threeddarkshadow;
 cursor: pointer;
 height: 25px;
 }
+
+
 
 
 </style>
@@ -133,7 +136,8 @@ onsubmit="return writeSave()">
 <tr>
 	<td class="s1">닉네임</td>
 	<td width="330">
-		<input type="text" name="nn_mem" readonly="readonly" value="${nn_mem}">
+	
+		<input type="text" name="nn_mem" readonly="readonly" value="${nn_mem }">
 	</td>
 </tr>
 
@@ -146,6 +150,8 @@ onsubmit="return writeSave()">
 		<textarea rows="30" cols="100%" name="wcontent_ut"></textarea>
 	</td>
 </tr>
+
+
 
 <tr>
 	<td colspan="2" align="right">

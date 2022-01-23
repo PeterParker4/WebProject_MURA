@@ -13,3 +13,11 @@ function searchToggle(obj, evt) {
 	}
 	
 }
+
+ /* 검색 체크 */
+function check() {
+	if(document.find_frm.search-input.value == "null") {
+		alert("검색어를 입력하세요.");
+		return false;
+	}
+}

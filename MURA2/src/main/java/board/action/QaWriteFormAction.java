@@ -17,7 +17,7 @@ public class QaWriteFormAction implements CommandAction {
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		String nn_mem = dao.getMember(id_mem).getNn_mem();
-		
+		System.out.println(nn_mem);
 		int idx_qt = 0, ref_qt = 1, step_qt = 0, depth_qt = 0;
 		
 		try {

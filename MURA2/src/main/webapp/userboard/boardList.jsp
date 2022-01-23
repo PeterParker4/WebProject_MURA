@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="loginID" value="${sessionScope.loginID }" />
 
 <!DOCTYPE html>
 <html>
@@ -63,15 +62,6 @@ function check() {
 	i_frm.submit();
   }
   
- function loginCheck(){
-	 if(${loginID} == null){
-		 var test = confirm("로그인 후 이용해주세요.");
-		 if(test == true){
-			 location.href="/MURA2/page/lndex.jsp";
-		 }else if(test == false){
-			 history.back();
-		 } 
- }
 
 </script>    
     
@@ -206,12 +196,17 @@ onsubmit="return check()">
 	<tr>	
 	<td colspan="2" align="right">
 		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">
-		<%-- <c:if test="${loginID == null }">
-		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/page/login.mur'">
-		</c:if>
-		 --%>
-		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
-		 <!-- onsubmit="return loginCheck()" -->
+		<c:choose>
+			<c:when test="${id_mem eq null}">
+				<td>
+				<input type="button" class="s2" value="작성하기" onClick="alert('로그인 후 이용해 주세요!!');">
+				</td>
+			</c:when>
+
+			<c:otherwise>
+				<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
+			</c:otherwise>
+		</c:choose>
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

@@ -71,10 +71,10 @@ text-align: justify;
 </head>
 <body>
 
-<!-- 상단 로고 -->
+	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 	
 	<p align="center">

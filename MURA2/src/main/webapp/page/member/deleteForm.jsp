@@ -89,10 +89,10 @@ body {
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <body onload="begin()">
-<!-- 상단 로고 -->
+	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="../index.jsp"> 
-	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 	
 <form action="deleteProc.mur" name="myForm" method="post" onsubmit="return checkIt()">

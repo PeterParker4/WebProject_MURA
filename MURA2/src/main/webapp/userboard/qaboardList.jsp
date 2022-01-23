@@ -197,7 +197,7 @@ onsubmit="return check()">
   &nbsp;
   <input type="text" name="find_box">
   &nbsp;
-  <input type="submit" class="s2" value="검색">
+  <input type="submit" value="검색">
 
 </form>
 	
@@ -210,10 +210,17 @@ onsubmit="return check()">
 	<tr>	
 	<td colspan="2" align="right">
 		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/qaboardList.mur'">
-		<%-- <c:if test="${loginID ne null }">
-		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
-		</c:if> --%>
-		<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
+		<c:choose>
+			<c:when test="${id_mem eq null}">
+				<td>
+				<input type="button" class="s2" value="작성하기" onClick="alert('로그인 후 이용해 주세요!!');">
+				</td>
+			</c:when>
+
+			<c:otherwise>
+				<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
+			</c:otherwise>
+		</c:choose>
 		<input type="reset" class="s2" value=" 취소 ">
 	</td>
 	</tr>

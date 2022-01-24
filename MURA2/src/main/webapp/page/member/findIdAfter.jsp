@@ -11,16 +11,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MURA :: 아이디 찾기</title>
-<style type="text/css">
-
-.bt{
-width: 200px;
-height: 50px;
-font-size: 17px;
-
-}
-
-</style>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -30,7 +20,33 @@ font-size: 17px;
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
-
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<!--===============================================================================================-->
 
 </head>
 
@@ -38,36 +54,33 @@ font-size: 17px;
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-		<a href="../index.jsp"> <img src="../images/topLogo.jpg" width="1194"
-			height="230" border="0" alt=""></a>
-	</div>
-<div align="center">
-	<div>
-		<img alt="" src="../images/cat.gif" width="200" height="200">
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 
-	<div>
-		<form role="form" method="post">
-			<div>
-				<div>
-					<div>
+	<div class="password_container">
+		<form class="form-horizontal" role="form" method="post">
+			<div class="form">
+				<div class="row">
+					<div class="col-md-12 h2m">
 						<h2>아이디 찾기</h2>
-						<h3>
-							회원님의 아이디는 [ &nbsp;<strong style="color: #a84781;">${id_mem}</strong>&nbsp;] 입니다.
-						</h3>
+						<h6>
+							회원가입 시 사용한 아이디는 '<strong>${id_mem}</strong>' 입니다.
+						</h6>
 					</div>
 				</div>
 			</div>
-			<div>
-				<div>
-					<button type="button" class="bt" onclick="location.href='login.mur'">로그인
-					화면으로 돌아가기</button>
+			<div class="row">
+				<div class="col-md-10 inputbb">
+					<button type="button" class="btn btn-outline-secondary loginbtn"
+						onclick="location.href='login.mur'">로그인
+						화면으로 돌아가기</button>
 				</div>
 			</div>
 		</form>
 	</div>
 
-</div>
+
 	<div id="dropDownSelect1"></div>
 
 	<!--===============================================================================================-->

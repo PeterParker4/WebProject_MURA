@@ -7,8 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 레시피 상세보기</title>
+<script type="text/javascript">
+function check() {
+	if(document.replyWriteForm.content_reply.value==""){
+		alert("댓글 내용을 입력해 주세요");
+		return false;
+	}
+  }
+</script>
 <style type="text/css">
-
 .s2{
 height: 35px;
 width: 60px;
@@ -81,35 +88,17 @@ padding-top: 4px;
 <body bgcolor = "ffffff">
 
 	<!--N 네비메뉴 -->
-	<!--N 네비메뉴 -->
-	<div>
-		<nav>
-		 	 <c:choose>
-				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
-					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
-				</c:when>
-				
-				<c:when test="${id_mem ne null}">
-					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
-					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
-				</c:when>
-							
-				<c:otherwise>
-					<a href="/MURA2/page/member/signinForm.mur"> Sign In </a> |
-					<a href="/MURA2/page/member/login.mur"> Login </a> |
-					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
-				</c:otherwise>
-			</c:choose> 
-
-		</nav>
-	</div>
+	<%@ include file="../nav.jsp" %>
 	<br><br>
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
+	
+	<!-- 상단 메뉴바 -->
+	<%@ include file="../menubar.jsp" %>
 
 <div style="display: flex; justify-content: center; align-items: center;">
 <div align="center" class="div1"><br><br>
@@ -141,12 +130,12 @@ padding-top: 4px;
 <c:if test="${memberInfo.id_mem ne null}">
  <tr align="center">
  <td align="center">
-   <input type=button value="좋아요" onclick="document.location.href='/MURA2/page/recipe/recipeRecommend.mur?num=${num}&pageNum=${pageNum}&board_num=${article.board_num}'"></td>
+ 	<a href="/MURA2/page/recipe/recipeRecommend.mur?num=${num}&pageNum=${pageNum}&board_num=${article.board_num}"> 
+	  <img src="images/heart.png" width="40" height="40" border="0" alt=""></a></td>
  </tr>
 </c:if>
 </table>    
-
-<br>
+<br><br>
 <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter('${article.wsubject_li}',${num},${pageNum});"></a>&nbsp;
 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${num},${pageNum});"></a>&nbsp;
 <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>&nbsp; 
@@ -173,7 +162,49 @@ padding-top: 4px;
 <br>
 <br>
 
+<table border="0" width="700" align="center">
+
+<tr>
+<td class="s1_1" align="center" width="100">작성자</td>
+<td class="s1_1" align="center" width="500">댓글 내용</td>
+<td class="s1_1" align="center" width="100">작성일</td>
+</tr>
+<c:if test="${userArticle.replycnt_ut == 0}">
+<tr align="center" >
+	    <td colspan="3">댓글이 없습니다.</td>
+</tr>
+</c:if>
+
+<c:forEach var="reply" items="${replyList}">
+
+<c:if test="${userArticle.replycnt_ut > 0}">
+<tr>
+<td>${reply.nn_reply}</td>
+<td>${reply.content_reply}</td>
+<td>${reply.date_reply}</td>
+</tr>
+</c:if>
+
+</c:forEach>
+</table>
+
+<br><br>
+<c:if test="${id_mem != null}">
+<form action="userReplyPro.jsp" method="post" name="replyWriteForm" onsubmit="return check()">
+<table width="700" align="center">
+<tr><td>${nn_mem}</td>
+<td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
+<input type="hidden" value="${userArticle.idx_ut}" name="board_reply">
+<input type="hidden" value="${pageNum }" name="pageNum">
+</td></tr>
+<tr><td colspan="2" align="right"><input type="submit" class="s2" value="댓글"></td></tr>
+</table>
+</form>
+</c:if>
+<br><br>
+
 <!--F 푸터메뉴 -->
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

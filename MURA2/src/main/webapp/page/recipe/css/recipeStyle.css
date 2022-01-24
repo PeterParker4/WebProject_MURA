@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 @font-face {
-
       src : url("../../fonts/BMHANNAPro.ttf"); 
       font-family: "bmhannapro";
       
@@ -30,15 +29,200 @@ a {
 	justify-content: center;
 }
 
-.rayout_menu {
-	width: 60%;
-	height: 100px;
-	margin: auto;
-	text-align: center;	
-}
-
 .subjectbar {
     vertical-align: middle;
 }
 
+ table {
+	margin: auto;
+	text-align: center;	
+} 
+
 p { margin: 0px 0px 0px 0px; line-height: 150%; }
+
+/* SNS 공유 아이콘 */
+.link-icon { position: relative; display: inline-block; width: 40px; font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.twitter { background-image: url(../images/icon-twitter.png); background-repeat: no-repeat; }
+.link-icon.facebook { background-image: url(../images/icon-facebook.png); background-repeat: no-repeat; } 
+.link-icon.kakao { background-image: url(../images/icon-kakao.png); background-repeat: no-repeat; }
+
+/* 오늘 본 레시피 */
+.cart{
+width: 200px;
+height: 300px;
+border: black 2px solid;
+color: black;
+position: fixed;
+left: 50px;
+top: 400px;
+z-index: 1;
+}
+
+.cart::after {
+width: 200px;
+height: 300px;
+background-color: #fff;
+content:"";
+position: absolute;
+left: 0;
+top: 0;
+z-index:-1;
+opacity: 0.8;
+}
+
+/* 레시피 게시판 */
+.tt{
+background-color: #FFBCD9;
+}
+
+.txt{
+font-size: 24px;
+font-weight: bold;
+}
+.button5{
+width: 120px;
+height: 110px;
+background-color: #ffffff;
+background-image: url("../images/nem2.png");
+background-size: 100px 100px;
+background-position:center;
+background-repeat:no-repeat;
+transition: all 0.3s;
+border-radius: 5px;
+
+}
+
+.button5:hover{
+color:#fff;
+font-size: 15px;
+background-color: #ffffff;
+background-image: url("../images/nem1.png");
+background-size: 100px 100px;
+background-position:center;
+background-repeat:no-repeat;
+
+}
+
+/* 상단 메뉴바 */
+.button {
+width:250px;
+height:60px;
+margin:15px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 1;
+  border: none;
+}
+
+.button:after{
+background-color: #a84781;
+width:250px;
+height:60px;width:250px;
+height:60px;
+opacity: 0.5;
+color:black;
+content: "먼지풀풀";
+position: absolute;
+left: 0px;
+top: 24px;
+}
+
+.button:before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  transform: skewX(-45deg) translateX(0);
+  transition: none;
+}
+.button:hover {
+  background-color: transparent;
+  color: gray;
+  /* border: 1px solid #fff; */
+  font-size: 24px;
+  font-weight: normal;
+}
+.button:hover:before {
+  transform: skewX(-45deg) translateX(13.5em);
+  transition: all 0.5s ease-in-out;
+}
+
+/* 레시피 작성폼 */
+.s1{
+width: 100px;
+height: 20px;
+padding: 5px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+text-align: center;
+margin: 5px;
+}
+
+.s1_1{
+height: 20px;
+padding: 5px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #a84781;
+color: white;
+font-weight: bold;
+text-align: center;
+margin: 5px;
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
+.tb{
+width: 55%;
+}
+
+.sl{
+width: 80px;
+height: 30px;
+border-radius: 4px;
+color: black;
+font-weight: bold;
+}
+
+.tx{
+width: 100%;
+height: 20px;
+border-radius: 4px;
+}
+
+.txt{
+border-radius: 4px;
+border-color: graytext;
+}

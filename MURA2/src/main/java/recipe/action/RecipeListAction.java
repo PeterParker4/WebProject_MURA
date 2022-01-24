@@ -51,9 +51,8 @@ public class RecipeListAction implements CommandAction {
 			find_box = "no";
 		}
 		
-		List<RecipeVO> articleList = null;
-		
 		// 데이터베이스 연동
+		List<RecipeVO> articleList = null;
 		RecipeDAO dbPro = RecipeDAO.getInstance();
 		
 		count = dbPro.getArticleCount(find, find_box);
@@ -83,7 +82,6 @@ public class RecipeListAction implements CommandAction {
 		Cookie[] cookieArray = request.getCookies();
 		
 		if(cookieArray != null) {
-			
 			for(int i = 0; i < cookieArray.length; i++) {
 				if(cookieArray[i].getName().startsWith("today")) {
 					todayRecipeList.add(cookieArray[i].getValue());

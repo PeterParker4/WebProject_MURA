@@ -20,7 +20,6 @@ public class UserWriteFormAction implements CommandAction {
 			
 		MemberDAO dao = new MemberDAO();
 		String nn_mem = dao.getMember(id_mem).getNn_mem();
-		System.out.println(nn_mem);
 		request.setAttribute("nn_mem", nn_mem);
 		}catch(Exception e) {}
 		

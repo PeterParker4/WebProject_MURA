@@ -30,6 +30,20 @@ border-style: solid;
 right: 310px;
 position: relative;
 }
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}	
+.s2:hover{
+background-color: orange;
+color:black;
+}
 </style>
 
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
@@ -92,44 +106,34 @@ bgcolor="${bodyback_c }">
 <pre>${qaArticle.wcontent_qt }</pre></td>
 </tr>
 </table>
+<br><br>
 
-
-
-<tr height="30">
-<td colspan="7" bgcolor="${value_c }" align="right">
+<div align="center">
+<tr><td bgcolor="${value_c }" align="right">
 
 <c:if test="${id_mem != null }">
 <c:if test="${un_mem eq qaArticle.un_mem}">
-<input type="button" value="글수정"
+<input type="button" class="s2" value="글수정"
 onclick="document.location.href='/MURA2/userboard/qaUpdateForm.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum }'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <a onclick="return confirm('정말로 삭제하시겠습니까?')"
 href="/MURA2/userboard/qaDeletePro.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum}">
-<input type="button" value="글삭제"></a>
+<input type="button" class="s2" value="글삭제"></a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 </c:if>
 </c:if>
 
-
-
-
-<input type="button" value="답변쓰기"
+<input type="button" class="s2" value="답변쓰기"
 onclick="document.location.href='/MURA2/userboard/qaWriteForm.mur?idx_qt=${qaArticle.idx_qt }&ref_qt=${qaArticle.ref_qt}&step_qt=${qaArticle.step_qt}&depth_qt=${qaArticle.depth_qt}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<input type="button" value="글목록"
+<input type="button" class="s2" value="글목록"
 onclick="document.location.href='/MURA2/userboard/qaboardList.mur?pageNum=${pageNum }'">
-
-
-</td>
-</tr>
-
-
-
-
+</td></tr>
+</div>
+<br><br>
 </form>
-
 </body>
 </html>

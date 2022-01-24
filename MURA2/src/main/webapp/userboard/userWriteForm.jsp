@@ -69,7 +69,26 @@ cursor: pointer;
 height: 25px;
 }
 
-
+ input[type=radio]{
+            background-color: #FFFF;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-left: 16px;
+            border: 1px solid rgb(216, 216, 216);
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+        }
+input[type=radio]:checked{
+            background-color: #330033;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-left: 16px;
+            border: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+        }
 
 
 </style>
@@ -97,7 +116,6 @@ height: 25px;
 <div align="center"></div><br><br>
 <form action="/MURA2/userboard/userWritePro.mur" name="userWriteForm" method="post"
 onsubmit="return writeSave()">
-<%-- <input type="hidden" name="un_mem" value="${un_mem}"> --%>
 <input type="hidden" name="idx_ut" value="${idx_ut}">
 
 <table class="tb">
@@ -117,11 +135,11 @@ onsubmit="return writeSave()">
 <tr>
 	<td class="s1">카테고리</td>
 	<td width="330" align="center">
-		<input type="radio" name="board" value="user" checked="checked"
+		<input type="radio" name="board" value="user" id="r1d" checked="checked"
 		onclick="window.location='/MURA2/userboard/userWriteForm.mur'"/>요청게시판
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="board" value="qa"
+		<input type="radio" name="board" id="r2d" value="qa"
 		onclick="window.location='/MURA2/userboard/qaWriteForm.mur'"/>Q&A게시판
 	</td>
 </tr>

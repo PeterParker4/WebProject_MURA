@@ -34,6 +34,21 @@ border-style: solid;
 right: 310px;
 position: relative;
 }
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}	
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
 </style>
 
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
@@ -104,33 +119,30 @@ bgcolor="${bodyback_c }">
 <pre>${userArticle.wcontent_ut }</pre></td>
 </tr>
 </table>
-
 <br><br>
 
-
-<tr height="30">
-<td colspan="7" bgcolor="${value_c }" align="right">
+<div align="center">
+<tr><td colspan="3" bgcolor="${value_c }" >
 
 <c:if test="${id_mem != null}">
 <c:if test="${un_mem eq userArticle.un_mem}">
-<input type="button" value="글수정"
+<input type="button" value="글수정" class="s2"
 onclick="document.location.href='/MURA2/userboard/userUpdateForm.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum }'">
 &nbsp;&nbsp;
 
 <a onclick="return confirm('정말로 삭제하시겠습니까?')"
 href="/MURA2/userboard/userDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}">
-<input type="button" value="글삭제"></a>
+<input type="button" class="s2" value="글삭제"></a>
 &nbsp;&nbsp;
 </c:if>
 </c:if>
 
-<input type="button" value="글목록"
+<input type="button" class="s2" value="글목록"
 onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNum }'">
-</td>
-</tr>
+</td></tr>
+</div>
 </form>
 <br><br><br><br>
-
 
 <table border="1" width="700" align="center">
 
@@ -170,7 +182,7 @@ onsubmit="return check()">
 <input type="hidden" value="${pageNum }" name="pageNum">
 </td></tr>
 
-<tr><td colspan="2" align="right"><input type="submit" value="댓글 작성"></td></tr>
+<tr><td colspan="2" align="right"><input type="submit" class="s2" value="댓글 작성"></td></tr>
 
 </table>
 

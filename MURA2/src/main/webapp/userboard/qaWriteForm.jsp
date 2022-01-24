@@ -71,7 +71,26 @@ cursor: pointer;
 height: 25px;
 }
 
-
+ input[type=radio]{
+            background-color: #FFFF;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-left: 16px;
+            border: 1px solid rgb(216, 216, 216);
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+        }
+input[type=radio]:checked{
+            background-color: #330033;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-left: 16px;
+            border: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+        }
 
 
 </style>

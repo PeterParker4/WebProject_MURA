@@ -21,7 +21,7 @@ public class UserWriteProAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		String id_mem = (String) session.getAttribute("loginID");
+		String id_mem = (String) session.getAttribute("id_mem");
 		
 		UserBoard userArticle = new UserBoard();
 		MemberDAO dao = new MemberDAO();

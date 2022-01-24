@@ -39,6 +39,12 @@ position: relative;
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link href="../page/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+function check() {
+	if(document.replyWriteForm.content_reply.value==""){
+		alert("내용을 입력해 주세요");
+		return false;
+	}
+  }
 
 </script>
 </head>
@@ -104,12 +110,19 @@ bgcolor="${bodyback_c }">
 
 <tr height="30">
 <td colspan="7" bgcolor="${value_c }" align="right">
+
+<c:if test="${id_mem != null}">
+<c:if test="${un_mem eq userArticle.un_mem}">
 <input type="button" value="글수정"
 onclick="document.location.href='/MURA2/userboard/userUpdateForm.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum }'">
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
 
 <a onclick="return confirm('정말로 삭제하시겠습니까?')"
-href="/MURA2/userboard/userDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}">삭제</a>
+href="/MURA2/userboard/userDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}">
+<input type="button" value="글삭제"></a>
+&nbsp;&nbsp;
+</c:if>
+</c:if>
 
 <input type="button" value="글목록"
 onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNum }'">
@@ -121,6 +134,11 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 
 <table border="1" width="700" align="center">
 
+<tr>
+<td align="center" width="100">작성자</td>
+<td align="center" width="500">댓글 내용</td>
+<td align="center" width="100">작성일자</td>
+</tr>
 <c:if test="${userArticle.replycnt_ut == 0}">
 <tr align="center" >
 	    <td colspan="3">댓글이 없습니다.</td>
@@ -130,11 +148,6 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 <c:forEach var="reply" items="${replyList }">
 
 <c:if test="${userArticle.replycnt_ut > 0 }">
-<tr>
-<td align="center" width="100">작성자</td>
-<td align="center" width="500">댓글 내용</td>
-<td align="center" width="100">작성일자</td>
-</tr>
 <tr>
 <td>${reply.nn_reply }</td>
 <td>${reply.content_reply }</td>
@@ -147,18 +160,22 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 
 
 <br><br><br>
-<form action="userReplyPro.jsp" method="post">
+<c:if test="${id_mem != null }">
+<form action="userReplyPro.jsp" method="post" name="replyWriteForm"
+onsubmit="return check()">
 <table>
 <tr><td>${nn_mem }</td>
 <td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
 <input type="hidden" value="${userArticle.idx_ut }" name="board_reply">
 <input type="hidden" value="${pageNum }" name="pageNum">
 </td></tr>
-<c:if test="${sessionScope.loginID != null }">
+
 <tr><td colspan="2" align="right"><input type="submit" value="댓글 작성"></td></tr>
-</c:if>
+
 </table>
+
 <br><br><br>
 </form>
+</c:if>
 </body>
 </html>

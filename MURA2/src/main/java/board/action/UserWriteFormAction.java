@@ -12,14 +12,15 @@ public class UserWriteFormAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		String id_mem = (String) session.getAttribute("loginID");
+		String id_mem = (String) session.getAttribute("id_mem");
 		try {
 			
 		MemberDAO dao = new MemberDAO();
 		String nn_mem = dao.getMember(id_mem).getNn_mem();
-		
+		System.out.println(nn_mem);
 		request.setAttribute("nn_mem", nn_mem);
 		}catch(Exception e) {}
 		

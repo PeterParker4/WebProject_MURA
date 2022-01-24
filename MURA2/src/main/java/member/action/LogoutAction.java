@@ -3,6 +3,7 @@ package member.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import action.CommandAction;
 
 public class LogoutAction implements CommandAction {
@@ -12,7 +13,7 @@ public class LogoutAction implements CommandAction {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "/page/logout.jsp";
+		return "/page/member/logout.jsp";
 
 	}
 

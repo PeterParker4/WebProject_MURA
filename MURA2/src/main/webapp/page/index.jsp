@@ -1,136 +1,455 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>MURA :: 당신의 식탁을 더 맛있게</title>
+<style type="text/css">
+.bt1{
+width: 250px; 
+height: 65px;
+align-content: center
+
+background-color: #fff;
+border-color: #a84781;
+color:#a84781;
+border-width: 6px;
+border-style: double;
+border-radius: 5px;
+padding: 10px;
+text-align: center;
+text-decoration: none;
+display: run-in;
+font-size: 30px;
+cursor: pointer;
+margin: 4px;
+}
+
+/* @media (max-width: 800px) {
+  * {
+    background-image: url("images/momo.jpg");
+  }
+}  */
+
+*{
+font-family: 'Nanum Pen Script', cursive;
+}
+
+.im{
+bottom: 0px;
+position: relative;
+margin: 5px;
+}
+
+.do{
+
+position:static;
+}
+
+p{
+text-align: center;
+text-decoration: underline;
+text-shadow: navy;
+vertical-align: super;
+}
+
+.btn {
+width:270px;
+height:75px;
+  background: none;
+  border: 2px solid;
+  border-style:solid;
+  border-width: 3px;
+  border-bottom-width: 8px;
+  font: inherit;
+  font-size: 40px;
+  letter-spacing: inherit;
+  margin: 5px;
+  padding: 4px;
+  text-transform: inherit;
+  transition: color 1s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+@-webkit-keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+.wrapper {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+width:250px;
+height:60px;
+margin:15px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 1;
+  border: none;
+}
+
+.button:after{
+background-color: #a84781;
+width:250px;
+height:60px;width:250px;
+height:60px;
+opacity: 0.5;
+color:black;
+content: "먼지풀풀";
+position: absolute;
+left: 0px;
+top: 24px;
+}
+
+.button:before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  transform: skewX(-45deg) translateX(0);
+  transition: none;
+}
+.button:hover {
+  background-color: transparent;
+  color: gray;
+  /* border: 1px solid #fff; */
+  font-size: 24px;
+  font-weight: normal;
+}
+.button:hover:before {
+  transform: skewX(-45deg) translateX(13.5em);
+  transition: all 0.5s ease-in-out;
+}
+
+.img{
+position: relative;
+right: 80px;
+top: 3px;
+z-index: 1;
+}
+
+.tr1{
+width: 100%;
+height: 90px;
+box-shadow: 1px;
+}
+
+.cart{
+width: 260px;
+height: 400px;
+border: black 2px solid;
+color: black;
+position: fixed;
+left: 50px;
+top: 400px;
+z-index: 1;
+}
+
+.cart::after {
+width: 260px;
+height: 400px;
+background-color: #fff;
+content:"";
+position: absolute;
+left: 0;
+top: 0;
+z-index:-1;
+opacity: 0.8;
+}
+
+.back{
+/* background-image: url("images/pink.jpg"); */
+background-size: cover;
+}
+
+
+</style>
+
+<style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 1000px;
+        height: 600px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 5000px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 250px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 250px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
+     
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" type="image/x-icon" href="images/mura_logo.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
-
-<body bgcolor="#FFFFFF">
-
-<!-- logout 페이지 이 안에서 구현 -->
-
+<body>
+<div class="back">
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="signinForm.jsp"> Sign In </a> |
-		<a href="login.jsp"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<div>
+		<nav>
+		 	 <c:choose>
+				<c:when test="${id_mem ne null && id_mem eq 'aaaa1111' }">
+					<a href="/MURA2/page/member/logout.mur"> 회원관리 </a> |
+				</c:when>
+				
+				<c:when test="${id_mem ne null}">
+					<a href="/MURA2/page/member/logout.mur"> Logout </a> |
+					<a href="/MURA2/page/member/myPage.mur"> MyPage </a>
+				</c:when>
+							
+				<c:otherwise>
+					<a href="/MURA2/page/member/signinForm.mur"> Sign Up </a> |
+					<a href="/MURA2/page/member/login.mur"> Login </a>&nbsp;
+				</c:otherwise>
+			</c:choose> 
+		</nav>
+	</div>
 	<br><br>
-
+	
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
 	
-	<div>
-	<table id="Table_01" width="1194" height="1081" border="0" cellpadding="0" cellspacing="0">
+	<br><br><br>
 	
-	<tr>
-		<td>
-			<a href="a">
-			<img src="images/recipe_btn.jpg" width="250" height="70" border="0" alt=""></a></td>
-		<td>
-			<a href="a">
-			<img src="images/write_btn.jpg" width="158" height="70" border="0" alt=""></a></td>
-		<td colspan="2">
-			<img src="images/menu_margin.jpg" width="408" height="70" alt=""></td>
-		<td>
-			<a href="/MURA2/userboard/boardList.mur">
-			<img src="images/request_btn.jpg" width="174" height="70" alt=""></a></td>
-		<td>
-			<a href="/MURA2/userboard/qaboardList.mur">
-			<img src="images/qa_btn.jpg" width="204" height="70" border="0" alt=""></a></td>
-	</tr>
-	
-	<!-- 검색창 -->
-	<tr>
-		<td colspan="6">
-			<img src="images/search_area.jpg" width="1194" height="282" alt="">
-			<div class="search-wrapper">
+	<div class="search-wrapper">
 			    <div class="input-holder">
-			        <input type="text" class="search-input" placeholder="재료를 입력하세요!" />
+			        <input type="text" class="search-input" placeholder="재료를 입력하세요!"/>
 			        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
 			    </div>
 			    <span class="close" onclick="searchToggle(this, event);"></span>
-			</div>
-        </td>
-	</tr>
+	</div>
+			
 	
-	<!-- 중간 메뉴바 -->
-	<tr>
-		<td colspan="6">
-			<img src="images/midle_bar.jpg" width="1194" height="84" alt=""></td>
-	</tr>
+	<br><br><br><br>		
 	
-	<tr>
-		<td colspan="3">
-			<img src="images/best10_area.jpg" width="480" height="414" alt=""></td>
-		<td colspan="3">
-			<img src="images/hot3_area.jpg" width="714" height="414" alt=""></td>
-	</tr>
-	
-	<!-- 여백 -->
+	<!-- 상단 메뉴바 -->
+	<div class="tr1">
+	<table border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="250" height="1" alt=""></td>
+		<a href="/MURA2/page/recipe/recipeList.mur">
+		<input style="margin-left: 300px" type="button" class="button" name="레시피 보기" value="레시피 보기"></a></td>
+
+		<c:choose>
+			<c:when test="${id_mem eq null}">
+				<td>
+				<input type="button" class="button" name="레시피 작성" value="레시피 작성" onClick="alert('로그인 후 이용해 주세요!!');">
+				</td>
+			</c:when>
+
+			<c:otherwise>
+				<td><a href="/MURA2/page/recipe/recipeWriteForm.mur"> 
+				<input type="button" class="button" name="레시피 작성" value="레시피 작성"></a></td>
+			</c:otherwise>
+		</c:choose>
+		
 		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="158" height="1" alt=""></td>
+		<a href="/MURA2/userboard/boardList.mur">
+		<input type="button" class="button" name="레시피 요청" value="레시피 요청" ></a></td>
+		
 		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="72" height="1" alt=""></td>
-		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="336" height="1" alt=""></td>
-		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="174" height="1" alt=""></td>
-		<td>
-			<img src="images/&#xc2a4;&#xd398;&#xc774;&#xc11c;.gif" width="204" height="1" alt=""></td>
+		<a href="/MURA2/userboard/qaboardList.mur">
+		<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A" ></a></td>
 	</tr>
+	</table>
+	</div>
 	
+	<br><br>
+	
+	
+	<div class="slide">
+      <img id="back" src="img/left.jpg" alt="" width="100">
+      <ul>
+        <li><img src="img/name1.png" alt="" width="1000" height="600"></li>
+        <li><img src="img/name2.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="img/name3.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="img/name4.png" alt="" width="1000" height="600"></li>
+        <li><img src="img/name5.jpg" alt="" width="1000" height="600"></li>
+      </ul>
+      <img id="next" src="img/right.jpg" alt="" width="100">
+    </div>
+<br>
+
+<div align="center">
+<img alt="" src="images/midlebar_index.png">
+</div>  
+  
+<div align="center">
+	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;	position: relative;" border="0">
+		<tr height="30">
+			<td width="230">레시피</td>
+			<td width="50">조회수</td>
+		</tr>
+		<c:forEach var="article" items="${articleList}" end="9">
+		<tr height="30">
+			<td align="left" width="230"><a href=""><div style="width:200px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="잉 기모링">${article.wsubject_li}</div></a></td>
+			<td align="center" width="50">${article.readcount_li}</td>
+		</tr>
+		</c:forEach>
+	</table>
+	
+	<table style="display: inline-flex; border-collapse: collapse; position: relative; top: 30px; right: -7px;" border="0">
+		
+		<tr style="margin-bottom: 5px;">
+			<td><img src="images/icons/kin.png" width="50" height="60"></td>
+			<td><img src="images/icons/gin.png" width="50" height="60"></td>
+			<td><img src="images/icons/dong.png" width="50" height="60"></td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/burin.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/dak.jpg" width="230" height="230"></td>
+			<td><img alt="" src="images/jind.jpg" width="230" height="230"></td>
+		</tr>	
+		<tr height="30">
+			<td style="background-color: #FF8C8C; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">첫번째로 맛있는 음식 </td>
+			<td style="background-color: #5ABEFF; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">두번째로 맛있는 음식 </td>
+			<td style="background-color: #acffef; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">세번째로 맛있는 음식 </td>
+		</tr>	
+		
 	</table>
 </div>
+<br><br>  
+  
 
-	<!--F 푸터메뉴 -->
-    <footer class="footer">
-		<hr style="width:75%;height:6px;border:none;background-color:#a84781;">
-		<div class="container" style="padding-top:7px;" align="center">
-			<div class="row">
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-info-circle fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>(주)MURA</h3>
-					<p class="text-muted">대표이사: 성세연<br>서울특별시 영등포구<br>010-1234-1234<br>jinsu9337@naver.com
-					</p>
-					</div>
-      			</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-file-o fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%">
-					<h3>Site Info</h3>
-					<p class="text-muted">"MURA" Designed by <a href="http://readiz.com" target="_blank">YJS</a><br/>with <a href="http://yongzz.com" target="_blank">yongzz</a>, <a href="http://wincomi.com" target="_blank">wincomi</a>, <a href="http://markquery.com" target="_blank">Ungki. H</a><br/><a href="http://blog.readiz.com/22">Further Information</a>
-					</p>
-					</div>
-				</div>
-        		<div class="col-md-4 media"><div class="pull-left"><i class="fa fa-link fa-2x fa-fw"></i></div>
-					<div class="media-body" style="float:left;width:33%"><h3>Other Links</h3>
-						<p class="text-muted">
-							<a href="/MURA2/page/index.jsp" title="홈">Top</a> | <a href="/tag" title="태그">태그</a>
-						</p><br><br>
-					</div>
-				</div>
-			</div>
-			<br><br>
-			<div class="row">
-				<div class="col-md-12" >
-					<hr style="width:75%;height:6px;border:none;background-color:#a84781;"><br>
-					<p class="text-muted">Copyright ⓒ 2021-2022 MURA All rights reserved.</p>
-				</div>
-			</div>
-		</div>
-    </footer>
+<div class="cart">
+<b>&nbsp;최근 둘러본 레시피</b>
+
+	<table>
+		<tr>
+			<td width="100">
+				<a href=""><img align="left" alt="" src="images/nuguri.jpg" width="90" height="90" style="padding-right: 10px; margin-top: 5px;"></a></td>
+				<td width="150" align="left" valign="middle"><a href="">너구리 맛있게 먹는법</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="100">
+				<a href=""><img align="left" alt="" src="images/jind.jpg" width="90" height="90" style="padding-right: 10px;"></a></td>
+				<td width="150" align="left" valign="middle"><a href="">찜닭 존나 맛있닭</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="100">
+				<a href=""><img align="left" alt="" src="images/burin.jpg" width="90" height="90" style="padding-right: 10px;"></a></td>
+				<td width="150" align="left" valign="middle"><a href="">직접 만들어먹는 뿌링클</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="100">
+				<a href=""><img align="left" alt="" src="images/dak.jpg" width="90" height="90" style="padding-right: 10px;"></a></td>
+				<td width="150" align="left" valign="middle"><a href="">매콤한 족발대신 오독오독 닭발 어때요?</a>
+			</td>
+		</tr>
+		
+	</table>
+
+</div>
+<br><br>
+	
+
+<%@ include file="footer.jsp" %>
+
+
+</div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
+
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
+
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
+
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=1000px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=1000px'
+          });
+          img_position++;
+        }
+      }
+
+    });
+  </script>
 </html>

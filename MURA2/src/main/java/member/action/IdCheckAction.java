@@ -18,7 +18,7 @@ public class IdCheckAction implements CommandAction {
 		request.setAttribute("id_mem", id_mem);
 		request.setAttribute("check", check);
 
-		return "/page/idCheck.jsp";
+		return "/page/member/idCheck.jsp";
 	}
 
 }

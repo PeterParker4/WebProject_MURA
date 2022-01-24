@@ -3,7 +3,7 @@
 <%@ page import="member.model.MemberDAO, reply.model.ReplyDAO, reply.model.ReplyVO" %>
 
 <%
-String id_mem = (String) session.getAttribute("loginID");
+String id_mem = (String) session.getAttribute("id_mem");
 request.setCharacterEncoding("utf-8");
 
 int pageNum = Integer.parseInt(request.getParameter("pageNum"));

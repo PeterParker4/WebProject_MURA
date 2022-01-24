@@ -10,6 +10,7 @@ public class FindPwProcAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		request.setCharacterEncoding("utf-8");
 		MemberDAO dao = new MemberDAO();
 		String name_mem = request.getParameter("name_mem");
 		String id_mem = request.getParameter("id_mem");
@@ -18,8 +19,8 @@ public class FindPwProcAction implements CommandAction {
 		request.setAttribute("pw_mem", pw_mem);
 
 		if (pw_mem == null)
-			return "/page/findPw.jsp";
-		return "/page/findPwAfter.jsp";
+			return "/page/member/findPw.jsp";
+		return "/page/member/findPwAfter.jsp";
 
 	}
 

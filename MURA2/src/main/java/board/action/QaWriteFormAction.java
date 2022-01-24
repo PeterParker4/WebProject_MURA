@@ -13,11 +13,10 @@ public class QaWriteFormAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
 		HttpSession session = request.getSession();
-		String id_mem = (String) session.getAttribute("loginID");
+		String id_mem = (String) session.getAttribute("id_mem");
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		String nn_mem = dao.getMember(id_mem).getNn_mem();
-		
 		int idx_qt = 0, ref_qt = 1, step_qt = 0, depth_qt = 0;
 		
 		try {

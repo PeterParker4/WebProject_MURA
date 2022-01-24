@@ -19,7 +19,7 @@ public class QaWriteProAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		String id_mem = (String) session.getAttribute("loginID");
+		String id_mem = (String) session.getAttribute("id_mem");
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		QABoard qaArticle = new QABoard();

@@ -164,6 +164,13 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 <td>${reply.nn_reply }</td>
 <td>${reply.content_reply }</td>
 <td>${reply.date_reply }</td>
+<c:if test="${reply.mem_reply eq un_mem }">
+<td>
+<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+href="/MURA2/userboard/replyDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}&idx_reply=${reply.idx_reply }">
+<input type="button" value="삭제"></a></td>
+<%-- <input type="hidden" value="${reply.board_reply }" name="board_reply"> --%>
+</c:if>
 </tr>
 </c:if>
 

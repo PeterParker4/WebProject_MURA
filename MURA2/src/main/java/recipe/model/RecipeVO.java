@@ -12,11 +12,11 @@ public class RecipeVO {
 	private String tag_li;
 	private String thumb_li;
 	private String wcontent_li;
-	private String reply_li;
 	private Timestamp date_li;
 	private int readcount_li;
 	private int recommend_cnt;
 	private int board_num;
+	private int reply_cnt;
 	
 	public int getIdx_li() {
 		return idx_li;
@@ -66,12 +66,6 @@ public class RecipeVO {
 	public void setWcontent_li(String wcontent_li) {
 		this.wcontent_li = wcontent_li;
 	}
-	public String getReply_li() {
-		return reply_li;
-	}
-	public void setReply_li(String reply_li) {
-		this.reply_li = reply_li;
-	}
 	public Timestamp getDate_li() {
 		return date_li;
 	}
@@ -95,6 +89,12 @@ public class RecipeVO {
 	}
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
+	}
+	public int getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(int reply_cnt) {
+		this.reply_cnt = reply_cnt;
 	}
 	
 }

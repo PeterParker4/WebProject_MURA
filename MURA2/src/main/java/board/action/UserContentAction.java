@@ -40,7 +40,6 @@ public class UserContentAction implements CommandAction {
 		List<ReplyVO> replyList = null;
 		replyList = replyDAO.getReply(idx_ut);
 		
-		
 		request.setAttribute("idx_ut", idx_ut);
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("userArticle", userArticle);

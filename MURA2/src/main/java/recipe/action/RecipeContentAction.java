@@ -1,5 +1,7 @@
 package recipe.action;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,8 @@ import member.model.MemberDAO;
 import member.model.MemberVO;
 import recipe.model.RecipeDAO;
 import recipe.model.RecipeVO;
+import reply.model.ReplyDAO;
+import reply.model.ReplyVO;
 
 // 글 상세보기 처리
 public class RecipeContentAction implements CommandAction {
@@ -18,13 +22,13 @@ public class RecipeContentAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
 		// 해당 글 번호
-		String num = request.getParameter("num");
+		int num = Integer.parseInt(request.getParameter("num"));
 		String thumb_li = request.getParameter("thumb_li");
 		
 		// 해당 페이지 번호
 		String pageNum = request.getParameter("pageNum");
 		RecipeDAO dbPro = RecipeDAO.getInstance();
-		RecipeVO article = dbPro.getArticle(Integer.parseInt(num));
+		RecipeVO article = dbPro.getArticle(num);
 		
 		// 세션에서 멤버 정보 불러오기
 		HttpSession session = request.getSession();
@@ -37,11 +41,17 @@ public class RecipeContentAction implements CommandAction {
 		todayImageCookie.setMaxAge(60*60*24);
 		response.addCookie(todayImageCookie);
 		
+		// 댓글 리스트 불러오기
+		ReplyDAO replyDAO = new ReplyDAO();
+		List<ReplyVO> replyList = null;
+		replyList = replyDAO.getReply(num);
+		
 		// 해당 뷰에서 사용할 속성 저장
 		request.setAttribute("num", new Integer(num));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("article", article);
 		request.setAttribute("memberInfo", memberInfo);
+		request.setAttribute("replyList", replyList);
 		
 		return "/page/recipe/recipeContent.jsp";
 	}

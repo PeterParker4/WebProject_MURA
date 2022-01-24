@@ -131,6 +131,7 @@ public class RecipeDAO {
 					article.setReadcount_li(rs.getInt("readcount_li"));
 					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 					article.setBoard_num(rs.getInt("board_num"));
+					article.setReply_cnt(rs.getInt("reply_cnt"));
 					articleList.add(article);
 				} while (rs.next());
 			}
@@ -174,6 +175,7 @@ public class RecipeDAO {
 					article.setReadcount_li(rs.getInt("readcount_li"));
 					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 					article.setBoard_num(rs.getInt("board_num"));
+					article.setReply_cnt(rs.getInt("reply_cnt"));
 					articleList.add(article);
 				} while (rs.next());
 			}
@@ -201,7 +203,7 @@ public class RecipeDAO {
 
 			pstmt = con.prepareStatement(
 					"select * from (select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-							+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num from "
+							+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num, reply_cnt from "
 							+ "(select * from food_board order by idx_li desc)) where rnum >= ? and rnum <= ?");
 
 			// 수정3
@@ -221,11 +223,11 @@ public class RecipeDAO {
 					article.setTag_li(rs.getString("tag_li"));
 					article.setThumb_li(rs.getString("thumb_li"));
 					article.setWcontent_li(rs.getString("wcontent_li"));
-					article.setReply_li(rs.getString("reply_li"));
 					article.setDate_li(rs.getTimestamp("date_li"));
 					article.setReadcount_li(rs.getInt("readcount_li"));
 					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 					article.setBoard_num(rs.getInt("board_num"));
+					article.setReply_cnt(rs.getInt("reply_cnt"));
 					articleList.add(article);
 				} while (rs.next());
 			}
@@ -253,7 +255,7 @@ public class RecipeDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("select * from ");
 			sql.append("(select rownum rnum, idx_li, un_mem, nn_mem, category_li, "
-					+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num from ");
+					+ "wsubject_li, tag_li, thumb_li, wcontent_li, date_li, readcount_li, recommend_cnt, board_num, reply_cnt from ");
 
 			if (find.equals("nn_mem")) {
 				sql.append("(select * from food_board where nn_mem=? order by idx_li desc)) "
@@ -311,6 +313,7 @@ public class RecipeDAO {
 					article.setReadcount_li(rs.getInt("readcount_li"));
 					article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 					article.setBoard_num(rs.getInt("board_num"));
+					article.setReply_cnt(rs.getInt("reply_cnt"));
 					articleList.add(article);
 				} while (rs.next());
 			}
@@ -404,6 +407,7 @@ public class RecipeDAO {
 				article.setReadcount_li(rs.getInt("readcount_li"));
 				article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 				article.setBoard_num(rs.getInt("board_num"));
+				article.setReply_cnt(rs.getInt("reply_cnt"));
 			}
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -448,6 +452,7 @@ public class RecipeDAO {
 				article.setReadcount_li(rs.getInt("readcount_li"));
 				article.setRecommend_cnt(rs.getInt("recommend_cnt"));
 				article.setBoard_num(rs.getInt("board_num"));
+				article.setReply_cnt(rs.getInt("reply_cnt"));
 			}
 		}catch(Exception e) {
 			System.out.println("Exception "+e);
@@ -561,6 +566,29 @@ public class RecipeDAO {
 		try {
 			con = ConnUtil.getConnection();
 			pstmt = con.prepareStatement("update food_board set recommend_cnt = recommend_cnt + 1 where idx_li=?");
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return result;
+	}
+
+	// 게시글 댓글수 올리기
+	public int updateReply(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int result = 0;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("update food_board set reply_cnt = reply_cnt + 1 where idx_li=?");
 			pstmt.setInt(1, num);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {

@@ -132,6 +132,8 @@ function frm_sub(i) {
       <img onerror="this.style.visibility='hidden'" alt="" src="upload/${article.thumb_li}" width="300px" height="200px">&nbsp;
       <div align="center" class="txt">
       ${article.wsubject_li}
+      <c:if test="${article.reply_cnt > 0}">
+      [${article.reply_cnt}]</c:if>
       <c:if test="${article.readcount_li >= 40}">
       <img alt="" src="images/hot.gif" border="0" height="30">
       </c:if></div></a>
@@ -246,7 +248,7 @@ function frm_sub(i) {
 <div class="cart">
 <b>&nbsp;최근 둘러본 레시피</b><br>
 	<table>
-		<c:forEach var="todayImage" items="${todayImageList}" end="3">
+		<c:forEach var="todayImage" items="${todayImageList}" end="1">
 		<tr>
 			<td width="100">
 			<a href=""><img alt="" src="upload/${todayImage}" width="150" height="110" style="padding-right: 10px; margin-top: 5px;"></a></td>

@@ -78,7 +78,7 @@ font-weight: bold;
 padding-top: 4px;
 }
 </style>
-<link rel="icon" type="image/x-icon" href="images/mura_logo.png">
+<link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
 <link href="css/recipeStyle.css" rel="stylesheet" type="text/css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
@@ -138,7 +138,7 @@ padding-top: 4px;
 <br><br>
 <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter('${article.wsubject_li}',${num},${pageNum});"></a>&nbsp;
 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook(${num},${pageNum});"></a>&nbsp;
-<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>&nbsp; 
+<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao('${article.wsubject_li}','${article.thumb_li}',${num},${pageNum});"></a>&nbsp; 
     
 <hr>
 

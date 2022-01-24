@@ -139,7 +139,7 @@ onsubmit="return qaWriteSave()">
 		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_qt">
 		</c:if>
 		<c:if test="${idx_qt != 0 }">
-		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_qt" value="[답변]">
+		<input type="text" class="tx" size="50" maxlength="50" name="wsubject_qt" value="">
 		</c:if>
 	</td>
 </tr>

@@ -159,18 +159,17 @@ padding-top: 4px;
 </form>
 </div>
 </div>
-<br>
-<br>
+<br><br>
 
-<table border="0" width="700" align="center">
+<table border="0" width="700" align="center" cellspacing="0">
 
-<tr>
-<td class="s1_1" align="center" width="100">작성자</td>
-<td class="s1_1" align="center" width="500">댓글 내용</td>
-<td class="s1_1" align="center" width="100">작성일</td>
+<tr height="30">
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="100">작성자</td>
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="500">댓글 내용</td>
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="100">작성일자</td>
 </tr>
 <c:if test="${article.reply_cnt == 0}">
-<tr align="center" >
+<tr style="border-bottom: 1px solid;" align="center" >
 	    <td colspan="3">댓글이 없습니다.</td>
 </tr>
 </c:if>
@@ -179,23 +178,28 @@ padding-top: 4px;
 
 <c:if test="${article.reply_cnt > 0}">
 <tr>
-<td>${reply.nn_reply}</td>
-<td>${reply.content_reply}</td>
-<td>${reply.date_reply}</td>
+<td style="border-bottom: 1px solid black; color: black; font-weight: bold;">${reply.nn_reply }</td>
+<td style="border-bottom: 1px solid; font-weight: lighter;">${reply.content_reply }
+<c:if test="${reply.mem_reply eq memberInfo.un_mem}">
+<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+href="/MURA2/page/recipe/recipeReplyDeleteProc.mur?num=${article.idx_li}&pageNum=${pageNum}&thumb_li=${article.thumb_li}&idx_reply=${reply.idx_reply}">
+<input class="del" type="button" value="x"></a>
+</c:if>
+</td>
+<td style="border-bottom: 1px solid; font-family: sans-serif; font-weight:bold; font-size: 14px;">${reply.date_reply}</td>
 </tr>
 </c:if>
-
 </c:forEach>
 </table>
 
 <br><br>
 <c:if test="${id_mem != null}">
 <form action="/MURA2/page/recipe/recipeReplyProc.mur?num=${article.idx_li}&pageNum=${pageNum}&thumb_li=${article.thumb_li}" method="post" name="replyWriteForm" onsubmit="return check()">
-<table width="700" align="center">
-<tr><td>${memberInfo.nn_mem}</td>
-<td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
-</td></tr>
-<tr><td colspan="2" align="right"><input type="submit" class="s2" value="댓글"></td></tr>
+<table width="700">
+<td colspan="3" align="center"><textarea rows="3" cols="" placeholder="댓글을 입력해주세요. " name="content_reply" style="border-radius:5px; width: 600px; font-size: 18px; resize: none; margin-right: 10px;"></textarea>
+</td>
+<td colspan="1" align="right"><input style="width: 70px; height: 62px; margin-bottom: 4px;" class="s2" type="submit" value="댓글 작성"></td>
+</tr>
 </table>
 </form>
 </c:if>

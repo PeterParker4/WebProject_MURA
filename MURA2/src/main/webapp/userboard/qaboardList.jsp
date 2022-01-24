@@ -49,6 +49,17 @@
 		background-color: orange;
 		color:black;
 		}
+		
+.blinking{
+ -webkit-animation:blink 1.5s ease-in-out infinite alternate;
+  -moz-animation:blink 1.5s ease-in-out infinite alternate; 
+  animation:blink 1.5s ease-in-out infinite alternate; } 
+@-webkit-keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} } 
+
+@-moz-keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} } 
+
+@keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} }
+
         
 </style>
 <script type="text/javascript">
@@ -75,7 +86,7 @@ function check() {
     display: flex;
     align-items: center;
     justify-content: center;">
-	  <a href="/MURA2/page/index.jsp"> 
+	  <a href="/MURA2/page/index.mur"> 
 	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 </div>
 
@@ -94,7 +105,7 @@ function check() {
 	<div  id="tab-2" class="tab-content current">
 			<h1>Q&A 게시판</h1><br>
 	
-	<div align="center"><b>글목록(전체 글:${qaCount} )</b><br>
+	<div align="center"><b>글목록(전체 글:${qaCount} )</b><br><br>
 	
 	<c:if test="${qaCount == 0 }">
 	<table width="700" border="1" cellpadding="0" cellspacing="0">
@@ -105,47 +116,55 @@ function check() {
 	</c:if>
 	
 	<c:if test="${qaCount > 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
+	<table width="700" border="0" cellpadding="0" cellspacing="0" align="center">
 	
-		<tr height="10">
-		  <td align="center" width="100">글번호</td>			
-		  <td align="center" width="300">제목</td>
-		  <td align="center" width="100">작성자</td>
-		  <td align="center" width="150">작성일</td>
-		  <td align="center" width="50">조회수</td>
+		<tr height="41">
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="100"><b>글번호</b></td>			
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="left" width="300"><b>&nbsp;제목</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="100"><b>작성자</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="150"><b>작성일</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="50"><b>조회수</b></td>
 		</tr>
 	
 	<c:forEach var="qaBoardArticle" items="${qaBoardArticleList }">
 	
 	<tr height="30">
-		<td align="center" width="100"><c:out value="${number }"/></td>
-		<c:set var="number" value="${number - 1 }"> </c:set>
-	
-		<td width="300">
+		<td style="border-bottom: 1px solid black;" align="center" width="100"><c:out value="${number }"/></td>
+		<c:set var="number" value="${number - 1 }"> </c:set>	
 		
+		<td style="border-bottom: 1px solid black;"width="300">
 		<c:if test="${qaBoardArticle.depth_qt > 0}">
 		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
 		<img src="images/reply.png" width="25">		
+		<b class="blinking" style="color: #9966ff;">답변 </b>&nbsp;
+		<a href="/MURA2/userboard/qaContent.mur?idx_qt=${qaBoardArticle.idx_qt}&pageNum=${currentPage}"
+		style="text-decoration:none !important">
+		<b style="color: gray;">${qaBoardArticle.wsubject_qt}</b></a>
+			<c:if test="${qaBoardArticle.readcount_qt >= 20 }">
+			<img alt="" src="images/hot.png" border="0" height="16">
+			</c:if>
 		</c:if>
 		
 		<c:if test="${qaBoardArticle.depth_qt == 0 }">
 		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
-		</c:if>
-			
-		<a href="/MURA2/userboard/qaContent.mur?idx_qt=${qaBoardArticle.idx_qt}&pageNum=${currentPage}">
-		${qaBoardArticle.wsubject_qt}</a>
+		<b class="blinking" style="color: #ff3300;">문의 </b>&nbsp;
+		<a href="/MURA2/userboard/qaContent.mur?idx_qt=${qaBoardArticle.idx_qt}&pageNum=${currentPage}"
+		style="text-decoration:none !important">
+		<b style="color: gray;">${qaBoardArticle.wsubject_qt}</b></a>
 			<c:if test="${qaBoardArticle.readcount_qt >= 20 }">
 			<img alt="" src="images/hot.png" border="0" height="16">
 			</c:if>
+		</c:if>
+		
 		</td>	
 	
-		<td align="center" width="100">
+		<td style="border-bottom: 1px solid black;" align="center" width="100">
 		${qaBoardArticle.nn_mem }
 		</td>
-		<td align="center" width="150">
+		<td style="border-bottom: 1px solid black;" align="center" width="150">
 		${qaBoardArticle.date_qt }
 		</td>		
-		<td align="center" width="50">
+		<td style="border-bottom: 1px solid black;" align="center" width="50">
 		${qaBoardArticle.readcount_qt }
 		</td>
 		

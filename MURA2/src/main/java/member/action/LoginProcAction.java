@@ -1,6 +1,5 @@
 package member.action;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,18 +21,18 @@ public class LoginProcAction implements CommandAction {
 
 		if (check == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("id_mem", id_mem); // id_mem으로 통일  
-			System.out.println(id_mem);
+			session.setAttribute("id_mem", id_mem); // id_mem으로 통일
+			// System.out.println(id_mem);
+			MemberVO memberInfo = dao.getMember(id_mem);
+
+			request.setAttribute("memberInfo", memberInfo);
+			String admin_mem = memberInfo.getAdmin_mem();
+			request.setAttribute("admin_mem", admin_mem);
+
 		} else if (id_mem != null && pw_mem != null) {
 			request.setAttribute("check", check);
 		}
-		
-		//관리자
-		/*MemberVO memberInfo = dao.getMember(id_mem);
-		request.setAttribute("memberInfo", memberInfo);
-		String admin_mem = memberInfo.getAdmin_mem();
-		System.out.println(admin_mem);
-		*/
+
 		return "/page/member/login.jsp";
 	}
 

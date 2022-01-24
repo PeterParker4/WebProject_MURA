@@ -52,51 +52,24 @@
 <body bgcolor="#FFFFFF">
 
 	<c:choose>
-		<c:when test="${id_mem ne null }">
-			<!--	<table width="300" border="1">
-  <tr>
-  	<td colspan="3" align="center">
-  		<c:out value="${loginID }"/>님 환영합니다.
-  	</td>
-  </tr>
-  
-  <tr>
-  	<td align="center" width="100">
-  		<a href="/MURA2/page/mypage.mur">마이페이지</a>
-  	</td>
-
-  	<td align="center" width="100">
-  		<a href="/MURA2/page/member/logout.mur">로그아웃</a>
-  	</td>
-
-	<td align="center" width="100">
-  		<a href="/MURA2/page/member/delete.mur">회원탈퇴</a>
-  	</td>
-
-  	<td align="center" width="100">
-  		<a href="/MURA2/page/member/index.jsp">메인으로 이동</a>
-  	</td>
-  </tr>
-</table> -->
-
-			<script type="text/javascript">
-				alert("${id_mem }님 환영합니다. 메인 페이지로 이동합니다.");
-			</script>
-			<meta http-equiv="refresh"
-				content="0;url=/MURA2/page/index.jsp">
-			<!-- 로그아웃 인덱스로 바뀔예정 -->
-
-		</c:when>
-		
-		<c:when test="${id_mem ne null && id_mem eq 'aaaa1111'}">
+		<c:when test="${id_mem ne null && admin_mem eq 'Y'}">
 		<script type="text/javascript">
 				alert("관리자로 로그인합니다.");
 		</script>
 			<meta http-equiv="refresh"
-				content="0;url=/MURA2/page/index.jsp">
+				content="0;url=/MURA2/page/index.mur">
 		</c:when>
+		
+		<c:when test="${id_mem ne null }">
+			<script type="text/javascript">
+				alert("${id_mem }님 환영합니다. 메인 페이지로 이동합니다.");
+			</script>
+			<meta http-equiv="refresh"
+				content="0;url=/MURA2/page/index.mur">
+			<!-- 로그아웃 인덱스로 바뀔예정 -->
 
-
+		</c:when>
+		
 		<c:otherwise>
 
 			<c:if test="${requestScope.check eq 0 }">
@@ -174,9 +147,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
 
 
 			<div id="dropDownSelect1"></div>

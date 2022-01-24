@@ -601,4 +601,27 @@ public class RecipeDAO {
 		return result;
 	}
 
+	// 게시글 댓글수 내리기
+	public int deleteReply(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int result = 0;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("update food_board set reply_cnt = reply_cnt - 1 where idx_li=?");
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("Exception "+e);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s2) {}
+			if(con != null) try {con.close();}catch(SQLException s3) {}
+		}
+		return result;
+	}
+
 }

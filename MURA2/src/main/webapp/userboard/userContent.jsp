@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>MURA :: 요청 게시판 글 보기</title>
 <style type="text/css">
+
 .blank
 {
 width : 100px;
@@ -33,6 +34,40 @@ border-color: black;
 border-style: solid;
 right: 310px;
 position: relative;
+}
+
+.table{
+color : #fff;
+background-color: #a84781;
+border-radius: 5px;
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
+.td1{
+border: 1px solid;
+border-radius: 5px;
+}
+
+.del{
+background-color: #fff;
+border: none;
+color:#c00000;
+cursor: pointer;
 }
 </style>
 
@@ -67,79 +102,85 @@ function check() {
 <!--  <body bgcolor="${bodyback_c }">
 <div align="center"> <b>글 상세 보기</b> <br><br>  -->
 
+<br><br>
 
 <form>
 
-<table width="700" border="1" cellpadding="3" cellspacing="3" align="center"
-bgcolor="${bodyback_c }">
+<table width="700" border="0" cellpadding="6" cellspacing="6" align="center" 
+bgcolor="#fff" style="border-radius:8px; border-collapse: separate; border-spacing: 3px 3px;">
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">글제목</td>
-<td align="center" width="460" colspan="4">
+<td class="table" align="center" width="80" bgcolor="${value_c }">글제목</td>
+<td class="td1" style="border-radius: 5px;" align="center" width="460" colspan="4">
 <pre>${userArticle.wsubject_ut }</pre></td>
-<td align="center" width="80" bgcolor="${value_c }">작성일</td>
-<td align="center" width="80">${userArticle.date_ut }</td>
+<td class="table" align="center" width="80" bgcolor="${value_c }">작성일</td>
+<td class="td1" style="border-radius: 5px;" align="center" width="120">${userArticle.date_ut }</td>
 </tr>
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">조회수</td>
-<td align="center" width="80">${userArticle.readcount_ut }</td>
-<td class="blank" align="center" width="460" colspan="3"></td>
-<td align="center" width="80" bgcolor="${value_c }">작성자</td>
-<td align="center" width="80">${userArticle.nn_mem }</td>
+<td class="table" align="center" width="80" bgcolor="${value_c }">작성자</td>
+<td class="td1" style="border-radius: 5px;" align="center" width="80" colspan="4">${userArticle.nn_mem }</td>
+
+<td class="table" align="center" width="80" bgcolor="${value_c }">조회수</td>
+<td class="td1" style="border-radius: 5px;" align="center" width="80">${userArticle.readcount_ut }</td>
+
+
 </tr>
 
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">글내용</td>
-<td class="blank" colspan="6">
-</tr>
+<td class="table" align="center" width="80" bgcolor="${value_c }">글내용</td>
 
-<tr>
-<td width="700" height="500" colspan="7" >
+<td class="td1" width="700" height="500" colspan="7" >
 <pre>${userArticle.wcontent_ut }</pre></td>
 </tr>
+
 </table>
-
-<br><br>
-
-
+<table width="700" border="0" cellpadding="6" cellspacing="6" align="center" 
+bgcolor="#fff" style="border-radius:8px; border-collapse: separate; border-spacing: 3px 3px;">
 <tr height="30">
 <td colspan="7" bgcolor="${value_c }" align="right">
 
 <c:if test="${id_mem != null}">
 <c:if test="${un_mem eq userArticle.un_mem}">
-<input type="button" value="글수정"
+<input class="s2" type="button" value="글수정"
 onclick="document.location.href='/MURA2/userboard/userUpdateForm.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum }'">
 &nbsp;&nbsp;
 
 <a onclick="return confirm('정말로 삭제하시겠습니까?')"
 href="/MURA2/userboard/userDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}">
-<input type="button" value="글삭제"></a>
+<input class="s2" type="button" value="글삭제"></a>
 &nbsp;&nbsp;
 </c:if>
 </c:if>
 
-<input type="button" value="글목록"
+<input class="s2" type="button" value="글목록"
 onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNum }'">
 </td>
 </tr>
+
+</table>
+
+<br><br>
+
+
+
 </form>
-<br><br><br><br>
+<br><br>
 
 
-<table border="1" width="700" align="center">
+<table border="0" width="700" align="center" cellspacing="0">
 
-<tr>
-<td align="center" width="100">작성자</td>
-<td align="center" width="500">댓글 내용</td>
-<td align="center" width="100">작성일자</td>
+<tr height="30">
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="100">작성자</td>
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="500">댓글 내용</td>
+<td style="border-bottom: 1px solid; border-top: 1px solid; color:#fff; background-color: #a84781;" align="center" width="100">작성일자</td>
 </tr>
 <c:if test="${userArticle.replycnt_ut == 0}">
-<tr align="center" >
+<tr style="border-bottom: 1px solid;" align="center" >
 	    <td colspan="3">댓글이 없습니다.</td>
 </tr>
 </c:if>
@@ -148,9 +189,17 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 
 <c:if test="${userArticle.replycnt_ut > 0 }">
 <tr>
-<td>${reply.nn_reply }</td>
-<td>${reply.content_reply }</td>
-<td>${reply.date_reply }</td>
+<td style="border-bottom: 1px solid black; color: black; font-weight: bold;">${reply.nn_reply }</td>
+<td style="border-bottom: 1px solid; font-weight: lighter;">${reply.content_reply }
+<c:if test="${reply.mem_reply eq un_mem }">
+<a onclick="return confirm('정말로 삭제하시겠습니까?')"
+href="/MURA2/userboard/replyDeletePro.mur?idx_ut=${userArticle.idx_ut }&pageNum=${pageNum}&idx_reply=${reply.idx_reply }">
+<input class="del" type="button" value="x"></a>
+<%-- <input type="hidden" value="${reply.board_reply }" name="board_reply"> --%>
+</c:if>
+</td>
+<td style="border-bottom: 1px solid; font-family: sans-serif; font-weight:bold; font-size: 14px;">${reply.date_reply }</td>
+
 </tr>
 </c:if>
 
@@ -158,18 +207,18 @@ onclick="document.location.href='/MURA2/userboard/boardList.mur?pageNum=${pageNu
 </table>
 
 
-<br><br><br>
+<br><br>
 <c:if test="${id_mem != null }">
 <form action="userReplyPro.jsp" method="post" name="replyWriteForm"
 onsubmit="return check()">
-<table>
-<tr><td>${nn_mem }</td>
-<td><textarea rows="3" cols="" placeholder="댓글을 입력하세요." name="content_reply" style="width: 100%"></textarea>
+<table width="700">
+<td colspan="3" align="center"><textarea rows="3" cols="" placeholder="댓글을 입력해주세요. " name="content_reply" style="border-radius:5px; width: 600px; font-size: 18px; resize: none; margin-right: 10px;"></textarea>
 <input type="hidden" value="${userArticle.idx_ut }" name="board_reply">
 <input type="hidden" value="${pageNum }" name="pageNum">
-</td></tr>
+</td>
+<td colspan="1" align="right"><input style="width: 70px; height: 62px; margin-bottom: 4px;" class="s2" type="submit" value="댓글 작성"></td>
+</tr>
 
-<tr><td colspan="2" align="right"><input type="submit" value="댓글 작성"></td></tr>
 
 </table>
 

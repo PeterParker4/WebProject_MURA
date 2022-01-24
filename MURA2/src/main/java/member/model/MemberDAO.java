@@ -4,12 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
-
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 import db.ConnUtil;
 
@@ -32,15 +27,7 @@ public class MemberDAO {
 		return instance;
 	}
 
-	/*
-	 * public Connection getConnection() {
-	 * 
-	 * Connection con = null;
-	 * 
-	 * try { InitialContext ctx = new InitialContext(); DataSource ds = (DataSource)
-	 * ctx.lookup("java:comp/env/jdbc/mydb"); con = ds.getConnection(); } catch
-	 * (Exception e) { System.out.println("디비 연결 실패"); } return con; }
-	 */
+	
 
 	// id, pass 맞으면 1, pass만 틀리면 0, id 없으면 -1 (지금 안먹음)
 	public int loginCheck(String id_mem, String pw_mem) {
@@ -53,7 +40,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select pw_mem from member_board where id_mem=?";
+			String sql = "select pw_mem from member_board where id_mem = ?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -106,7 +93,7 @@ public class MemberDAO {
 
 		try {
 			con = ConnUtil.getConnection();
-			String sql = "insert into member_board values(content_seq.nextval,default,?,?,?,?,?,?,?,?,?,?,'Y',sysdate)";
+			String sql = "insert into member_board values(SWF_NextVal('CONTENT_SEQ'),default,?,?,?,?,?,?,?,?,?,?,'Y',CURRENT_TIMESTAMP)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getId_mem());
@@ -160,7 +147,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select * from member_board where id_mem=?";
+			String sql = "select * from member_board where id_mem = ?";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, id_mem);
@@ -259,7 +246,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select id_mem from member_board where name_mem=? and email_mem=?";
+			String sql = "select id_mem from member_board where name_mem = ? and email_mem = ?";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, name_mem);
@@ -302,7 +289,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select pw_mem from member_board where name_mem=? and id_mem=? and email_mem=?";
+			String sql = "select pw_mem from member_board where name_mem = ? and id_mem = ? and email_mem = ?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name_mem);
@@ -346,7 +333,7 @@ public class MemberDAO {
 
 		try {
 			con = ConnUtil.getConnection();
-			String sql = "select * from member_board where id_mem=?";
+			String sql = "select * from member_board where id_mem = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id_mem);
 			rs = pstmt.executeQuery();
@@ -401,7 +388,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "update member_board set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc2_mem=? where id_mem=?";
+			String sql = "update member_board set nn_mem = ?,pw_mem = ?,name_mem = ?,email_mem = ?,gender_mem = ?,tel_mem = ?,zipcode_mem = ?,zc1_mem = ?,zc2_mem = ? where id_mem = ?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -450,7 +437,7 @@ public class MemberDAO {
 		try {
 			con = ConnUtil.getConnection();
 
-			String sql = "select pw_mem from member_board where id_mem=?";
+			String sql = "select pw_mem from member_board where id_mem = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id_mem);
 			rs = pstmt.executeQuery();
@@ -459,7 +446,7 @@ public class MemberDAO {
 				dbPw_mem = rs.getString("pw_mem");
 				System.out.println(dbPw_mem); // 확인용
 				if (dbPw_mem.equals(pw_mem)) {
-					String delSql = "delete from member_board where id_mem=?";
+					String delSql = "delete from member_board where id_mem = ?";
 					pstmt = con.prepareStatement(delSql);
 					pstmt.setString(1, id_mem);
 					pstmt.executeUpdate();
@@ -487,55 +474,4 @@ public class MemberDAO {
 
 		return result;
 	}
-
-	// 관리자 로그인 메소드
-	/*public int adminloginCheck(String id_mem, String pw_mem) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int result = -1; // (결과값이 나오지 않으니까) 아이디 없음
-
-		try {
-
-			con = ConnUtil.getConnection();
-			String sql = "select admin_mem from member_board where id_mem=? and pw_mem=?";
-
-			pstmt = con.prepareStatement(sql);
-
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-
-				if (rs.getString(1).equals("Y")) { // Y이면 관리자니까
-					result = 1; // 로그인 성공
-					System.out.println("관리자로그인성공");
-				} else {
-					result = 0; // 비밀번호 불일치
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception ee) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (Exception ee) {
-				}
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (Exception ee) {
-				}
-		}
-
-		return result;
-	} */
-	
 }

@@ -48,6 +48,17 @@
 	color:black;
 	}
 
+.blinking{
+ -webkit-animation:blink 1.5s ease-in-out infinite alternate;
+  -moz-animation:blink 1.5s ease-in-out infinite alternate; 
+  animation:blink 1.5s ease-in-out infinite alternate; } 
+@-webkit-keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} } 
+
+@-moz-keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} } 
+
+@keyframes blink{ 0% {opacity:0;} 100% {opacity:1;} }
+
+
 </style>
 <script type="text/javascript">
 function check() {
@@ -74,7 +85,7 @@ function check() {
     display: flex;
     align-items: center;
     justify-content: center;">
-	  <a href="/MURA2/page/index.jsp"> 
+	  <a href="/MURA2/page/index.mur"> 
 	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
 </div>
 
@@ -89,10 +100,10 @@ function check() {
 	<div  id="tab-1" class="tab-content current">
 		<h1>요청 게시판</h1><br>
 	
-	<div align="center"><b>글목록(전체 글:${userCount} )</b><br>
+	<div align="center"><b>글목록(전체 글:${userCount} )</b><br><br>
 	
 	<c:if test="${userCount == 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0">
+	<table width="700" border="0" cellpadding="0" cellspacing="0">
 	  <tr align="center">
 	    <td>게시판에 저장된 글이 없습니다.</td>
 	  </tr>
@@ -100,37 +111,39 @@ function check() {
 	</c:if>
 	
 	<c:if test="${userCount > 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
+	<table width="700" border="0" cellpadding="0" cellspacing="0" align="center">
 	
-		<tr height="10">
-		  <td align="center" width="100">글번호</td>			
-		  <td align="center" width="300">제목</td>
-		  <td align="center" width="100">작성자</td>
-		  <td align="center" width="150">작성일</td>
-		  <td align="center" width="50">조회수</td>
+		<tr height="41">
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="100"><b>글번호</b></td>			
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="left" width="300"><b>제목</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="100"><b>작성자</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="150"><b>작성일</b></td>
+		  <td style="border-bottom: 1px solid black; border-top: 1px solid black;" align="center" width="50"><b>조회수</b></td>
 		</tr>
 	
 	<c:forEach var="userBoardArticle" items="${userBoardArticleList }">
 	
 	<tr height="30">
-		<td align="center" width="100"><c:out value="${number}"/></td>
+		<td style="border-bottom: 1px solid black;" align="center" width="100"><c:out value="${number}"/></td>
 		<c:set var="number" value="${number - 1 }"></c:set>
 	
-		<td width="300">	
-		<a href="/MURA2/userboard/userContent.mur?idx_ut=${userBoardArticle.idx_ut}&pageNum=${currentPage}">
-		${userBoardArticle.wsubject_ut} <c:if test="${userBoardArticle.replycnt_ut > 0}">(${userBoardArticle.replycnt_ut })</c:if></a>
+		<td style="border-bottom: 1px solid black;" width="300">
+		<b class="blinking" style="color: #66cc00;">요청 </b>&nbsp;	
+		<a href="/MURA2/userboard/userContent.mur?idx_ut=${userBoardArticle.idx_ut}&pageNum=${currentPage}"
+		style="text-decoration:none !important">
+		<b style="color: gray;">${userBoardArticle.wsubject_ut} </b><c:if test="${userBoardArticle.replycnt_ut > 0}">(${userBoardArticle.replycnt_ut })</c:if></a>
 		<c:if test="${userBoardArticle.readcount_ut >= 20 }">
 			<img alt="" src="images/hot.png" border="0" height="16">
 			</c:if>
 		</td>	
 	
-		<td align="center" width="100">
+		<td style="border-bottom: 1px solid black;" align="center" width="100">
 		${userBoardArticle.nn_mem }
 		</td>
-		<td align="center" width="150">
+		<td style="border-bottom: 1px solid black;" align="center" width="150">
 		${userBoardArticle.date_ut }
 		</td>		
-		<td align="center" width="50">
+		<td style="border-bottom: 1px solid black;" align="center" width="50">
 		${userBoardArticle.readcount_ut }
 		</td>
 		

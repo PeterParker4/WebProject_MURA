@@ -226,3 +226,10 @@ border-radius: 4px;
 border-radius: 4px;
 border-color: graytext;
 }
+
+.del{
+background-color: #fff;
+border: none;
+color:#c00000;
+cursor: pointer;
+}

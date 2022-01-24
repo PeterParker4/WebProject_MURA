@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>MURA :: Q&A 게시판 글 보기</title>
 <style type="text/css">
+
 .blank
 {
 width : 100px;
@@ -30,6 +31,34 @@ border-style: solid;
 right: 310px;
 position: relative;
 }
+
+.table{
+color : #fff;
+background-color: #a84781;
+border-radius: 5px;
+}
+
+.s2{
+height: 25px;
+border: thin;
+border-radius: 5px;
+border-color: aqua;
+background-color: #330033;
+color: white;
+font-weight: bold;
+cursor: pointer;
+}
+
+.s2:hover{
+background-color: orange;
+color:black;
+}
+
+.td1{
+border: 1px solid;
+border-radius: 5px;
+}
+
 </style>
 
 <link rel="icon" type="image/x-icon" href="../images/mura_logo.png">
@@ -58,55 +87,52 @@ position: relative;
 
 <form>
 
-<table width="700" border="1" cellpadding="3" cellspacing="3" align="center"
-bgcolor="${bodyback_c }">
+<table width="700" border="0" cellpadding="6" cellspacing="6" align="center" 
+bgcolor="#fff" style="border-radius:8px; border-collapse: separate; border-spacing: 3px 3px;">
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">글제목</td>
-<td align="center" width="460" colspan="4">
+<td class="table" align="center" width="80" bgcolor="${value_c }">글제목</td>
+<td class="td1" align="center" width="460" colspan="4">
 <pre>${qaArticle.wsubject_qt }</pre></td>
-<td align="center" width="80" bgcolor="${value_c }">작성일</td>
-<td align="center" width="80">${qaArticle.date_qt }</td>
+<td class="table" align="center" width="80" bgcolor="${value_c }">작성일</td>
+<td class="td1" align="center" width="80">${qaArticle.date_qt }</td>
 </tr>
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">조회수</td>
-<td align="center" width="80">${qaArticle.readcount_qt }</td>
-<td class="blank" align="center" width="460" colspan="3"></td>
-<td align="center" width="80" bgcolor="${value_c }">작성자</td>
-<td align="center" width="80">${qaArticle.nn_mem }</td>
+<td class="table" align="center" width="80" bgcolor="${value_c }">작성자</td>
+<td class="td1" align="center" width="80" colspan="4">${qaArticle.nn_mem }</td>
+<td class="table" align="center" width="80" bgcolor="${value_c }">조회수</td>
+<td class="td1" align="center" width="80">${qaArticle.readcount_qt }</td>
 
 </tr>
 
 
 
 <tr height="30">
-<td align="center" width="80" bgcolor="${value_c }">글내용</td>
-<td class="blank" colspan="6">
-</tr>
-
-<tr>
-<td width="700" height="500" colspan="7" >
+<td class="table" align="center" width="80" bgcolor="${value_c }">글내용</td>
+<td class="td1" width="700" height="500" colspan="7" >
 <pre>${qaArticle.wcontent_qt }</pre></td>
 </tr>
+
 </table>
 
 
-
+<table width="700" border="0" cellpadding="6" cellspacing="6" align="center" 
+bgcolor="#fff" style="border-radius:8px; border-collapse: separate; border-spacing: 3px 3px;">
 <tr height="30">
 <td colspan="7" bgcolor="${value_c }" align="right">
 
 <c:if test="${id_mem != null }">
 <c:if test="${un_mem eq qaArticle.un_mem}">
-<input type="button" value="글수정"
+<input class="s2" type="button" value="글수정"
 onclick="document.location.href='/MURA2/userboard/qaUpdateForm.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum }'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <a onclick="return confirm('정말로 삭제하시겠습니까?')"
 href="/MURA2/userboard/qaDeletePro.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pageNum}">
-<input type="button" value="글삭제"></a>
+<input class="s2" type="button" value="글삭제"></a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 </c:if>
@@ -115,11 +141,11 @@ href="/MURA2/userboard/qaDeletePro.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pag
 
 
 
-<input type="button" value="답변쓰기"
+<input class="s2" type="button" value="답변쓰기"
 onclick="document.location.href='/MURA2/userboard/qaWriteForm.mur?idx_qt=${qaArticle.idx_qt }&ref_qt=${qaArticle.ref_qt}&step_qt=${qaArticle.step_qt}&depth_qt=${qaArticle.depth_qt}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<input type="button" value="글목록"
+<input class="s2" type="button" value="글목록"
 onclick="document.location.href='/MURA2/userboard/qaboardList.mur?pageNum=${pageNum }'">
 
 

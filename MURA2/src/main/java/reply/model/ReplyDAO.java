@@ -11,6 +11,7 @@ import db.ConnUtil;
 
 public class ReplyDAO {
 	
+	
 	public void insertReply(ReplyVO reply, int board_reply) {
 		
 		Connection con = null;
@@ -97,6 +98,55 @@ public class ReplyDAO {
 		
 		return replyList;
 	}
+	
+	public int deleteReply(int idx_reply, int board_reply) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		int result = -1;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select * from reply_board1 where idx_reply=?");
+			
+			pstmt.setInt(1, idx_reply);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				sql = "delete from reply_board1 where idx_reply=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx_reply);
+				pstmt.executeUpdate();
+				
+				pstmt = con.prepareStatement("update user_board set replycnt_ut=replycnt_ut-1 where idx_ut=?");
+				pstmt.setInt(1, board_reply);
+				pstmt.executeQuery();
+				
+				result = 1;
+			}else result = 0;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s2) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s3) {}
+		}
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

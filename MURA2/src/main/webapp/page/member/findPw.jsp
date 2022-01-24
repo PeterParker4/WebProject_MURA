@@ -63,45 +63,55 @@
 		<h4 align="center">비밀번호는 이름, 아이디, 이메일을 통해 찾을 수 있습니다.</h4>
 		<br>
 		<br>
-		<div class="row">
-			<div class="col-md-10 inputbb">
-				<div class="form-group has-danger">
-					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-						<input type="text" name="name_mem" class="form-control"
-							id="name_mem" placeholder="이름" required autofocus>
-					</div>
-				</div>
-			</div>
+<div align="center">
+	<table>
+		<tr>
+			<td><strong>NAME</strong></td>
+				</tr>
+		<tr>
+		<td>
+		<div>
+			
+						<input style="border: 2px solid black;" type="text" name="name_mem" placeholder="이름">
+					
+			
 		</div>
-
-		<div class="row">
-			<div class="col-md-10 inputbb">
-				<div class="form-group has-danger">
-					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-						<input type="text" name="id_mem" class="form-control"
-							id="id_mem" placeholder="아이디" required autofocus>
-					</div>
-				</div>
-			</div>
+		</td></tr>
+		<tr>
+						<td><strong>ID</strong></td>
+							</tr>
+		<tr><td>
+		<div>
+			
+						<input style="border: 2px solid black;" type="text" name="id_mem" placeholder="아이디">
+				
 		</div>
-
-
-		<div class="row">
-			<div class="col-md-10 inputbb">
-				<div class="form-group">
-					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-						<input type="email" name="email_mem" class="form-control"
-							id="email_mem" placeholder="이메일" required>
-					</div>
-				</div>
-			</div>
+		</td></tr>
+		
+		<tr>
+						<td><strong>E-MAIL</strong></td>
+							</tr>	
+		<tr><td>
+		<div>
+			
+						<input style="border: 2px solid black;" type="email" name="email_mem" placeholder="이메일">
+					
 		</div>
-
-		<div class="row">
-			<div class="col-md-10 inputbb">
-				<button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
-			</div>
+		</td></tr>
+		
+		
+		<tr height="30"></tr>
+		
+		<tr><td>
+		<div align="center">
+			
+				<button type="submit" style="border: 1px solid black;
+							border-radius: 5px; width: 60px; height: 30px;">찾기</button>
+			
 		</div>
+		</td></tr>
+		</table>
+	</div>
 	</form>
 
 

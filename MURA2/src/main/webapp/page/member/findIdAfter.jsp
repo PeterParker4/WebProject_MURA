@@ -57,7 +57,7 @@
 	  <a href="/MURA2/page/index.mur"> 
 	  <img src="../images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
-
+<div align="center">
 	<div class="password_container">
 		<form class="form-horizontal" role="form" method="post">
 			<div class="form">
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" style="left: 870px; position: absolute;">
 				<div class="col-md-10 inputbb">
 					<button type="button" class="btn btn-outline-secondary loginbtn"
 						onclick="location.href='login.mur'">로그인
@@ -79,7 +79,7 @@
 			</div>
 		</form>
 	</div>
-
+</div>
 
 	<div id="dropDownSelect1"></div>
 

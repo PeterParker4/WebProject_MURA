@@ -27,9 +27,7 @@ public class MemberDAO {
 		return instance;
 	}
 
-	
-
-	// id, pass 맞으면 1, pass만 틀리면 0, id 없으면 -1 (지금 안먹음)
+	// id, pass 맞으면 1, pass만 틀리면 0, id 없으면 -1 
 	public int loginCheck(String id_mem, String pw_mem) {
 
 		Connection con = null;
@@ -40,7 +38,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select pw_mem from member_board where id_mem = ?";
+			String sql = "select pw_mem from member_board where id_mem=?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -57,8 +55,6 @@ public class MemberDAO {
 					result = 0; // 비밀번호 불일치
 				}
 			}
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +89,7 @@ public class MemberDAO {
 
 		try {
 			con = ConnUtil.getConnection();
-			String sql = "insert into member_board values(SWF_NextVal('CONTENT_SEQ'),default,?,?,?,?,?,?,?,?,?,?,'Y',CURRENT_TIMESTAMP)";
+			String sql = "insert into member_board values(content_seq.nextval,default,?,?,?,?,?,?,?,?,?,?,'Y',sysdate)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getId_mem());
@@ -147,7 +143,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select * from member_board where id_mem = ?";
+			String sql = "select * from member_board where id_mem=?";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, id_mem);
@@ -242,11 +238,10 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String id_mem = null;
-
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select id_mem from member_board where name_mem = ? and email_mem = ?";
+			String sql = "select id_mem from member_board where name_mem=? and email_mem=?";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, name_mem);
@@ -254,8 +249,10 @@ public class MemberDAO {
 
 			rs = pstmt.executeQuery();
 
-			if (rs.next())
+			if (rs.next()) {
 				id_mem = rs.getString("id_mem");
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -289,7 +286,7 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select pw_mem from member_board where name_mem = ? and id_mem = ? and email_mem = ?";
+			String sql = "select pw_mem from member_board where name_mem=? and id_mem=? and email_mem=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name_mem);
@@ -333,7 +330,7 @@ public class MemberDAO {
 
 		try {
 			con = ConnUtil.getConnection();
-			String sql = "select * from member_board where id_mem = ?";
+			String sql = "select * from member_board where id_mem=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id_mem);
 			rs = pstmt.executeQuery();
@@ -388,9 +385,10 @@ public class MemberDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "update member_board set nn_mem = ?,pw_mem = ?,name_mem = ?,email_mem = ?,gender_mem = ?,tel_mem = ?,zipcode_mem = ?,zc1_mem = ?,zc2_mem = ? where id_mem = ?";
+			String sql = "update member_board set nn_mem=?, pw_mem=?, name_mem=?, email_mem=?, gender_mem=?, tel_mem=?, zipcode_mem=?, zc1_mem=?, zc2_mem=? where id_mem=?";
 
 			pstmt = con.prepareStatement(sql);
+
 
 			pstmt.setString(1, vo.getNn_mem());
 			pstmt.setString(2, vo.getPw_mem());
@@ -437,7 +435,7 @@ public class MemberDAO {
 		try {
 			con = ConnUtil.getConnection();
 
-			String sql = "select pw_mem from member_board where id_mem = ?";
+			String sql = "select pw_mem from member_board where id_mem=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id_mem);
 			rs = pstmt.executeQuery();
@@ -446,7 +444,7 @@ public class MemberDAO {
 				dbPw_mem = rs.getString("pw_mem");
 				System.out.println(dbPw_mem); // 확인용
 				if (dbPw_mem.equals(pw_mem)) {
-					String delSql = "delete from member_board where id_mem = ?";
+					String delSql = "delete from member_board where id_mem=?";
 					pstmt = con.prepareStatement(delSql);
 					pstmt.setString(1, id_mem);
 					pstmt.executeUpdate();
@@ -474,4 +472,5 @@ public class MemberDAO {
 
 		return result;
 	}
+
 }

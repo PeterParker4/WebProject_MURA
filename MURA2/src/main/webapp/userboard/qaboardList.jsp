@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<link href="../page/css/style.css" rel="stylesheet" type="text/css">
 <title>MURA :: Q&A 게시판</title>
 <style>
     *{margin:0;padding:0}
@@ -80,17 +81,23 @@ function check() {
 </head>
 <body>
 
-<div align="center">
+	<!--N 네비메뉴 -->
+	<div align="center">
+	<%@ include file="../page/nav.jsp" %>
+	<br><br>
 
-<div class="logo" style="
-    display: flex;
-    align-items: center;
-    justify-content: center;">
+	<!-- 상단 로고 -->
+	<div class="logo">
 	  <a href="/MURA2/page/index.mur"> 
-	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
-</div>
-
-<hr>
+	  <img src="../page/images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
+	</div>
+	
+	<!-- 상단 메뉴바 -->
+	<%@ include file="../page/menubar.jsp" %>
+	<br>
+	<hr style="width:100%;height:3px;border:none;background-color:#a84781;">
+	<br><br>
+	</div>
 
   <div class="allWrap">     
 	<div class="tabBox">
@@ -105,7 +112,7 @@ function check() {
 	<div  id="tab-2" class="tab-content current">
 			<h1>Q&A 게시판</h1><br>
 	
-	<div align="center"><b>글목록(전체 글:${qaCount} )</b><br><br>
+	<div align="center"><b>글목록(전체 글:${qaCount})</b><br><br>
 	
 	<c:if test="${qaCount == 0 }">
 	<table width="700" border="1" cellpadding="0" cellspacing="0">
@@ -132,7 +139,7 @@ function check() {
 		<td style="border-bottom: 1px solid black;" align="center" width="100"><c:out value="${number }"/></td>
 		<c:set var="number" value="${number - 1 }"> </c:set>	
 		
-		<td style="border-bottom: 1px solid black;"width="300">
+		<td style="border-bottom: 1px solid black;"width="300" align="left">
 		<c:if test="${qaBoardArticle.depth_qt > 0}">
 		<img src="images/level.gif" width="${5 * qaBoardArticle.depth_qt }" height="16">
 		<img src="images/reply.png" width="25">		
@@ -172,6 +179,8 @@ function check() {
 	</c:forEach>
 	</table>
 	</c:if>	
+	
+	<br>
 	
 	<c:if test="${qaCount > 0 }">
 	 <c:set var="imsi" value="${qaCount % pageSize == 0 ? 0 : 1 }"/>

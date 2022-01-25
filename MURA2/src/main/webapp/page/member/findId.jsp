@@ -65,34 +65,35 @@
 					<span class="login100-form-title p-b-51"> 아이디 찾기 </span>
 					<h4 align="center">아이디는 가입시 입력하신 이름과 이메일을 통해 찾을 수 있습니다.</h4>
 					<br><br>
-					<div class="row">
-						<div class="col-md-10 inputbb">
-							<div class="form-group has-danger">
-								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-									<input type="text" name="name_mem" class="form-control"
-										id="name_mem" placeholder="이름" required autofocus>
-								</div>
-							</div>
-						</div>
+				<table>
+				
+					<div align="center">
+					<tr>
+						<td><strong>ID</strong></td>
+							</tr>
+							<tr>	
+						<td><input style="border: 2px solid black;" type="text" name="name_mem" placeholder="이름"></td>
+						</tr>
 					</div>
 
-					
-					<div class="row">
-						<div class="col-md-10 inputbb">
-							<div class="form-group">
-								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-									<input type="email" name="email_mem" class="form-control"
-										id="eamil_mem" placeholder="이메일" required>
-								</div>
-							</div>
-						</div>
+				
+					<div align="center">
+					<tr>
+						<td><b>PASSWORD</b></td></tr>
+						<tr>
+						<td><input style="border: 2px solid black;" type="email" name="email_mem" placeholder="이메일"></td>
+					</tr>		
 					</div>
-					
-					<div class="row">
-						<div class="col-md-10 inputbb">
-							<button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
+					<br>
+					<tr height="20"></tr>
+					<div align="center">
+					<tr>
+					<td colspan="2">
+							<button type="submit" style="border: 1px solid black;
+							border-radius: 5px; width: 60px; height: 30px;">찾기</button>
+							</td></tr>
 						</div>
-					</div>
+						</table>
 				</form>
 
 

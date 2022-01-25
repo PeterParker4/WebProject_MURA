@@ -34,7 +34,8 @@
         text-align: center;
     }    
     .s2{
-		height: 25px;
+        width: 50px;
+		height: 30px;
 		border: thin;
 		border-radius: 5px;
 		border-color: aqua;
@@ -196,7 +197,7 @@ function check() {
 	<form action="/MURA2/userboard/boardList.mur" method="post" name="find_frm"
 onsubmit="return check()">
 
-  <select name="find" size="1">
+  <select name="find" size="1" style="position: static;">
   	<option value="nn_mem"> 작성자 </option>
   	<option value="wsubject_ut"> 제목 </option>
   	<option value="wcontent_ut"> 내용 </option>
@@ -205,7 +206,22 @@ onsubmit="return check()">
   <input type="text" name="find_box">
   &nbsp;
   <input type="submit" class="s2" value=" 검색 ">
+  
+  
+<!-- <input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">-->
+		<span style="position: absolute; right: 650px;">
+		<c:choose>
+			<c:when test="${id_mem eq null}">
+				<td>
+				<input type="button" class="s2" value="작성하기" style="width: 100px; height: 30p; font-size:16px;" onClick="alert('로그인 후 이용해 주세요!!');">
+				</td>
+			</c:when>
 
+			<c:otherwise>
+				<input type="button" class="s2" value=" 작성하기 " style="width: 100px; height: 30px;" onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
+			</c:otherwise>
+		</c:choose>
+        </span>
 </form>
 	
 	</div>
@@ -217,18 +233,7 @@ onsubmit="return check()">
 	</div>
 	
 	<div align="center">
-		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/boardList.mur'">
-		<c:choose>
-			<c:when test="${id_mem eq null}">
-				<td>
-				<input type="button" class="s2" value="작성하기" onClick="alert('로그인 후 이용해 주세요!!');">
-				</td>
-			</c:when>
-
-			<c:otherwise>
-				<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/userWriteForm.mur'">
-			</c:otherwise>
-		</c:choose>
+		
 	</div>
 	
 	<script>
@@ -243,5 +248,6 @@ onsubmit="return check()">
 
     });
 	</script>
+	
 </body>
 </html>

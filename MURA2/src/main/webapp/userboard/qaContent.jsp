@@ -67,19 +67,22 @@ border-radius: 5px;
 <body bgcolor="${bodyback_c }">
 
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<div align="center">
+	<%@ include file="../page/nav.jsp" %>
 	<br><br>
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../page/images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
-
+	
+	<!-- 상단 메뉴바 -->
+	<%@ include file="../page/menubar.jsp" %>
+	<br>
+	<hr style="width:100%;height:3px;border:none;background-color:#a84781;">
+	<br><br>
+	</div>
 
 <!--  <body bgcolor="${bodyback_c }">
 <div align="center"> <b>글 상세 보기</b> <br><br>  -->
@@ -107,7 +110,6 @@ bgcolor="#fff" style="border-radius:8px; border-collapse: separate; border-spaci
 <td class="td1" align="center" width="80">${qaArticle.readcount_qt }</td>
 
 </tr>
-
 
 
 <tr height="30">
@@ -139,8 +141,6 @@ href="/MURA2/userboard/qaDeletePro.mur?idx_qt=${qaArticle.idx_qt }&pageNum=${pag
 </c:if>
 
 
-
-
 <input class="s2" type="button" value="답변쓰기"
 onclick="document.location.href='/MURA2/userboard/qaWriteForm.mur?idx_qt=${qaArticle.idx_qt }&ref_qt=${qaArticle.ref_qt}&step_qt=${qaArticle.step_qt}&depth_qt=${qaArticle.depth_qt}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -151,11 +151,9 @@ onclick="document.location.href='/MURA2/userboard/qaboardList.mur?pageNum=${page
 
 </td>
 </tr>
-
-
-
-
+</table>
 </form>
 
+<%@ include file="../page/footer.jsp" %>
 </body>
 </html>

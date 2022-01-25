@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>우편번호 검색</title>
-<link href="style.css" type="text/css" rel="stylesheet">
+<link href="../css/style.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="script.js"></script>
 </head>
-<body bgcolor="#FFFFCC">
+<body bgcolor="#FFF">
 <div align="center">
 <b>우편 번호 찾기</b>
 <form action="zipCheck.mur" name="zipForm" method="post">

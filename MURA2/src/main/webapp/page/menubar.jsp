@@ -95,11 +95,11 @@ top: 24px;
 		
 		<td>
 		<a href="/MURA2/userboard/boardList.mur">
-		<input type="button" class="button" name="레시피 요청" value="레시피 요청" ></a></td>
+		<input type="button" class="button" name="요청 / Q&A" value="요청 / Q&A" ></a></td>
 		
 		<td>
-		<a href="/MURA2/userboard/qaboardList.mur">
-		<input style="margin-right: 300px" type="button" class="button" name="Q&A" value="Q&A" ></a></td>
+		<a href="/MURA2/page/recipe/recipeRanking.mur">
+		<input style="margin-right: 300px" type="button" class="button" name="레시피 랭킹" value="레시피 랭킹" ></a></td>
 	</tr>
 	</table>
 	</div>

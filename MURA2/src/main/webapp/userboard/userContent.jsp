@@ -85,24 +85,22 @@ function check() {
 <body bgcolor="${bodyback_c }">
 
 	<!--N 네비메뉴 -->
-    <nav>
-		<a href="/loginPage"> Sign In </a> |
-		<a href="/loginPage"> Login </a> |
-		<a href="/javascript/intro"> MyPage </a>
-	</nav>
+	<div align="center">
+	<%@ include file="../page/nav.jsp" %>
 	<br><br>
 
 	<!-- 상단 로고 -->
 	<div class="logo">
-	  <a href="/MURA2/page/index.jsp"> 
-	  <img src="../page/images/topLogo.jpg" width="1194" height="230" border="0" alt=""></a>
+	  <a href="/MURA2/page/index.mur"> 
+	  <img src="../page/images/mura_logo2.png" width="230" height="230" border="0" alt=""></a>
 	</div>
-
-
-<!--  <body bgcolor="${bodyback_c }">
-<div align="center"> <b>글 상세 보기</b> <br><br>  -->
-
-<br><br>
+	
+	<!-- 상단 메뉴바 -->
+	<%@ include file="../page/menubar.jsp" %>
+	<br>
+	<hr style="width:100%;height:3px;border:none;background-color:#a84781;">
+	<br><br>
+	</div>
 
 <form>
 
@@ -218,12 +216,13 @@ onsubmit="return check()">
 </td>
 <td colspan="1" align="right"><input style="width: 70px; height: 62px; margin-bottom: 4px;" class="s2" type="submit" value="댓글 작성"></td>
 </tr>
-
-
 </table>
 
 <br><br><br>
 </form>
 </c:if>
+
+<%@ include file="../page/footer.jsp" %>
+
 </body>
 </html>

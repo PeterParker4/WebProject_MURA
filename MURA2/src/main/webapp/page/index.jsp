@@ -280,7 +280,8 @@ background-size: cover;
 </div>  
   
 <div align="center">
-	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;	position: relative;" border="0">
+	<table style="display: inline-flex; border-collapse: collapse; table-layout: fixed;	position: relative; 
+	border:2px solid #a84781; padding: 5px; border-radius:10px;" border="0">
 		<tr height="30">
 			<td width="230">레시피</td>
 			<td width="50">조회수</td>

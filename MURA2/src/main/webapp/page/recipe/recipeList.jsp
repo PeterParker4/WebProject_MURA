@@ -220,7 +220,7 @@ function frm_sub(i) {
   &nbsp;
   <input type="text" name="find_box">
   &nbsp;
-  <input type="submit" class="c2" value="검색">
+  <input type="submit" class="s2" value="검색">
 </form>
 </div>
 

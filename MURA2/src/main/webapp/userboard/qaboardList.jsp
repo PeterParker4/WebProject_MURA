@@ -36,7 +36,8 @@
     }
     
     .s2{
-		height: 25px;
+        width: 50px;
+		height: 30px;
 		border: thin;
 		border-radius: 5px;
 		border-color: aqua;
@@ -225,8 +226,20 @@ onsubmit="return check()">
   &nbsp;
   <input type="text" name="find_box">
   &nbsp;
-  <input type="submit" value="검색">
+  <input type="submit" class="s2" value="검색">
+  <span style="position: absolute; right: 650px;">
+  <c:choose>
+			<c:when test="${id_mem eq null}">
+				<td>
+				<input type="button" class="s2" value="작성하기" style="width: 100px; height: 30px; font-size: 16px;" onClick="alert('로그인 후 이용해 주세요!!');">
+				</td>
+			</c:when>
 
+			<c:otherwise>
+				<input type="button" class="s2" value=" 작성하기 " style="width: 100px; height: 30px;" onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
+			</c:otherwise>
+		</c:choose>
+</span>
 </form>
 	
 
@@ -235,23 +248,10 @@ onsubmit="return check()">
 	</div>
 	
 	</div>
-	<tr>	
-	<td colspan="2" align="right">
-		<input type="button" class="s2" value=" 목록 " onclick="window.location='/MURA2/userboard/qaboardList.mur'">
-		<c:choose>
-			<c:when test="${id_mem eq null}">
-				<td>
-				<input type="button" class="s2" value="작성하기" onClick="alert('로그인 후 이용해 주세요!!');">
-				</td>
-			</c:when>
 
-			<c:otherwise>
-				<input type="button" class="s2" value=" 작성하기 " onclick="window.location='/MURA2/userboard/qaWriteForm.mur'">
-			</c:otherwise>
-		</c:choose>
-		<input type="reset" class="s2" value=" 취소 ">
-	</td>
-	</tr>
+		
+		
+	
 	
 	<script>
         $('.tab-link').click(function () {

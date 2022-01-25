@@ -113,12 +113,10 @@
 									placeholder="Password"> <span class="focus-input100"></span>
 							</div>
 
+
 							<div class="flex-sb-m w-full p-t-3 p-b-24">
-								<div class="contact100-form-checkbox">
-									<input class="input-checkbox100" id="ckb1" type="checkbox"
-										name="idsave" value="saveOk"> <label
-										class="label-checkbox100" for="ckb1"> Remember me </label>
-								</div>
+								
+								<div style="width: 150px;"></div>
 
 								<div>
 									<a href="findId.mur" class="txt1"> 아이디 찾기 </a>

@@ -97,10 +97,10 @@ background-color: black;
         <input name="nn_mem" type="text" class="id" placeholder="닉네임">
       </div>
       <div class="textForm">
-        <input name="pw_mem" type="password" class="id" placeholder="비밀번호">
+        <input name="pw_mem" type="password" class="id" placeholder="비밀번호" style="font-family: sans-serif; font-weight: bold;">
       </div>
        <div class="textForm">
-        <input name="repass_mem" type="password" class="id" placeholder="비밀번호 확인">
+        <input name="repass_mem" type="password" class="id" placeholder="비밀번호 확인" style="font-family: sans-serif; font-weight: bold;">
       </div>
       <div class="textForm">
         <input name="name_mem" type="text" class="id" placeholder="이름">
